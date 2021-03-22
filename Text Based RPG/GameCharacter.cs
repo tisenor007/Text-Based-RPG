@@ -10,8 +10,18 @@ namespace Text_Based_RPG
     {
         //shared gameCharacter data....
         public int health;
-        protected int xLoc;
-        protected int yLoc;
+        public int xLoc;
+        public int yLoc;
         public string Character;
+
+        public void Draw()
+        {
+
+            Console.WriteLine(Character);
+        }
+        public void TakeDamage(int Damage)
+        {
+            health = health - Damage;
+        }
     }
 }

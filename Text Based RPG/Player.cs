@@ -8,8 +8,8 @@ namespace Text_Based_RPG
 {
     class Player : GameCharacter
     {
-        public bool isPlayer;
-        private int Money;
+        private bool wallExist;
+        private bool enemyExist;
 
         public void LoadPlayer(int X, int Y)
         {
@@ -21,7 +21,7 @@ namespace Text_Based_RPG
 
 
         }
-        public void Update(Map map, Player player, Heavy heavy, Special special, Light light, Item item)
+        public void Update(Map map, Enemy[] enemyNum, EnemyManager enemyManager)
         {
             //makes cursor not visable 
             Console.CursorVisible = false;
@@ -38,87 +38,19 @@ namespace Text_Based_RPG
             else
             {
 
-                //checks all enemies, items and the map
-                heavy.CheckHeavy(player.xLoc, player.yLoc, heavy);
-                special.CheckSpecial(player.xLoc, player.yLoc, special);
-                light.CheckLight(player.xLoc, player.yLoc, light);
-                item.GetItem(player.xLoc, player.yLoc);
-                map.GetMapTile(player.xLoc, player.yLoc, item);
-
-                if (item.isHealth == true)
-                {
-                    //if pickup health, gain unlimited health
-                    if (item.icon == "+")
-                    {
-                        health = health + 20;
-                    }
-                }
-
-                if (item.isMoney == true)
-                {
-                    //if money is picked up, money increases.....
-                    Money = Money + 20;
-                    item.isMoney = false;
-                }
-                else
-                {
-                    //nothing
-                }
-                if (special.isSpecial == true)
-                {
-                    //if they are dead, do no damage to player....
-                    if (special.Character == "X")
-                    {
-                        //do no damage
-                    }
-                    //other wise do 15 points
-                    else
-                    {
-                        player.health = player.health - 15;
-                    }
-
-                }
-                //different enemys do different damage
-                if (heavy.isHeavy == true)
-                {
-
-                    if (heavy.Character == "X")
-                    {
-                        //do no damage
-                    }
-                    else
-                    {
-                        player.health = player.health - 10;
-                    }
-
-                }
-                if (light.isLight == true)
-                {
-
-                    if (light.Character == "X")
-                    {
-                        //do no damage
-                    }
-                    else
-                    {
-                        player.health = player.health - 5;
-                    }
-                }
-                else
-                {
-                    //they are not there
-                    special.isSpecial = false;
-                    heavy.isHeavy = false;
-                    light.isLight = false;
-                }
+                
                 if (keyPressed.Key == ConsoleKey.W)
                 {
                     //you are able to move unless there is a wall
-                    map.GetMapTile(xLoc, yLoc - 1, item);
+                   
 
-                    if (map.isWall == true)
+                    if (wallExist = map.IsWallAt(xLoc, yLoc - 1))
                     {
-                        //do nothing / stop
+                        //do nothing 
+                    }
+                    else if (enemyExist = enemyManager.isEnemyUp(xLoc, yLoc))
+                    {
+
                     }
                     else
                     {
@@ -128,10 +60,13 @@ namespace Text_Based_RPG
                 }
                 if (keyPressed.Key == ConsoleKey.A)
                 {
-                    map.GetMapTile(xLoc - 1, yLoc, item);
-                    if (map.isWall == true)
+                    if (wallExist = map.IsWallAt(xLoc - 1, yLoc))
                     {
-                        //do nothing / stop
+
+                    }
+                    else if (enemyExist = enemyManager.isEnemyLeft(xLoc, yLoc))
+                    {
+
                     }
 
                     else
@@ -142,10 +77,13 @@ namespace Text_Based_RPG
                 }
                 if (keyPressed.Key == ConsoleKey.S)
                 {
-                    map.GetMapTile(xLoc, yLoc + 1, item);
-                    if (map.isWall == true)
+                    if (wallExist = map.IsWallAt(xLoc, yLoc + 1))
                     {
-                        //do nothing / stop
+
+                    }
+                    else if (enemyExist = enemyManager.isEnemyDown(xLoc, yLoc))
+                    {
+
                     }
                     else
                     {
@@ -154,10 +92,13 @@ namespace Text_Based_RPG
                 }
                 if (keyPressed.Key == ConsoleKey.D)
                 {
-                    map.GetMapTile(xLoc + 1, yLoc, item);
-                    if (map.isWall == true)
+                    if (wallExist = map.IsWallAt(xLoc + 1, yLoc))
                     {
-                        //do nothing / stop
+
+                    }
+                    else if (enemyExist = enemyManager.isEnemyRight(xLoc, yLoc))
+                    {
+
                     }
                     else
                     {
@@ -166,30 +107,80 @@ namespace Text_Based_RPG
                 }
             }
         }
-        //method so enemy can check for player and damage it....
-        public void IsPlayer(int x, int y)
+        public bool IsPlayerUp(int x, int y)
         {
-            if (y == yLoc)
+            if (x == xLoc)
             {
-                if (x == xLoc)
+                if (y - 1 == yLoc)
                 {
-                    isPlayer = true;
+                    return true;
                 }
                 else
                 {
-                    isPlayer = false;
+                    return false;
                 }
             }
-
             else
             {
-                isPlayer = false;
+                return false;
             }
         }
-        //player hud
-        public void HUD(Item item)
+        public bool IsPlayerLeft(int x, int y)
         {
-            Console.WriteLine("'" + Character + "'" + " Health: " + health + ", Money: " + Money + ", Door Acess: " + item.isKey);
+            if (y == yLoc)
+            {
+                if (x - 1 == xLoc)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
+        public bool IsPlayerRight(int x, int y)
+        {
+            if (y == yLoc)
+            {
+                if (x + 1 == xLoc)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool IsPlayerDown(int x, int y)
+        {
+            if (x == xLoc)
+            {
+                if (y + 1 == yLoc)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+
     }
 }

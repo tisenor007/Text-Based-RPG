@@ -6,27 +6,41 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    abstract class Enemy : GameCharacter
+    class Enemy : GameCharacter
     {
-        private int bounceCount = 1;
+       
+        private bool attackLocation;
+        private bool isWall;
+        private int etype;
 
-        public void LoadEnemy(int type, int X, int Y)
+        public void LoadEnemy(int X, int Y, int type)
         {
             // epuals set x and y passed through function to actual x and y
+            etype = type;
             xLoc = X;
             yLoc = Y;
-
+            Character = "E";
+            health = 100;
+            if (type == 1)
+            {
+                Character = "E";
+            }
+            else if (type == 2)
+            {
+                Character = "3";
+            }
+            else if (type == 3)
+            {
+                Character = "E";
+            }
         }
-        public void Update(Map map1, Player player, Item item)
+        
+        public void Update(Map map, Player player)
         {
             Console.CursorVisible = false;
             //sets and updates position of enemy
-            Console.SetCursorPosition(this.xLoc, this.yLoc);
-            //displays enemy
-            Console.WriteLine(Character);
-            //checks for player
-            player.IsPlayer(xLoc, yLoc);
-            //when enemy dies.......
+            Console.SetCursorPosition(xLoc, yLoc);
+            
             if (health <= 0)
             {
                 //when enemy dies 
@@ -35,46 +49,91 @@ namespace Text_Based_RPG
             }
             else
             {
-                //else, alive behavior
-
-                if (player.isPlayer == true)
+                if (attackLocation = player.IsPlayerUp(xLoc, yLoc))
                 {
-                    //checks if player is touching it and loses health if they are indeed colliding with enemy
-                    health = health - 20;
-                    //BUG supposed to stop when is player is true but enemy for some reason still moves....
 
+                    if (etype == 1)
+                    {
+                        player.TakeDamage(2);
+                    }
+                    if (etype == 2)
+                    {
+                        player.TakeDamage(5);
+                    }
+                  
+                }
+                else if (attackLocation = player.IsPlayerLeft(xLoc, yLoc))
+                {
+                    if (etype == 1)
+                    {
+                        player.TakeDamage(2);
+                    }
+                    if (etype == 2)
+                    {
+                        player.TakeDamage(5);
+                    }
+                    
+                }
+                else if (attackLocation = player.IsPlayerRight(xLoc, yLoc))
+                {
+                    if (etype == 1)
+                    {
+
+                        player.TakeDamage(2);
+                    }
+                    if (etype == 2)
+                    {
+                        player.TakeDamage(5);
+                    }
+                    
+                }
+                else if (attackLocation = player.IsPlayerDown(xLoc, yLoc))
+                {
+                    if (etype == 1)
+                    {
+                        player.TakeDamage(2);
+                    }
+                    if (etype == 2)
+                    {
+                        player.TakeDamage(5);
+                    }
+                }
+                else if (isWall = map.IsWallAt(xLoc - 1, yLoc))
+                {
+                    //do nothing
+                }
+                else if (isWall = map.IsWallAt(xLoc + 1, yLoc))
+                {
+                    //do nothing
+                }
+                else if (isWall = map.IsWallAt(xLoc, yLoc - 1))
+                {
+                    //do nothing
+                }
+                else if (isWall = map.IsWallAt(xLoc, yLoc + 1))
+                {
+                    //do nothing
                 }
 
-                else if (player.isPlayer == false)
+                else
                 {
-
-                    //goomba AI loop
-                    map1.GetMapTile(this.xLoc, this.yLoc, item);
-                    if (map1.isWall == true)
-                    {
-                        //if enemy hits this part of map the bounce count will be one
-                        bounceCount = bounceCount + 1;
-                    }
-                    if (bounceCount == 1)
-                    {
-
-                        //if the bounce count is 1 the enemy will change direction
+                    //if (etype == 1)
+                    //{
                         xLoc = xLoc + 1;
-                    }
-
-                    else if (bounceCount <= 2)
-                    {
-
-                        //if it bounces twice bounce count will go back to zero and start heading original direction
-                        //hence infinite goomba loop
-                        bounceCount = 0;
-                        xLoc = xLoc - 1;
-                    }
+                    //}
+                    //if (etype == 2)
+                    //{
+                        //yLoc = yLoc + 1;
+                    //}
+                   
                 }
+               
 
             }
         }
-
-
+       
+        
     }
+
+    
 }

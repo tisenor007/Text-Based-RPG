@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    class GameManager
+    class GameManager 
     {
         public void RunGame()
         {
@@ -19,18 +19,14 @@ namespace Text_Based_RPG
             //intantiation and declaration of objects.....
             Map map = new Map();
             Player player = new Player();
-            Heavy heavy = new Heavy();
-            Special special = new Special();
-            Light light = new Light();
-            Item item = new Item();
+            EnemyManager enemyManager = new EnemyManager();
+            enemyManager.InitEnemies();
+
 
             //loading all the options, set position, type etc
-            map.LoadMap();
-            player.LoadPlayer(52, 10);
-            heavy.LoadHeavy(86, 16);
-            special.LoadSpecial(9, 2);
-            light.LoadLight(86, 4);
-            item.LoadItem(16, 18, 3);
+            map.Load();
+            player.LoadPlayer(20, 19);
+            enemyManager.LoadEnemies();
 
 
             //gameloop
@@ -38,20 +34,24 @@ namespace Text_Based_RPG
             {
                 //display and update all objects
                 //passes classes throught methods to get access to specific class data..........
-                map.DisplayMap();
-                player.HUD(item);
-                heavy.HUD();
-                special.HUD();
-                light.HUD();
-                heavy.Update(map, player, item);
-                special.Update(map, player, item);
-                light.Update(map, player, item);
-                item.DisplayItem();
-                player.Update(map, player, heavy, special, light, item);
+
+
+                map.Update();
+                map.Draw();
+                Console.WriteLine();
+                Console.Write(player.health);
+                
+                enemyManager.UpdateandDraw(map, player);
+                
+                player.Update(map, enemyManager.enemyNum, enemyManager);
+                player.Draw();
+                
+
 
 
             }
 
         }
+
     }
 }

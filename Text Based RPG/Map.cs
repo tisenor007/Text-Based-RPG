@@ -13,8 +13,8 @@ namespace Text_Based_RPG
         private string[] mapData;
         private int x;
         private int y;
-        public bool isWall;
-        public void LoadMap()
+       
+        public void Load()
         {
             //mapData reads file through lines - Gets Y
             mapData = System.IO.File.ReadAllLines("Map.txt");
@@ -34,10 +34,10 @@ namespace Text_Based_RPG
             }
 
         }
-        public void DisplayMap()
+        public void Draw()
         {
             //clears screen to prevent player trailing
-            Console.Clear();
+            
             for (y = 0; y <= mapData.Length - 1; y = y + 1)
             {
                 //repeats lines til whole map is displayed
@@ -45,29 +45,26 @@ namespace Text_Based_RPG
                 Console.WriteLine(mapData[y]);
             }
         }
-        public void GetMapTile(int x, int y, Item item)
+        public void Update()
+        {
+            Console.SetCursorPosition(0, 0);
+        }
+        public bool IsWallAt(int x, int y)
         {
             //lets you walk on certain tiles but anything else, no
             if (map[x, y] == '.')
             {
-                isWall = false;
+                return false;
             }
             else if (map[x, y] == '#')
             {
-                isWall = false;
+                return false;
             }
             else
             {
-                isWall = true;
+                return true;
             }
-            //if key is picked up, you can walk past door......
-            if (item.isKey == true)
-            {
-                if (map[x, y] == '&')
-                {
-                    isWall = false;
-                }
-            }
+           
         }
     }
 }

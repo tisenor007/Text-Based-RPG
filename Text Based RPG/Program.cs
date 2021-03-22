@@ -10,6 +10,7 @@ namespace Text_Based_RPG
     {
         static void Main(string[] args)
         {
+            
             GameManager gameManager = new GameManager();
             //runs game through game manager.....
             gameManager.RunGame();
