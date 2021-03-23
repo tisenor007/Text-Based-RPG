@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
+    
     class Map
     {   //fields.....
         //map delcared and instantiated with proper map bounds
@@ -48,6 +49,7 @@ namespace Text_Based_RPG
         public void Update()
         {
             Console.SetCursorPosition(0, 0);
+            
         }
         public bool IsWallAt(int x, int y)
         {

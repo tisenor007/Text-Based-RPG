@@ -16,7 +16,7 @@ namespace Text_Based_RPG
 
         public void Draw()
         {
-
+            Console.SetCursorPosition(xLoc, yLoc);
             Console.WriteLine(Character);
         }
         public void TakeDamage(int Damage)

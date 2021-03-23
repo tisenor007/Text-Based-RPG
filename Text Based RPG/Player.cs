@@ -21,7 +21,7 @@ namespace Text_Based_RPG
 
 
         }
-        public void Update(Map map, Enemy[] enemyNum, EnemyManager enemyManager)
+        public void Update(Map map, EnemyManager enemyManager)
         {
             //makes cursor not visable 
             Console.CursorVisible = false;
@@ -42,15 +42,16 @@ namespace Text_Based_RPG
                 if (keyPressed.Key == ConsoleKey.W)
                 {
                     //you are able to move unless there is a wall
-                   
 
+                    //Console.WriteLine(enemyManager.isEnemyAt(xLoc, yLoc));
                     if (wallExist = map.IsWallAt(xLoc, yLoc - 1))
                     {
                         //do nothing 
                     }
-                    else if (enemyExist = enemyManager.isEnemyUp(xLoc, yLoc))
+                    else if (enemyExist = enemyManager.isEnemyAt(xLoc, yLoc - 1))
                     {
-
+                        enemyManager.CheckEnemies(xLoc, yLoc - 1);
+                       
                     }
                     else
                     {
@@ -64,9 +65,9 @@ namespace Text_Based_RPG
                     {
 
                     }
-                    else if (enemyExist = enemyManager.isEnemyLeft(xLoc, yLoc))
+                    else if (enemyExist = enemyManager.isEnemyAt(xLoc - 1, yLoc))
                     {
-
+                        enemyManager.CheckEnemies(xLoc - 1, yLoc);
                     }
 
                     else
@@ -79,11 +80,11 @@ namespace Text_Based_RPG
                 {
                     if (wallExist = map.IsWallAt(xLoc, yLoc + 1))
                     {
-
+                        
                     }
-                    else if (enemyExist = enemyManager.isEnemyDown(xLoc, yLoc))
+                    else if (enemyExist = enemyManager.isEnemyAt(xLoc, yLoc + 1))
                     {
-
+                        enemyManager.CheckEnemies(xLoc, yLoc + 1);
                     }
                     else
                     {
@@ -96,9 +97,9 @@ namespace Text_Based_RPG
                     {
 
                     }
-                    else if (enemyExist = enemyManager.isEnemyRight(xLoc, yLoc))
+                    else if (enemyExist = enemyManager.isEnemyAt(xLoc + 1, yLoc))
                     {
-
+                        enemyManager.CheckEnemies(xLoc + 1, yLoc);
                     }
                     else
                     {

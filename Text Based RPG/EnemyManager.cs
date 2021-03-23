@@ -9,156 +9,111 @@ namespace Text_Based_RPG
     class EnemyManager : Enemy
     {
        
-        
-        public Enemy[] enemyNum = new Enemy[9];
+        private static int Enemy_Limit = 10;
+        public Enemy[] enemies = new Enemy[Enemy_Limit];
 
         public void InitEnemies()
         {
-            enemyNum[0] = new Enemy();
-            enemyNum[1] = new Enemy();
-            enemyNum[2] = new Enemy();
-            enemyNum[3] = new Enemy();
-            enemyNum[4] = new Enemy();
-            enemyNum[5] = new Enemy();
-            enemyNum[6] = new Enemy();
-            enemyNum[7] = new Enemy();
-            enemyNum[8] = new Enemy();
-            
+            for (int i = 0; i < Enemy_Limit; i++)
+            {
+                enemies[i] = new Enemy();
+            }
+            //enemies[0] = new Enemy();
+            //enemies[1] = new Enemy();
+            //enemies[2] = new Enemy();
+            //enemies[3] = new Enemy();
+            //enemies[4] = new Enemy();
+            //enemies[5] = new Enemy();
+            //enemies[6] = new Enemy();
+            //enemies[7] = new Enemy();
+            //enemies[8] = new Enemy();
+            //enemies[9] = new Enemy();
+
 
         }
         public void LoadEnemies()
         {
-            enemyNum[0].LoadEnemy(16, 19, 1);
-            enemyNum[1].LoadEnemy(6, 3, 2);
+            enemies[0].LoadEnemy(16, 19, 1);
+            enemies[1].LoadEnemy(6, 3, 2);
+            enemies[2].LoadEnemy(90, 3, 3);
+            enemies[3].LoadEnemy(16, 3, 1);
         }
         public void UpdateandDraw(Map map, Player player)
         {
-            enemyNum[0].Update(map, player);
-            enemyNum[0].Draw();
-            enemyNum[1].Update(map, player);
-            enemyNum[1].Draw();
+            //enemyNum[0].Update(map, player);
+            //enemyNum[0].Draw();
+            //enemyNum[1].Update(map, player);
+            //enemyNum[1].Draw();
+            //enemyNum[2].Update(map, player);
+            //enemyNum[2].Draw();
+            //enemyNum[3].Update(map, player);
+            //enemyNum[3].Draw();
+            enemies[0].Update(map, player);
+            enemies[1].Update(map, player);
+            enemies[2].Update(map, player);
+            enemies[0].Draw();
+            enemies[1].Draw();
+            enemies[2].Draw();
+        }
+        public void CheckEnemies(int x, int y)
+        {
+            if (x == enemies[0].xLoc)
+            {
+                if (y == enemies[0].yLoc)
+                {
+                    enemies[0].TakeDamage(20);
+                }
+            }
+            else if (x == enemies[1].xLoc)
+            {
+                if (y == enemies[1].yLoc)
+                {
+                    enemies[1].TakeDamage(20);
+                }
+            }
+            else if (x == enemies[2].xLoc)
+            {
+                if (y == enemies[2].yLoc)
+                {
+                    enemies[2].TakeDamage(20);
+                }
+            }
+            else if (x == enemies[3].xLoc)
+            {
+                if (y == enemies[3].yLoc)
+                {
+                    enemies[3].TakeDamage(20);
+                }
+            }
+            else
+            {
+                //nothing
+            }
+        }
+        public void testhealth()
+        {
+            Console.WriteLine("Enemy 1: " + enemies[0].health);
+            Console.WriteLine("Enemy 2: " + enemies[1].health);
+            Console.WriteLine("Enemy 3: " + enemies[2].health);
+            Console.WriteLine("Enemy 4: " + enemies[3].health);
         }
         //collision for each direction
-        public bool isEnemyUp(int x, int y)
+       
+        public bool isEnemyAt(int x, int y)
         {
-            if (x == enemyNum[0].xLoc)
+            for (int i = 0; i < Enemy_Limit; i++)
             {
-                if (y - 1 == enemyNum[0].yLoc)
+                if (x == enemies[i].xLoc)
                 {
-                    return true;   
-                }
-                else
-                {
-                    return false;
+                    if (y == enemies[i].yLoc)
+                    {
+                        return true;
+                    }
                 }
             }
-            else if (x == enemyNum[1].xLoc)
-            {
-                if (y - 1 == enemyNum[1].yLoc)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-
+            return false;
         }
-        public bool isEnemyLeft(int x, int y)
-        {
-            if (y == enemyNum[0].yLoc)
-            {
-                if (x - 1 == enemyNum[0].xLoc)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else if (y == enemyNum[1].yLoc)
-            {
-                if (x - 1 == enemyNum[1].xLoc)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-
-        }
-        public bool isEnemyRight(int x, int y)
-        {
-            if (y == enemyNum[0].yLoc)
-            {
-                if (x + 1 == enemyNum[0].xLoc)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else if (y == enemyNum[1].yLoc)
-            {
-                if (x + 1 == enemyNum[1].xLoc)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-
-        }
-        public bool isEnemyDown(int x, int y)
-        {
-            if (x == enemyNum[0].xLoc)
-            {
-                if (y + 1 == enemyNum[0].yLoc)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else if (x == enemyNum[1].xLoc)
-            {
-                if (y + 1 == enemyNum[1].yLoc)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-
-        }
+       
 
 
     }
