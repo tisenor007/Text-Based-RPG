@@ -44,10 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera.cs" />
+    <Compile Include="tries.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyManager.cs" />
     <Compile Include="GameCharacter.cs" />
     <Compile Include="GameManger.cs" />
+    <Compile Include="HUD.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemManager.cs" />
     <Compile Include="Map.cs" />

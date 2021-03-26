@@ -8,11 +8,10 @@ namespace Text_Based_RPG
 {
     class GameManager 
     {
-        private string clear = "                                                                                                                                                                                                                                                                                                                                                           ";
         public void RunGame()
         {
             //kind of a main title screen
-            Console.WriteLine("Welcome to the Alpha");
+            Console.WriteLine("Welcome to the Beta");
             Console.WriteLine();
             Console.Write("Hit any button to continue.....");
             Console.ReadKey(true);
@@ -22,13 +21,18 @@ namespace Text_Based_RPG
             Player player = new Player();
             EnemyManager enemyManager = new EnemyManager();
             ItemManager itemManager = new ItemManager();
+            HUD Hud = new HUD();
+            Camera camera = new Camera();
+            
             enemyManager.InitEnemies();
             itemManager.InitItems();
-
+            //camera.SetDisplay(map, player);
 
             //loading all the options, set position, type etc
+            //camera.loadCamera(map, player);
+            
             map.Load();
-            player.LoadPlayer(20, 19);
+            player.LoadPlayer(14, 3);
             enemyManager.LoadEnemies();
             itemManager.LoadItems();
 
@@ -38,20 +42,20 @@ namespace Text_Based_RPG
             {
                 //display and update all objects
                 //passes classes throught methods to get access to specific class data..........
-
-                ClearScreen();
-
-                map.Update();
-                map.Draw();
                
-                Console.WriteLine("Player: " + player.health);
-                
-                enemyManager.testhealth();
+                map.Update(camera);
+                map.Draw(camera);
 
-                itemManager.UpdateAndDraw(player);
-                enemyManager.UpdateandDraw(map, player);
+                Hud.DisplayHUD(player, enemyManager);
+
+                itemManager.UpdateItems(map, player);
+                itemManager.DrawItems();
                 
-                player.Update(map, enemyManager);
+                enemyManager.UpdateEnemies(map, player);
+                enemyManager.DrawEnemies();
+
+               
+                player.Update(map, enemyManager, itemManager);
                 player.Draw();
                 
 
@@ -60,40 +64,7 @@ namespace Text_Based_RPG
             }
 
         }
-        public void ClearScreen()
-        {
-            Console.SetCursorPosition(0, 0);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-
-        }
+       
 
     }
 }

@@ -8,29 +8,73 @@ namespace Text_Based_RPG
 {
     class ItemManager : Item
     {
-        public Item[] itemNum = new Item[10];
+        private static int Max_Items = 10;
+        public Item[] items = new Item[Max_Items];
 
         public void InitItems()
         {
-            itemNum[0] = new Item();
-            itemNum[1] = new Item();
-            itemNum[2] = new Item();
-            itemNum[3] = new Item();
-            itemNum[4] = new Item();
-            itemNum[5] = new Item();
-            itemNum[6] = new Item();
-            itemNum[7] = new Item();
-            itemNum[8] = new Item();
-            itemNum[9] = new Item();
+            for (int i = 0; i < Max_Items; i++)
+            {
+                items[i] = new Item();
+            }
+           
+           
         }
         public void LoadItems()
         {
-            itemNum[0].Load(14, 3, 1);
+            items[0].Load(94, 11, 2);
+            items[1].Load(84, 20, 3);
+            items[2].Load(21, 5, 1);
+            items[3].Load(76, 16, 1);
+            items[4].Load(36, 10, 1);
+            items[5].Load(17, 19, 1);
+            items[6].Load(42, 19, 1);
+            items[7].Load(86, 20, 3);
+            items[8].Load(88, 20, 3);
+            items[9].Load(89, 4, 1);
         }
-        public void UpdateAndDraw(Player player)
+        public void UpdateItems(Map map, Player player)
         {
-            itemNum[0].Update(player);
-            itemNum[0].Draw();
+            for (int i = 0; i < Max_Items; i++)
+            {
+                items[i].Update(map, player);
+            }
+        }
+        public void DrawItems()
+        {
+            for (int i = 0; i < Max_Items; i++)
+            {
+                items[i].Draw();
+            }
+        }
+        public void CheckItems(int x, int y)
+        {
+            for (int i = 0; i < Max_Items; i++)
+            {
+                if (x == items[i].xLoc)
+                {
+                    if (y == items[i].yLoc)
+                    {
+                      
+                        items[i].pickedUp = true;
+                       
+                    }
+                }
+            }
+        }
+        public bool isItemAt(int x, int y)
+        {
+            for (int i = 0; i < Max_Items; i++)
+            {
+                if (x == items[i].xLoc)
+                {
+                    if (y == items[i].yLoc)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

@@ -10,10 +10,13 @@ namespace Text_Based_RPG
     class Map
     {   //fields.....
         //map delcared and instantiated with proper map bounds
-        private char[,] map = new char[108, 26]; // size ???
+        public char[,] map = new char[108, 26]; // size ???
         private string[] mapData;
         private int x;
         private int y;
+        private int xLoc = 0;
+        private int yLoc = 0;
+        public bool openDoors = false;
        
         public void Load()
         {
@@ -35,21 +38,43 @@ namespace Text_Based_RPG
             }
 
         }
-        public void Draw()
+        public void Draw(Camera camera)
         {
-            //clears screen to prevent player trailing
-            
+
+            Console.SetCursorPosition(xLoc, yLoc);
             for (y = 0; y <= mapData.Length - 1; y = y + 1)
             {
                 //repeats lines til whole map is displayed
                 //end of repeat is determined by y
                 Console.WriteLine(mapData[y]);
             }
+
+            //for (y = camera.Ystart; y <= camera.Yend; y = y + 1)
+            //{
+            //    //repeats lines til whole map is displayed
+            //    //end of repeat is determined by y
+            //    Console.WriteLine(mapData[y]);
+            //}
         }
-        public void Update()
+        public void Update(Camera camera)
         {
-            Console.SetCursorPosition(0, 0);
             
+            //mapData reads file through lines - Gets Y
+            //mapData = System.IO.File.ReadAllLines("Map.txt");
+            //for (y = camera.Ystart + 4; y <= camera.Yend; y = y + 1)
+            //{
+            //    //string created to be = to 1 / current line of map
+            //    string currMapLine = mapData[y];
+            //    for (x = camera.Xstart; x <= currMapLine.Length - 1; x = x + 1)
+            //    {
+            //        //char mapTile = mapData[y][x];
+            //        //map tile is = to map line split by x
+            //        char mapTile = currMapLine[x];
+            //        //map[x,y] is = to map tile for exact location
+            //        map[x, y] = mapTile;
+
+            //    }
+            //}
         }
         public bool IsWallAt(int x, int y)
         {
@@ -61,6 +86,14 @@ namespace Text_Based_RPG
             else if (map[x, y] == '#')
             {
                 return false;
+            }
+            if (openDoors == true)
+            {
+                if (map[x, y] == '&')
+                {
+                    return false;
+                }
+                return true;
             }
             else
             {

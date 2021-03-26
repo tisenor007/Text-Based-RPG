@@ -10,6 +10,8 @@ namespace Text_Based_RPG
     {
         private bool wallExist;
         private bool enemyExist;
+        private bool itemExist;
+        public int reward;
 
         public void LoadPlayer(int X, int Y)
         {
@@ -18,10 +20,15 @@ namespace Text_Based_RPG
             yLoc = Y;
             Character = "@";
             health = 100;
+            reward = 0;
 
 
         }
-        public void Update(Map map, EnemyManager enemyManager)
+        public void GetReward(int money)
+        {
+            reward = reward + money;
+        }
+        public void Update(Map map, EnemyManager enemyManager, ItemManager itemManager)
         {
             //makes cursor not visable 
             Console.CursorVisible = false;
@@ -53,6 +60,11 @@ namespace Text_Based_RPG
                         enemyManager.CheckEnemies(xLoc, yLoc - 1);
                        
                     }
+                    else if (itemExist = itemManager.isItemAt(xLoc, yLoc - 1))
+                    {
+                        
+                        itemManager.CheckItems(xLoc, yLoc - 1);
+                    }
                     else
                     {
                         yLoc = yLoc - 1;
@@ -69,7 +81,11 @@ namespace Text_Based_RPG
                     {
                         enemyManager.CheckEnemies(xLoc - 1, yLoc);
                     }
-
+                    else if (itemExist = itemManager.isItemAt(xLoc - 1, yLoc))
+                    {
+                        
+                        itemManager.CheckItems(xLoc - 1, yLoc);
+                    }
                     else
                     {
                         xLoc = xLoc - 1;
@@ -86,6 +102,11 @@ namespace Text_Based_RPG
                     {
                         enemyManager.CheckEnemies(xLoc, yLoc + 1);
                     }
+                    else if (itemExist = itemManager.isItemAt(xLoc, yLoc + 1))
+                    {
+                       
+                        itemManager.CheckItems(xLoc, yLoc + 1);
+                    }
                     else
                     {
                         yLoc = yLoc + 1;
@@ -101,6 +122,11 @@ namespace Text_Based_RPG
                     {
                         enemyManager.CheckEnemies(xLoc + 1, yLoc);
                     }
+                    else if (itemExist = itemManager.isItemAt(xLoc + 1, yLoc))
+                    {
+                        
+                        itemManager.CheckItems(xLoc + 1, yLoc);
+                    }
                     else
                     {
                         xLoc = xLoc + 1;
@@ -108,77 +134,18 @@ namespace Text_Based_RPG
                 }
             }
         }
-        public bool IsPlayerUp(int x, int y)
+        public bool isPlayerAt(int x, int y)
         {
+          
             if (x == xLoc)
             {
-                if (y - 1 == yLoc)
+                if (y == yLoc)
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
             }
-            else
-            {
-                return false;
-            }
-        }
-        public bool IsPlayerLeft(int x, int y)
-        {
-            if (y == yLoc)
-            {
-                if (x - 1 == xLoc)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public bool IsPlayerRight(int x, int y)
-        {
-            if (y == yLoc)
-            {
-                if (x + 1 == xLoc)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public bool IsPlayerDown(int x, int y)
-        {
-            if (x == xLoc)
-            {
-                if (y + 1 == yLoc)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
+            
+            return false;
         }
 
 

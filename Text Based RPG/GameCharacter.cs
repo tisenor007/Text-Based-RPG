@@ -13,7 +13,7 @@ namespace Text_Based_RPG
         public int xLoc;
         public int yLoc;
         public string Character;
-
+        
         public void Draw()
         {
             Console.SetCursorPosition(xLoc, yLoc);
@@ -22,6 +22,10 @@ namespace Text_Based_RPG
         public void TakeDamage(int Damage)
         {
             health = health - Damage;
+        }
+        public void Heal(int hp)
+        {
+            health = health + hp;
         }
     }
 }

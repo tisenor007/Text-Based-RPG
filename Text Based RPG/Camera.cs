@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    //set cursor position (0,0) plus or minus offset, which is attched to player coordinates
-
     class Camera
     {
+        public int Xstart = 0;
+        public int Ystart = 0;
+        public int Xend = 108;
+        public int Yend = 31;
+
+        public void update()
+        {
+
+        }
     }
 }
