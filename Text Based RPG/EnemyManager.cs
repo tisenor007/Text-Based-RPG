@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    class EnemyManager : Enemy
+    class EnemyManager
     {
        
         private static int Enemy_Limit = 14;

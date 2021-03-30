@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    class ItemManager : Item
+    class ItemManager
     {
         private static int Max_Items = 10;
         public Item[] items = new Item[Max_Items];

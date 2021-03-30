@@ -31,7 +31,7 @@ namespace Text_Based_RPG
             //loading all the options, set position, type etc
             //camera.loadCamera(map, player);
             
-            map.Load();
+            map.Load(camera);
             player.LoadPlayer(14, 3);
             enemyManager.LoadEnemies();
             itemManager.LoadItems();
@@ -43,20 +43,26 @@ namespace Text_Based_RPG
                 //display and update all objects
                 //passes classes throught methods to get access to specific class data..........
                
+                
+                itemManager.UpdateItems(map, player);
+                enemyManager.UpdateEnemies(map, player);
+                player.Update(map, enemyManager, itemManager, camera);
                 map.Update(camera);
                 map.Draw(camera);
-
+                itemManager.DrawItems();
+                enemyManager.DrawEnemies();
+                player.Draw();
                 Hud.DisplayHUD(player, enemyManager);
 
-                itemManager.UpdateItems(map, player);
-                itemManager.DrawItems();
+               
+               
                 
-                enemyManager.UpdateEnemies(map, player);
-                enemyManager.DrawEnemies();
+               
+                
 
                
-                player.Update(map, enemyManager, itemManager);
-                player.Draw();
+                
+                
                 
 
 

@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera.cs" />
+    <Compile Include="Global.cs" />
     <Compile Include="tries.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyManager.cs" />

@@ -12,18 +12,18 @@ namespace Text_Based_RPG
         private string clear = "                                                                                                     ";
         public void DisplayHUD(Player player, EnemyManager enemyManager)
         {
-           
+            Console.SetCursorPosition(0, 27);
             Console.WriteLine(clear);
-            Console.Write("Player :" + player.health);
+            Console.Write("Player health: " + player.health);
             Console.WriteLine(clear);
-            Console.WriteLine("Current Pocket: " + player.reward);
+            Console.WriteLine("Current Reward / Money: " + player.reward);
             
             for (int i = 0; i < enemyManager.Cap; i++)
             {
                 if ((player.xLoc <= enemyManager.enemies[i].xLoc + 5) && (player.xLoc >= enemyManager.enemies[i].xLoc - 5) && (player.yLoc <= enemyManager.enemies[i].yLoc + 5) && (player.yLoc >= enemyManager.enemies[i].yLoc - 5))
                 {
                   Console.WriteLine(clear);
-                  Console.Write("Enemy " + i + " :" + enemyManager.enemies[i].health);
+                  Console.Write("Enemy " + i + " health : " + enemyManager.enemies[i].health);
                   Console.WriteLine(clear);
                 }
                 

@@ -28,7 +28,7 @@ namespace Text_Based_RPG
         {
             reward = reward + money;
         }
-        public void Update(Map map, EnemyManager enemyManager, ItemManager itemManager)
+        public void Update(Map map, EnemyManager enemyManager, ItemManager itemManager, Camera camera)
         {
             //makes cursor not visable 
             Console.CursorVisible = false;
@@ -88,7 +88,9 @@ namespace Text_Based_RPG
                     }
                     else
                     {
-                        xLoc = xLoc - 1;
+                        //xLoc = xLoc - 1;
+                        camera.offsetX = camera.offsetX + 1;
+                        
                     }
 
                 }
@@ -107,9 +109,11 @@ namespace Text_Based_RPG
                        
                         itemManager.CheckItems(xLoc, yLoc + 1);
                     }
+                    
                     else
                     {
-                        yLoc = yLoc + 1;
+                        //yLoc = yLoc + 1;
+                        camera.offsetY = camera.offsetY - 1;
                     }
                 }
                 if (keyPressed.Key == ConsoleKey.D)
@@ -129,7 +133,8 @@ namespace Text_Based_RPG
                     }
                     else
                     {
-                        xLoc = xLoc + 1;
+                        //xLoc = xLoc + 1;
+                        camera.offsetX = camera.offsetX - 1;
                     }
                 }
             }

@@ -12,44 +12,53 @@ namespace Text_Based_RPG
         //map delcared and instantiated with proper map bounds
         public char[,] map = new char[108, 26]; // size ???
         private string[] mapData;
-        private int x;
-        private int y;
+        private string currMapLine;
+        private char mapTile;
         private int xLoc = 0;
         private int yLoc = 0;
         public bool openDoors = false;
        
-        public void Load()
+        public void Load(Camera camera)
         {
+            
             //mapData reads file through lines - Gets Y
             mapData = System.IO.File.ReadAllLines("Map.txt");
-            for (y = 0; y <= mapData.Length - 1; y = y + 1)
+            for (int y = 0; y <= mapData.Length - 1; y = y + 1)
             {
                 //string created to be = to 1 / current line of map
-                string currMapLine = mapData[y];
-                for (x = 0; x <= currMapLine.Length - 1; x = x + 1)
+                currMapLine = mapData[y];
+                for (int x = 0; x <= currMapLine.Length - 1; x = x + 1)
                 {
                     //char mapTile = mapData[y][x];
                     //map tile is = to map line split by x
-                    char mapTile = currMapLine[x];
+                     mapTile = currMapLine[x];
                     //map[x,y] is = to map tile for exact location
                     map[x, y] = mapTile;
 
                 }
             }
-
+            camera.Xstart = 0;
+            camera.Xend = 108;
+            camera.Ystart = 0;
+            camera.Yend = 26;
         }
         public void Draw(Camera camera)
         {
-
-            Console.SetCursorPosition(xLoc, yLoc);
-            for (y = 0; y <= mapData.Length - 1; y = y + 1)
+            //Console.SetCursorPosition(0, 0);
+            Console.SetCursorPosition(xLoc + camera.offsetX, yLoc + camera.offsetY);
+            for (int y = camera.Ystart; y < camera.Yend; y = y + 1)
             {
-                //repeats lines til whole map is displayed
-                //end of repeat is determined by y
-                Console.WriteLine(mapData[y]);
+                for (int x = camera.Xstart + camera.offsetX; x < camera.Xend; x++)
+                {
+                    //repeats lines til whole map is displayed
+                    //end of repeat is determined by y
+                    Console.Write(map[x,y]);
+                }
+                Console.WriteLine();
             }
 
-            //for (y = camera.Ystart; y <= camera.Yend; y = y + 1)
+           
+            //for (y = 0; y <= mapData.Length; y = y + 1)
             //{
             //    //repeats lines til whole map is displayed
             //    //end of repeat is determined by y
@@ -58,23 +67,29 @@ namespace Text_Based_RPG
         }
         public void Update(Camera camera)
         {
-            
-            //mapData reads file through lines - Gets Y
-            //mapData = System.IO.File.ReadAllLines("Map.txt");
-            //for (y = camera.Ystart + 4; y <= camera.Yend; y = y + 1)
-            //{
-            //    //string created to be = to 1 / current line of map
-            //    string currMapLine = mapData[y];
-            //    for (x = camera.Xstart; x <= currMapLine.Length - 1; x = x + 1)
-            //    {
-            //        //char mapTile = mapData[y][x];
-            //        //map tile is = to map line split by x
-            //        char mapTile = currMapLine[x];
-            //        //map[x,y] is = to map tile for exact location
-            //        map[x, y] = mapTile;
+           
+            if (camera.offsetX <= -1)
+            {
+                camera.Xstart = camera.Xstart + 1;
+                camera.offsetX = camera.offsetX + 1;
+         
+            }
+            if (camera.offsetY <= -1)
+            {
+                camera.Ystart = camera.Ystart + 1;
+                camera.offsetY = camera.offsetY + 1;
+            }
+           
+            if (camera.offsetX >= 1)
+            {
+                camera.Xstart = camera.Xstart - 1;
+                camera.offsetX = camera.offsetX - 1;
+            }
+            if (camera.Xstart <= 0)
+            {
+                camera.Xstart = 0;
+            }
 
-            //    }
-            //}
         }
         public bool IsWallAt(int x, int y)
         {
