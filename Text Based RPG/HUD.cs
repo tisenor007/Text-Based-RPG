@@ -10,9 +10,9 @@ namespace Text_Based_RPG
     {
 
         private string clear = "                                                                                                     ";
-        public void DisplayHUD(Player player, EnemyManager enemyManager)
+        public void DisplayHUD(Player player, EnemyManager enemyManager, Camera camera)
         {
-            Console.SetCursorPosition(0, 27);
+            Console.SetCursorPosition(0, camera.endViewY + 1);
             Console.WriteLine(clear);
             Console.Write("Player health: " + player.health);
             Console.WriteLine(clear);

@@ -35,7 +35,7 @@ namespace Text_Based_RPG
             //sets position and draws character
             //Console.SetCursorPosition(xLoc, yLoc);
             //Console.WriteLine(Character);
-            ConsoleKeyInfo keyPressed = Console.ReadKey();
+            ConsoleKeyInfo keyPressed = Console.ReadKey(true);
             if (health <= 0)
             {
                 //if player dies......

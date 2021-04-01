@@ -13,7 +13,7 @@ namespace Text_Based_RPG
         private int startViewX;
         private int startViewY;
         private int endViewX;
-        private int endViewY;
+        public int endViewY;
 
         public int offsetX;
         public int offsetY;
@@ -53,8 +53,17 @@ namespace Text_Based_RPG
         public void Draw(Map map)
         {
             Console.SetCursorPosition(0, 0);
+            Console.Write("+");
+            for (int t = startViewX; t < endViewX; t++)
+            {
+                Console.Write("-");
+            }
+            Console.Write("+");
+            Console.WriteLine();
+            
             for (int y = startViewY; y < endViewY; y++)
             {
+                Console.Write("|");
                 for (int x = startViewX; x < endViewX; x++)
                 {
                     //repeats lines til whole map is displayed
@@ -69,8 +78,16 @@ namespace Text_Based_RPG
                     }
                     
                 }
+                Console.Write("|");
                 Console.WriteLine();
             }
+            Console.Write("+");
+            for (int b = startViewX; b < endViewX; b++)
+            {
+                Console.Write("-");
+            }
+            Console.Write("+");
+            Console.WriteLine();
         }
         public void DrawToRenderer(char character, int x, int y)
         {

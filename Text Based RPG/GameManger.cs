@@ -16,6 +16,10 @@ namespace Text_Based_RPG
             Console.Write("Hit any button to continue.....");
             Console.ReadKey(true);
 
+            Console.SetCursorPosition(0, 2);
+            Console.Write("                                       ");
+
+            Console.Beep(2200, 750);
             //intantiation and declaration of objects.....
             Map map = new Map();
             //polymorphism
@@ -52,7 +56,7 @@ namespace Text_Based_RPG
                 itemManager.DrawItems(camera);
                 enemyManager.DrawEnemies(camera);
                 player.Draw(camera);
-                Hud.DisplayHUD(player, enemyManager);
+                Hud.DisplayHUD(player, enemyManager, camera);
                 camera.Draw(map);
                
                 
