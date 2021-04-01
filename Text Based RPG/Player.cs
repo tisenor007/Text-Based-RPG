@@ -18,7 +18,7 @@ namespace Text_Based_RPG
             //loads player position, character, health
             xLoc = X;
             yLoc = Y;
-            Character = "@";
+            Character = '@';
             health = 100;
             reward = 0;
 
@@ -33,14 +33,14 @@ namespace Text_Based_RPG
             //makes cursor not visable 
             Console.CursorVisible = false;
             //sets position and draws character
-            Console.SetCursorPosition(xLoc, yLoc);
-            Console.WriteLine(Character);
+            //Console.SetCursorPosition(xLoc, yLoc);
+            //Console.WriteLine(Character);
             ConsoleKeyInfo keyPressed = Console.ReadKey();
             if (health <= 0)
             {
                 //if player dies......
                 health = 0;
-                Character = "X";
+                Character = 'X';
             }
             else
             {
@@ -67,7 +67,9 @@ namespace Text_Based_RPG
                     }
                     else
                     {
+                        map.refresh(camera.renderer, xLoc, yLoc);
                         yLoc = yLoc - 1;
+                        //camera.offsetY = camera.offsetY - 1;
                     }
 
                 }
@@ -88,8 +90,9 @@ namespace Text_Based_RPG
                     }
                     else
                     {
-                        //xLoc = xLoc - 1;
-                        camera.offsetX = camera.offsetX + 1;
+                        map.refresh(camera.renderer, xLoc, yLoc);
+                        xLoc = xLoc - 1;
+                        //camera.offsetX = camera.offsetX - 1;
                         
                     }
 
@@ -112,8 +115,9 @@ namespace Text_Based_RPG
                     
                     else
                     {
-                        //yLoc = yLoc + 1;
-                        camera.offsetY = camera.offsetY - 1;
+                        map.refresh(camera.renderer, xLoc, yLoc);
+                        yLoc = yLoc + 1;
+                        //camera.offsetY = camera.offsetY + 1;
                     }
                 }
                 if (keyPressed.Key == ConsoleKey.D)
@@ -133,8 +137,9 @@ namespace Text_Based_RPG
                     }
                     else
                     {
-                        //xLoc = xLoc + 1;
-                        camera.offsetX = camera.offsetX - 1;
+                        map.refresh(camera.renderer, xLoc, yLoc);
+                        xLoc = xLoc + 1;
+                        //camera.offsetX = camera.offsetX + 1;
                     }
                 }
             }

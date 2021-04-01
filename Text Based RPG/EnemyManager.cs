@@ -38,19 +38,19 @@ namespace Text_Based_RPG
             enemies[12].LoadEnemy(69, 22, 3);
             enemies[13].LoadEnemy(104, 22, 2);
         }
-        public void UpdateEnemies(Map map, Player player)
+        public void UpdateEnemies(Map map, Player player, Camera camera)
         {
             for (int i = 0; i < Enemy_Limit; i++)
             {
-                enemies[i].Update(map, player);
+                enemies[i].Update(map, player, camera);
             }
                
         }
-        public void DrawEnemies()
+        public void DrawEnemies(Camera camera)
         {
             for (int i = 0; i < Enemy_Limit; i++)
             {
-                enemies[i].Draw();
+                enemies[i].Draw(camera);
             }
         }
         public void CheckEnemies(int x, int y)

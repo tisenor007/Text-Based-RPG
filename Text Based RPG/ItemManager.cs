@@ -40,11 +40,11 @@ namespace Text_Based_RPG
                 items[i].Update(map, player);
             }
         }
-        public void DrawItems()
+        public void DrawItems(Camera camera)
         {
             for (int i = 0; i < Max_Items; i++)
             {
-                items[i].Draw();
+                items[i].Draw(camera);
             }
         }
         public void CheckItems(int x, int y)

@@ -18,6 +18,7 @@ namespace Text_Based_RPG
 
             //intantiation and declaration of objects.....
             Map map = new Map();
+            //polymorphism
             Player player = new Player();
             EnemyManager enemyManager = new EnemyManager();
             ItemManager itemManager = new ItemManager();
@@ -30,7 +31,7 @@ namespace Text_Based_RPG
 
             //loading all the options, set position, type etc
             //camera.loadCamera(map, player);
-            
+            camera.LoadRenderer(player);
             map.Load(camera);
             player.LoadPlayer(14, 3);
             enemyManager.LoadEnemies();
@@ -42,29 +43,21 @@ namespace Text_Based_RPG
             {
                 //display and update all objects
                 //passes classes throught methods to get access to specific class data..........
-               
                 
                 itemManager.UpdateItems(map, player);
-                enemyManager.UpdateEnemies(map, player);
+                enemyManager.UpdateEnemies(map, player, camera);
                 player.Update(map, enemyManager, itemManager, camera);
-                map.Update(camera);
-                map.Draw(camera);
-                itemManager.DrawItems();
-                enemyManager.DrawEnemies();
-                player.Draw();
+                camera.Update(map, player);
+                
+                itemManager.DrawItems(camera);
+                enemyManager.DrawEnemies(camera);
+                player.Draw(camera);
                 Hud.DisplayHUD(player, enemyManager);
-
-               
-               
-                
+                camera.Draw(map);
                
                 
-
                
-                
-                
-                
-
+               
 
 
             }

@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
-    abstract class GameCharacter
+    class GameCharacter
     {
         //shared gameCharacter data....
         public int health;
         public int xLoc;
         public int yLoc;
-        public string Character;
+        public char Character;
         
-        public void Draw()
+        public void Draw(Camera camera)
         {
-            Console.SetCursorPosition(xLoc, yLoc);
-            Console.WriteLine(Character);
+            camera.DrawToRenderer(Character, xLoc, yLoc);
+            //Console.WriteLine(Character);
+            
         }
         public void TakeDamage(int Damage)
         {

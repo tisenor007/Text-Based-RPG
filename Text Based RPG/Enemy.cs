@@ -48,23 +48,23 @@ namespace Text_Based_RPG
             yLoc = Y;
             if (type <= 1)
             {
-                Character = "E";
+                Character = 'E';
                 health = 100;
                
             }
             else if (type == 2)
             {
-                Character = "3";
+                Character = '3';
                 health = 50;
             }
             else if (type >= 3)
             {
-                Character = "e";
+                Character = 'e';
                 health = 25;
             }
         }
         
-        public void Update(Map map, Player player)
+        public void Update(Map map, Player player, Camera camera)
         {
             Console.CursorVisible = false;
             //sets and updates position of enemy
@@ -74,7 +74,7 @@ namespace Text_Based_RPG
             {
                 //when enemy dies 
                 health = 0;
-                Character = "X";
+                Character = 'X';
             }
             else
             {
@@ -164,21 +164,25 @@ namespace Text_Based_RPG
                 }
                 else if (map.IsWallAt(xLoc - 1, yLoc) == true)
                 {
+                    map.refresh(camera.renderer, xLoc, yLoc);
                     xLoc = xLoc + 1;
                     yLoc = yLoc + 0;
                 }
                 else if (map.IsWallAt(xLoc + 1, yLoc) == true)
                 {
+                    map.refresh(camera.renderer, xLoc, yLoc);
                     xLoc = xLoc - 1;
                     yLoc = yLoc + 0;
                 }
                 else if (map.IsWallAt(xLoc, yLoc - 1) == true)
                 {
+                    map.refresh(camera.renderer, xLoc, yLoc);
                     xLoc = xLoc + 0;
                     yLoc = yLoc +1;
                 }
                 else if (map.IsWallAt(xLoc, yLoc + 1) == true)
                 {
+                    map.refresh(camera.renderer, xLoc, yLoc);
                     xLoc = xLoc + 0;
                     yLoc = yLoc - 1;
                 }
@@ -209,10 +213,12 @@ namespace Text_Based_RPG
                       
                         if (pos == 1)
                         {
+                            map.refresh(camera.renderer, xLoc, yLoc);
                             xLoc = xLoc + 1;
                         }
                         else if (pos == 2)
                         {
+                            map.refresh(camera.renderer, xLoc, yLoc);
                             xLoc = xLoc - 1;
                         }
                         
@@ -222,10 +228,12 @@ namespace Text_Based_RPG
                         
                         if (pos == 1)
                         {
+                            map.refresh(camera.renderer, xLoc, yLoc);
                             yLoc = yLoc + 1;
                         }
                         else if (pos == 2)
                         {
+                             map.refresh(camera.renderer, xLoc, yLoc);
                             yLoc = yLoc - 1;
                         }
                     }
@@ -234,18 +242,22 @@ namespace Text_Based_RPG
 
                         if (pos == 1)
                         {
+                            map.refresh(camera.renderer, xLoc, yLoc);
                             xLoc = xLoc + 1;
                         }
                         else if (pos == 2)
                         {
+                            map.refresh(camera.renderer, xLoc, yLoc);
                             xLoc = xLoc - 1;
                         }
                         else if (pos == 3)
                         {
+                            map.refresh(camera.renderer, xLoc, yLoc);
                             yLoc = yLoc + 1;
                         }
                         else if (pos >= 4)
                         {
+                            map.refresh(camera.renderer, xLoc, yLoc);
                             yLoc = yLoc - 1;
                         }
                     }

@@ -9,7 +9,7 @@ namespace Text_Based_RPG
     class Item
     {
         public bool pickedUp;
-        private string icon;
+        private char icon;
         public int iType;
         public int xLoc;
         public int yLoc;
@@ -22,17 +22,17 @@ namespace Text_Based_RPG
             iType = type;
             if (type == 1)
             {
-                icon = "+";
+                icon = '+';
                
             }
             else if (type == 2)
             {
-                icon = "&";
+                icon = '&';
                 
             }
             else if (type >= 3)
             {
-                icon = "$";
+                icon = '$';
                
             }
            
@@ -45,7 +45,7 @@ namespace Text_Based_RPG
                 if (pickedUp == true)
                 {
                     player.Heal(10);
-                    icon = " ";
+                    icon = ' ';
                     xLoc = 0;
                     yLoc = 0;
                     pickedUp = false;
@@ -58,7 +58,7 @@ namespace Text_Based_RPG
                 if (pickedUp == true)
                 {
                     map.openDoors = true;
-                    icon = " ";
+                    icon = ' ';
                     xLoc = 0;
                     yLoc = 0;
                     
@@ -71,7 +71,7 @@ namespace Text_Based_RPG
                 if (pickedUp == true)
                 {
                     player.GetReward(100);
-                    icon = " ";
+                    icon = ' ';
                     xLoc = 0;
                     yLoc = 0;
                     pickedUp = false;
@@ -79,10 +79,9 @@ namespace Text_Based_RPG
 
             }
         }
-        public void Draw()
+        public void Draw(Camera camera)
         {
-            Console.SetCursorPosition(xLoc, yLoc);
-            Console.WriteLine(icon);
+            camera.DrawToRenderer(icon, xLoc, yLoc);
         }
     }
 }
