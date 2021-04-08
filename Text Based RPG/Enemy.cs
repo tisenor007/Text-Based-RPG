@@ -8,37 +8,37 @@ namespace Text_Based_RPG
 {
     class Enemy : GameCharacter
     {
-       enum State
+       enum Moving
         {
-            MovingLeft,
-            MovingRight,
-            MovingUp,
-            MovingDown
+            Left,
+            Right,
+            Up,
+            Down
         }
-        private State state;
+        private Moving state;
         private bool attackLocation;
         private bool isWall;
         private int eType;
         private Random rnd = new Random();
-        private void SwitchState(State newstate)
+        private void SwitchState()
         {
-            state = newstate;
+            //state = newstate;
 
-            switch(state){
-                case State.MovingLeft:
-                    xLoc = xLoc - 1;
-                    break;
-                case State.MovingRight:
-                    xLoc = xLoc + 1;
-                    break;
-                case State.MovingUp:
+            //switch(state){
+            //    case State.MovingLeft:
+            //        xLoc = xLoc - 1;
+            //        break;
+            //    case State.MovingRight:
+            //        xLoc = xLoc + 1;
+            //        break;
+            //    case State.MovingUp:
 
-                    break;
-                case State.MovingDown:
+            //        break;
+            //    case State.MovingDown:
 
-                    break;
+            //        break;
 
-            }
+            //}
         }
         public void LoadEnemy(int X, int Y, int type)
         {
@@ -48,18 +48,18 @@ namespace Text_Based_RPG
             yLoc = Y;
             if (type <= 1)
             {
-                Character = 'E';
+                character = 'E';
                 health = 100;
                
             }
             else if (type == 2)
             {
-                Character = '3';
+                character = '3';
                 health = 50;
             }
             else if (type >= 3)
             {
-                Character = 'e';
+                character = 'e';
                 health = 25;
             }
         }
@@ -70,13 +70,8 @@ namespace Text_Based_RPG
             //sets and updates position of enemy
             //Console.SetCursorPosition(xLoc, yLoc);
             
-            if (health <= 0)
-            {
-                //when enemy dies 
-                health = 0;
-                Character = 'X';
-            }
-            else
+           
+            if (vitalStatus == VitalStatus.Alive)
             {
                 if (player.isPlayerAt(xLoc, yLoc - 1) == true)
                 {
@@ -84,7 +79,7 @@ namespace Text_Based_RPG
                     if (eType <= 1)
                     {
                         player.TakeDamage(5);
-                        state = State.MovingRight;
+                        //state = State.MovingRight;
                     }
                     if (eType == 2)
                     {
@@ -164,47 +159,29 @@ namespace Text_Based_RPG
                 }
                 else if (map.IsWallAt(xLoc - 1, yLoc) == true)
                 {
-                    map.refresh(camera.renderer, xLoc, yLoc);
+                   
                     xLoc = xLoc + 1;
                     yLoc = yLoc + 0;
                 }
                 else if (map.IsWallAt(xLoc + 1, yLoc) == true)
                 {
-                    map.refresh(camera.renderer, xLoc, yLoc);
+                   
                     xLoc = xLoc - 1;
                     yLoc = yLoc + 0;
                 }
                 else if (map.IsWallAt(xLoc, yLoc - 1) == true)
                 {
-                    map.refresh(camera.renderer, xLoc, yLoc);
+                  
                     xLoc = xLoc + 0;
                     yLoc = yLoc +1;
                 }
                 else if (map.IsWallAt(xLoc, yLoc + 1) == true)
                 {
-                    map.refresh(camera.renderer, xLoc, yLoc);
+                    
                     xLoc = xLoc + 0;
                     yLoc = yLoc - 1;
                 }
-                // if (state == State.MovingRight)
-                //{
-                //    xLoc = xLoc - 1;
-                //    yLoc = yLoc + 1;
-                //}
-                //if (state == State.MovingLeft)
-                //{
-                //    xLoc = xLoc + 1;
-                //    yLoc = yLoc + 1;
-                //}
-                //if (state == State.MovingUp)
-                //{
-                //    yLoc = yLoc - 1;
-
-                //}
-                //if (state == State.MovingDown)
-                //{
-                //    yLoc = yLoc + 1;
-                //}
+             
                 else
                 {
                     int pos = rnd.Next(1, 6);
@@ -213,12 +190,12 @@ namespace Text_Based_RPG
                       
                         if (pos == 1)
                         {
-                            map.refresh(camera.renderer, xLoc, yLoc);
+                           
                             xLoc = xLoc + 1;
                         }
                         else if (pos == 2)
                         {
-                            map.refresh(camera.renderer, xLoc, yLoc);
+                           
                             xLoc = xLoc - 1;
                         }
                         
@@ -228,12 +205,12 @@ namespace Text_Based_RPG
                         
                         if (pos == 1)
                         {
-                            map.refresh(camera.renderer, xLoc, yLoc);
+                          
                             yLoc = yLoc + 1;
                         }
                         else if (pos == 2)
                         {
-                             map.refresh(camera.renderer, xLoc, yLoc);
+                             
                             yLoc = yLoc - 1;
                         }
                     }
@@ -242,28 +219,32 @@ namespace Text_Based_RPG
 
                         if (pos == 1)
                         {
-                            map.refresh(camera.renderer, xLoc, yLoc);
+                            
                             xLoc = xLoc + 1;
                         }
                         else if (pos == 2)
                         {
-                            map.refresh(camera.renderer, xLoc, yLoc);
+                            
                             xLoc = xLoc - 1;
                         }
                         else if (pos == 3)
                         {
-                            map.refresh(camera.renderer, xLoc, yLoc);
+                           
                             yLoc = yLoc + 1;
                         }
                         else if (pos >= 4)
                         {
-                            map.refresh(camera.renderer, xLoc, yLoc);
+                           
                             yLoc = yLoc - 1;
                         }
                     }
                 }
                
 
+            }
+            else
+            {
+                SwitchVitalStatus(VitalStatus.Dead);
             }
         }
        

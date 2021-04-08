@@ -44,7 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera.cs" />
-    <Compile Include="tries.cs" />
+    <Compile Include="Heavy.cs" />
+    <Compile Include="SpecializedCombat.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyManager.cs" />
     <Compile Include="GameCharacter.cs" />

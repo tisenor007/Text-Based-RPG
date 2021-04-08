@@ -20,7 +20,7 @@ namespace Text_Based_RPG
         private int y;
         public bool openDoors = false;
        
-        public void Load(Camera camera)
+        public Map()
         {
             
             //mapData reads file through lines - Gets Y
@@ -41,41 +41,28 @@ namespace Text_Based_RPG
             }
            
         }
-        public void refresh(char[,] renderer, int x, int y)
+       
+        public void Draw(Camera camera)
         {
-            renderer[x, y] = map[x, y];
-        }
-        //public void Draw(Camera camera)
-        //{
-        //    //Console.SetCursorPosition(0, 0);
-        //    Console.SetCursorPosition(xLoc + camera.offsetX, yLoc + camera.offsetY);
-        //    for (int y = camera.Ystart; y < camera.Yend; y++)
-        //    {
-        //        for (int x = camera.Xstart; x < camera.Xend; x++)
-        //        {
-        //            //repeats lines til whole map is displayed
-        //            //end of repeat is determined by y
-        //            Console.Write(map[x,y]);
-        //        }
-        //        Console.WriteLine();
-        //    }
+           
+            
 
-        //}
+        }
         //public void Update(Camera camera)
         //{
-           
+
         //    if (camera.offsetX <= -1)
         //    {
         //        camera.Xstart = camera.Xstart + 1;
         //        camera.offsetX = camera.offsetX + 1;
-         
+
         //    }
         //    if (camera.offsetY <= -1)
         //    {
         //        camera.Ystart = camera.Ystart + 1;
         //        camera.offsetY = camera.offsetY + 1;
         //    }
-           
+
         //    if (camera.offsetX >= 1)
         //    {
         //        camera.Xstart = camera.Xstart - 1;
@@ -89,16 +76,16 @@ namespace Text_Based_RPG
         //    if (camera.Xstart <= 0)
         //    {
         //        camera.Xstart = 0;
-                
+
         //    }
         //    if (camera.Ystart <= 0)
         //    {
         //        camera.Ystart = 0;
-               
+
         //    }
 
         //}
-        public bool IsWallAt(int x, int y)
+            public bool IsWallAt(int x, int y)
         {
             //lets you walk on certain tiles but anything else, no
             if (map[x, y] == '.')

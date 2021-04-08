@@ -13,12 +13,13 @@ namespace Text_Based_RPG
         private bool itemExist;
         public int reward;
 
-        public void LoadPlayer(int X, int Y)
+        public Player(int X, int Y)
         {
             //loads player position, character, health
             xLoc = X;
             yLoc = Y;
-            Character = '@';
+            SwitchVitalStatus(VitalStatus.Alive);
+            character = '@';
             health = 100;
             reward = 0;
 
@@ -36,21 +37,12 @@ namespace Text_Based_RPG
             //Console.SetCursorPosition(xLoc, yLoc);
             //Console.WriteLine(Character);
             ConsoleKeyInfo keyPressed = Console.ReadKey(true);
-            if (health <= 0)
+            
+            if (vitalStatus == VitalStatus.Alive)
             {
-                //if player dies......
-                health = 0;
-                Character = 'X';
-            }
-            else
-            {
-
-                
                 if (keyPressed.Key == ConsoleKey.W)
                 {
                     //you are able to move unless there is a wall
-
-                    //Console.WriteLine(enemyManager.isEnemyAt(xLoc, yLoc));
                     if (wallExist = map.IsWallAt(xLoc, yLoc - 1))
                     {
                         //do nothing 
@@ -58,18 +50,14 @@ namespace Text_Based_RPG
                     else if (enemyExist = enemyManager.isEnemyAt(xLoc, yLoc - 1))
                     {
                         enemyManager.CheckEnemies(xLoc, yLoc - 1);
-                       
                     }
                     else if (itemExist = itemManager.isItemAt(xLoc, yLoc - 1))
                     {
-                        
                         itemManager.CheckItems(xLoc, yLoc - 1);
                     }
                     else
                     {
-                        map.refresh(camera.renderer, xLoc, yLoc);
                         yLoc = yLoc - 1;
-                        //camera.offsetY = camera.offsetY - 1;
                     }
 
                 }
@@ -77,7 +65,7 @@ namespace Text_Based_RPG
                 {
                     if (wallExist = map.IsWallAt(xLoc - 1, yLoc))
                     {
-
+                        //do nothing
                     }
                     else if (enemyExist = enemyManager.isEnemyAt(xLoc - 1, yLoc))
                     {
@@ -85,15 +73,11 @@ namespace Text_Based_RPG
                     }
                     else if (itemExist = itemManager.isItemAt(xLoc - 1, yLoc))
                     {
-                        
                         itemManager.CheckItems(xLoc - 1, yLoc);
                     }
                     else
                     {
-                        map.refresh(camera.renderer, xLoc, yLoc);
                         xLoc = xLoc - 1;
-                        //camera.offsetX = camera.offsetX - 1;
-                        
                     }
 
                 }
@@ -101,7 +85,7 @@ namespace Text_Based_RPG
                 {
                     if (wallExist = map.IsWallAt(xLoc, yLoc + 1))
                     {
-                        
+                        //do nothing
                     }
                     else if (enemyExist = enemyManager.isEnemyAt(xLoc, yLoc + 1))
                     {
@@ -109,22 +93,18 @@ namespace Text_Based_RPG
                     }
                     else if (itemExist = itemManager.isItemAt(xLoc, yLoc + 1))
                     {
-                       
                         itemManager.CheckItems(xLoc, yLoc + 1);
-                    }
-                    
+                    }  
                     else
                     {
-                        map.refresh(camera.renderer, xLoc, yLoc);
                         yLoc = yLoc + 1;
-                        //camera.offsetY = camera.offsetY + 1;
                     }
                 }
                 if (keyPressed.Key == ConsoleKey.D)
                 {
                     if (wallExist = map.IsWallAt(xLoc + 1, yLoc))
                     {
-
+                        //do nothing
                     }
                     else if (enemyExist = enemyManager.isEnemyAt(xLoc + 1, yLoc))
                     {
@@ -132,16 +112,17 @@ namespace Text_Based_RPG
                     }
                     else if (itemExist = itemManager.isItemAt(xLoc + 1, yLoc))
                     {
-                        
                         itemManager.CheckItems(xLoc + 1, yLoc);
                     }
                     else
                     {
-                        map.refresh(camera.renderer, xLoc, yLoc);
                         xLoc = xLoc + 1;
-                        //camera.offsetX = camera.offsetX + 1;
                     }
                 }
+            }
+            else
+            {
+                SwitchVitalStatus(VitalStatus.Dead);
             }
         }
         public bool isPlayerAt(int x, int y)
