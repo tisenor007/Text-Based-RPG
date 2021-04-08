@@ -8,21 +8,20 @@ namespace Text_Based_RPG
 {
     class Camera
     {
-        public char[,] renderer = new char[108, 26]; // size ???
+        public char[,] renderer = new char[121, 26]; // size ???
        
-        private int startViewX;
-        private int startViewY;
+        private int startViewX = 0;
+        private int startViewY = 0;
         private int endViewX;
         public int endViewY;
 
         public int offsetX;
         public int offsetY;
-        public Camera()
+        public Camera(Map map)
         {
-            startViewY = 0;
-            endViewY = 6;
-            startViewX = 0;
-            endViewX = 20;
+           
+            endViewY = 10;
+            endViewX = 25;
         }
         public void Update(Map map, Player player)
         {
@@ -75,9 +74,9 @@ namespace Text_Based_RPG
         }
         public void DrawMapToRenderer(Map map)
         {
-            for (int i = 0; i < 26 - 1; i++)
+            for (int i = 0; i < map.mapData.Length; i++)
             {
-                for (int d = 0; d < 108 - 1; d++)
+                for (int d = 0; d < map.currMapLine.Length; d++)
                 {
                     renderer[d, i] = map.map[d, i];
                 }

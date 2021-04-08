@@ -27,7 +27,7 @@ namespace Text_Based_RPG
             EnemyManager enemyManager = new EnemyManager();
             ItemManager itemManager = new ItemManager();
             HUD Hud = new HUD();
-            Camera camera = new Camera();
+            Camera camera = new Camera(map);
             
             enemyManager.InitEnemies();
             itemManager.InitItems();
@@ -38,7 +38,7 @@ namespace Text_Based_RPG
             
             
            
-            enemyManager.LoadEnemies();
+            
             itemManager.LoadItems();
 
 
