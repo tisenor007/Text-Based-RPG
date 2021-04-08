@@ -10,7 +10,7 @@ namespace Text_Based_RPG
     class Map
     {   //fields.....
         //map delcared and instantiated with proper map bounds
-        public char[,] map = new char[121, 26]; // size ???
+        public char[,] map = new char[269, 63]; // size ???
         public string[] mapData;
         public string currMapLine;
         private char mapTile;
@@ -91,7 +91,7 @@ namespace Text_Based_RPG
             public bool IsWallAt(int x, int y)
         {
             //lets you walk on certain tiles but anything else, no
-            if (map[x, y] == '.')
+            if (map[x, y] == '=')
             {
                 return false;
             }
@@ -99,6 +99,15 @@ namespace Text_Based_RPG
             {
                 return false;
             }
+            else if (map[x, y] == '░')
+            {
+                return false;
+            }
+            else if (map[x, y] == '`')
+            {
+                return false;
+            }
+
             if (openDoors == true)
             {
                 if (map[x, y] == '&')

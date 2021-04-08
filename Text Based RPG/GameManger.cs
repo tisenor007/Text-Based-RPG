@@ -23,7 +23,7 @@ namespace Text_Based_RPG
             //intantiation and declaration of objects.....
             Map map = new Map();
             //polymorphism
-            Player player = new Player(14, 3);
+            Player player = new Player(20, 17);
             EnemyManager enemyManager = new EnemyManager();
             ItemManager itemManager = new ItemManager();
             HUD Hud = new HUD();

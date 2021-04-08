@@ -8,7 +8,7 @@ namespace Text_Based_RPG
 {
     class Camera
     {
-        public char[,] renderer = new char[121, 26]; // size ???
+        public char[,] renderer = new char[268, 63]; // size ???
        
         private int startViewX = 0;
         private int startViewY = 0;
@@ -21,7 +21,7 @@ namespace Text_Based_RPG
         {
            
             endViewY = 10;
-            endViewX = 25;
+            endViewX = 35;
         }
         public void Update(Map map, Player player)
         {
