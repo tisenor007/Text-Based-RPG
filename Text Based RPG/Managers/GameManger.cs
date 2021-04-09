@@ -13,9 +13,9 @@ namespace Text_Based_RPG
             //main title
             MainMenu mainMenu = new MainMenu();
             mainMenu.StartMainMenu();
-            Clear();
+            Console.Clear();
             mainMenu.ShowInfoScreen();
-
+            Console.Clear();
             //intantiation and declaration of objects.....
             Map map = new Map();
             GameOver gameOver = new GameOver();
@@ -37,7 +37,7 @@ namespace Text_Based_RPG
                 camera.Update(map, player);
 
                 //draws + other game elements(for polish)
-                Clear();
+                
                 itemManager.DrawItems(camera);
                 enemyManager.DrawEnemies(camera);
                 player.Draw(camera);
@@ -48,69 +48,8 @@ namespace Text_Based_RPG
                 if (gameOver.gameOverWin == true){break;}
                 if (gameOver.gameOverLoss == true){break;}
             }
-            if (gameOver.gameOverWin == true){Clear(); gameOver.GameOverWinScreen();}
-            if (gameOver.gameOverLoss == true){Clear(); gameOver.GameOverLossScreen();}
+            if (gameOver.gameOverWin == true){Console.Clear(); gameOver.GameOverWinScreen();}
+            if (gameOver.gameOverLoss == true){Console.Clear(); gameOver.GameOverLossScreen();}
         }
-        //clear method to handle left over text without doning console.clear(), makes game smoother
-        private void Clear()
-        {
-            Console.SetCursorPosition(0, 0);
-            string clear = "                                                                                                                                                                        ";
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-            Console.Write(clear);
-        }
-       
-
     }
 }

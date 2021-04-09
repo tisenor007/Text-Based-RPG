@@ -19,7 +19,7 @@ namespace Text_Based_RPG
         protected Moving direction;
         protected Random rnd = new Random();
         //switches directions/movement behavior
-        protected void SwitchDirection(Moving newDirection)
+        protected void Move(Moving newDirection)
         {
             direction = newDirection;
             switch (direction)
@@ -47,20 +47,20 @@ namespace Text_Based_RPG
             Console.CursorVisible = false;
             if (vitalStatus == VitalStatus.Alive)
             {
-                if (map.IsWallAt(xLoc - 1, yLoc) == true) { SwitchDirection(Moving.Right); }
-                if (map.IsWallAt(xLoc + 1, yLoc) == true) { SwitchDirection(Moving.Left); }
-                if (map.IsWallAt(xLoc, yLoc - 1) == true) { SwitchDirection(Moving.Down); }
-                if (map.IsWallAt(xLoc, yLoc + 1) == true) { SwitchDirection(Moving.Up); }
+                if (map.IsWallAt(xLoc - 1, yLoc) == true) { Move(Moving.Right); }
+                if (map.IsWallAt(xLoc + 1, yLoc) == true) { Move(Moving.Left); }
+                if (map.IsWallAt(xLoc, yLoc - 1) == true) { Move(Moving.Down); }
+                if (map.IsWallAt(xLoc, yLoc + 1) == true) { Move(Moving.Up); }
 
-                else if (itemManager.IsItemAt(xLoc - 1, yLoc) == true) { SwitchDirection(Moving.Right); }
-                else if (itemManager.IsItemAt(xLoc + 1, yLoc) == true) { SwitchDirection(Moving.Left); }
-                else if (itemManager.IsItemAt(xLoc, yLoc - 1) == true) { SwitchDirection(Moving.Down); }
-                else if (itemManager.IsItemAt(xLoc, yLoc + 1) == true) { SwitchDirection(Moving.Up); }
+                else if (itemManager.IsItemAt(xLoc - 1, yLoc) == true) { Move(Moving.Right); }
+                else if (itemManager.IsItemAt(xLoc + 1, yLoc) == true) { Move(Moving.Left); }
+                else if (itemManager.IsItemAt(xLoc, yLoc - 1) == true) { Move(Moving.Down); }
+                else if (itemManager.IsItemAt(xLoc, yLoc + 1) == true) { Move(Moving.Up); }
 
-                else if (enemyManager.IsEnemyAt(xLoc - 1, yLoc) == true) { SwitchDirection(Moving.Right); }
-                else if (enemyManager.IsEnemyAt(xLoc + 1, yLoc) == true) { SwitchDirection(Moving.Left); }
-                else if (enemyManager.IsEnemyAt(xLoc, yLoc - 1) == true) { SwitchDirection(Moving.Down); }
-                else if (enemyManager.IsEnemyAt(xLoc, yLoc + 1) == true) { SwitchDirection(Moving.Up); }
+                else if (enemyManager.IsEnemyAt(xLoc - 1, yLoc) == true) { Move(Moving.Right); }
+                else if (enemyManager.IsEnemyAt(xLoc + 1, yLoc) == true) { Move(Moving.Left); }
+                else if (enemyManager.IsEnemyAt(xLoc, yLoc - 1) == true) { Move(Moving.Down); }
+                else if (enemyManager.IsEnemyAt(xLoc, yLoc + 1) == true) { Move(Moving.Up); }
             }
             else
             {

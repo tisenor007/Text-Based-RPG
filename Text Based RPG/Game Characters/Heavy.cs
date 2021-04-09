@@ -36,8 +36,8 @@ namespace Text_Based_RPG
                 else
                 {
                     int pos = rnd.Next(1, 4);
-                    if ((pos >= 1) && (pos <= 2)) { SwitchDirection(Moving.Left); }
-                    else if ((pos >= 3) && (pos <= 4)) { SwitchDirection(Moving.Right); }
+                    if ((pos >= 1) && (pos <= 2)) { Move(Moving.Left); }
+                    else if ((pos >= 3) && (pos <= 4)) { Move(Moving.Right); }
                 }
                 base.Update(map, player, camera, itemManager, enemyManager);
             }
