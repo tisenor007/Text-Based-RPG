@@ -43,25 +43,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Camera.cs" />
-    <Compile Include="Heavy.cs" />
-    <Compile Include="SpecializedCombat.cs" />
-    <Compile Include="Enemy.cs" />
-    <Compile Include="EnemyManager.cs" />
-    <Compile Include="GameCharacter.cs" />
-    <Compile Include="GameManger.cs" />
-    <Compile Include="HUD.cs" />
-    <Compile Include="Item.cs" />
-    <Compile Include="ItemManager.cs" />
-    <Compile Include="Map.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="Game Characters\Boss.cs" />
+    <Compile Include="Screen Elements\Camera.cs" />
+    <Compile Include="Pick Ups\FirstAidKit.cs" />
+    <Compile Include="Pick Ups\Key.cs" />
+    <Compile Include="Game Characters\Light.cs" />
+    <Compile Include="Screens\GameOver.cs" />
+    <Compile Include="Game Characters\Heavy.cs" />
+    <Compile Include="Screens\MainMenu.cs" />
+    <Compile Include="Pick Ups\Shield.cs" />
+    <Compile Include="Game Characters\SpecializedCombat.cs" />
+    <Compile Include="Game Characters\Enemy.cs" />
+    <Compile Include="Managers\EnemyManager.cs" />
+    <Compile Include="Game Characters\GameCharacter.cs" />
+    <Compile Include="Managers\GameManger.cs" />
+    <Compile Include="Screen Elements\HUD.cs" />
+    <Compile Include="Pick Ups\Item.cs" />
+    <Compile Include="Managers\ItemManager.cs" />
+    <Compile Include="Screen Elements\Map.cs" />
+    <Compile Include="Game Characters\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Pick Ups\Valuable.cs" />
+    <Compile Include="Pick Ups\Weapon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GameOverLossArt.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GameOverWinScreen.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MainMenuArt.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MainMenuInfoScreenArt.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Map.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

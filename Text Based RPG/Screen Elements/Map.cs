@@ -45,10 +45,18 @@ namespace Text_Based_RPG
            
         }
        
-        public void Draw(Camera camera)
+        public void DrawToRender(char[,] renderer)
         {
-           
-            
+
+            for (int i = 0; i < mapData.Length; i++)
+            {
+                for (int d = 0; d < currMapLine.Length; d++)
+                {
+                   
+                    renderer[d, i] = map[d, i];
+                   
+                }
+            }
 
         }
         //public void Update(Camera camera)

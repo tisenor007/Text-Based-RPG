@@ -1,0 +1,53 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Text_Based_RPG
+{
+    class Light : Enemy
+    {
+        public Light(int X, int Y)
+        {
+            SwitchVitalStatus(VitalStatus.Alive);
+           
+            xLoc = X;
+            yLoc = Y; 
+            character = 'e';
+            health = 25;
+            shield = 0;
+            name = "Light";
+            attackDamage = 2;
+        }
+
+        public override void Update(Map map, Player player, Camera camera, ItemManager itemManager, EnemyManager enemyManager)
+        {
+            if (vitalStatus == VitalStatus.Alive)
+            {
+               
+                if (player.isPlayerAt(xLoc, yLoc - 1) == true) { player.TakeDamage(attackDamage); Console.Beep(700, 100); }
+                else if (player.isPlayerAt(xLoc - 1, yLoc) == true) { player.TakeDamage(attackDamage); Console.Beep(700, 100); }
+                else if (player.isPlayerAt(xLoc + 1, yLoc) == true) { player.TakeDamage(attackDamage); Console.Beep(700, 100); }
+                else if (player.isPlayerAt(xLoc, yLoc + 1) == true) { player.TakeDamage(attackDamage); Console.Beep(700, 100); }
+
+                else
+                {
+                    int pos = rnd.Next(1, 8);
+                    if ((pos >= 1) && (pos <= 2)) { SwitchDirection(Moving.Left); }
+                    else if ((pos >= 3) && (pos <= 4)) { SwitchDirection(Moving.Right); }
+                    else if ((pos >= 5) && (pos <= 6)) { SwitchDirection(Moving.Up); }
+                    else if ((pos >= 7) && (pos <= 8)) { SwitchDirection(Moving.Down); }
+                }
+
+                base.Update(map, player, camera, itemManager, enemyManager);
+            }
+            else
+            {
+                SwitchVitalStatus(VitalStatus.Dead);
+            }
+
+
+        }
+    }
+}

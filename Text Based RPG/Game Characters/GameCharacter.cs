@@ -15,9 +15,12 @@ namespace Text_Based_RPG
         }
         //shared gameCharacter data....
         public int health;
+        public int shield;
         public int xLoc;
         public int yLoc;
+        public int attackDamage;
         public char character;
+        public string name;
         protected VitalStatus vitalStatus;
         
         protected void SwitchVitalStatus(VitalStatus newVitalStatus)
@@ -42,15 +45,34 @@ namespace Text_Based_RPG
         }
         public void TakeDamage(int Damage)
         {
-            health = health - Damage;
+            //spill over effect
+            int remainingDamage = Damage - shield;
+            shield = shield - Damage;
+
+            if (shield <= 0)
+            {
+                //when shield is broken damage takes away from health
+                shield = 0;
+                health = health - remainingDamage;
+            }
             if (health <= 0)
             {
                 SwitchVitalStatus(VitalStatus.Dead);
+                Console.Beep(1000, 100);
             }
         }
         public void Heal(int hp)
         {
             health = health + hp;
+        }
+        public void RegenShield(int sp)
+        {
+            shield = shield + sp;
+            if (shield >= 50)
+            {
+                //shield is capped at 100
+                shield = 50;
+            } 
         }
         public void Die()
         {

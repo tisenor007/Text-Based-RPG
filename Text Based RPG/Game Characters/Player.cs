@@ -11,7 +11,8 @@ namespace Text_Based_RPG
         private bool wallExist;
         private bool enemyExist;
         private bool itemExist;
-        public int reward;
+        public int collectedValuables;
+        public string weaponInHand;
 
         public Player(int X, int Y)
         {
@@ -21,15 +22,18 @@ namespace Text_Based_RPG
             SwitchVitalStatus(VitalStatus.Alive);
             character = '@';
             health = 100;
-            reward = 0;
-
+            shield = 0;
+            collectedValuables = 0;
+            name = "Player";
+            weaponInHand = "Fist";
+            attackDamage = 5;
 
         }
-        public void GetReward(int money)
+        public void CollectValuable(int money)
         {
-            reward = reward + money;
+            collectedValuables = collectedValuables + money;
         }
-        public void Update(Map map, EnemyManager enemyManager, ItemManager itemManager, Camera camera)
+        public void Update(Map map, EnemyManager enemyManager, ItemManager itemManager, GameOver gameOver)
         {
             //makes cursor not visable 
             Console.CursorVisible = false;
@@ -47,11 +51,11 @@ namespace Text_Based_RPG
                     {
                         //do nothing 
                     }
-                    else if (enemyExist = enemyManager.isEnemyAt(xLoc, yLoc - 1))
+                    else if (enemyExist = enemyManager.IsEnemyAt(xLoc, yLoc - 1))
                     {
-                        enemyManager.CheckEnemies(xLoc, yLoc - 1);
+                        enemyManager.CheckEnemies(xLoc, yLoc - 1, attackDamage);
                     }
-                    else if (itemExist = itemManager.isItemAt(xLoc, yLoc - 1))
+                    else if (itemExist = itemManager.IsItemAt(xLoc, yLoc - 1))
                     {
                         itemManager.CheckItems(xLoc, yLoc - 1);
                     }
@@ -67,11 +71,11 @@ namespace Text_Based_RPG
                     {
                         //do nothing
                     }
-                    else if (enemyExist = enemyManager.isEnemyAt(xLoc - 1, yLoc))
+                    else if (enemyExist = enemyManager.IsEnemyAt(xLoc - 1, yLoc))
                     {
-                        enemyManager.CheckEnemies(xLoc - 1, yLoc);
+                        enemyManager.CheckEnemies(xLoc - 1, yLoc, attackDamage);
                     }
-                    else if (itemExist = itemManager.isItemAt(xLoc - 1, yLoc))
+                    else if (itemExist = itemManager.IsItemAt(xLoc - 1, yLoc))
                     {
                         itemManager.CheckItems(xLoc - 1, yLoc);
                     }
@@ -87,11 +91,11 @@ namespace Text_Based_RPG
                     {
                         //do nothing
                     }
-                    else if (enemyExist = enemyManager.isEnemyAt(xLoc, yLoc + 1))
+                    else if (enemyExist = enemyManager.IsEnemyAt(xLoc, yLoc + 1))
                     {
-                        enemyManager.CheckEnemies(xLoc, yLoc + 1);
+                        enemyManager.CheckEnemies(xLoc, yLoc + 1, attackDamage);
                     }
-                    else if (itemExist = itemManager.isItemAt(xLoc, yLoc + 1))
+                    else if (itemExist = itemManager.IsItemAt(xLoc, yLoc + 1))
                     {
                         itemManager.CheckItems(xLoc, yLoc + 1);
                     }  
@@ -106,11 +110,11 @@ namespace Text_Based_RPG
                     {
                         //do nothing
                     }
-                    else if (enemyExist = enemyManager.isEnemyAt(xLoc + 1, yLoc))
+                    else if (enemyExist = enemyManager.IsEnemyAt(xLoc + 1, yLoc))
                     {
-                        enemyManager.CheckEnemies(xLoc + 1, yLoc);
+                        enemyManager.CheckEnemies(xLoc + 1, yLoc, attackDamage);
                     }
-                    else if (itemExist = itemManager.isItemAt(xLoc + 1, yLoc))
+                    else if (itemExist = itemManager.IsItemAt(xLoc + 1, yLoc))
                     {
                         itemManager.CheckItems(xLoc + 1, yLoc);
                     }
@@ -119,10 +123,18 @@ namespace Text_Based_RPG
                         xLoc = xLoc + 1;
                     }
                 }
+                if (collectedValuables >= 600)
+                {
+                    gameOver.gameOverWin = true;
+                }
             }
             else
             {
                 SwitchVitalStatus(VitalStatus.Dead);
+            }
+            if (vitalStatus == VitalStatus.Dead)
+            {
+                gameOver.gameOverLoss = true;
             }
         }
         public bool isPlayerAt(int x, int y)
@@ -138,6 +150,40 @@ namespace Text_Based_RPG
             
             return false;
         }
+        //public bool isPlayerNear(int x, int y)
+        //{
+
+        //    if (x <= xLoc)
+        //    {
+        //        if (y <= yLoc)
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    else if (x >= xLoc)
+        //    {
+        //        if (y >= yLoc)
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    else if (x >= xLoc)
+        //    {
+        //        if (y <= yLoc)
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //    else if (x <= xLoc)
+        //    {
+        //        if (y>= yLoc)
+        //        {
+        //            return true;
+        //        }
+        //    }
+
+        //    return false;
+        //}
 
 
 

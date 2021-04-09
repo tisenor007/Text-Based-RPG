@@ -8,31 +8,40 @@ namespace Text_Based_RPG
 {
     class ItemManager
     {
-        private static int Max_Items = 10;
+        private static int Max_Items = 26;
         public Item[] items = new Item[Max_Items];
 
         public void InitItems()
         {
-            for (int i = 0; i < Max_Items; i++)
-            {
-                items[i] = new Item();
-            }
-           
+            items[0] = new FirstAidKit(52, 11);
+            items[1] = new FirstAidKit(44, 26);
+            items[2] = new FirstAidKit(92, 28);
+            items[3] = new FirstAidKit(128, 10);
+            items[4] = new FirstAidKit(17, 16);
+            items[5] = new FirstAidKit(170, 14);
+            items[6] = new FirstAidKit(169, 21);
+            items[7] = new FirstAidKit(213, 37);
+            items[8] = new FirstAidKit(139, 44);
+            items[9] = new FirstAidKit(81, 31);
+            items[10] = new Key(96, 43);
+            items[11] = new Shield(21, 19);
+            items[12] = new Weapon(56, 25, 2);
+            items[13] = new Shield(40, 11);
+            items[14] = new Shield(185, 21);
+            items[15] = new Weapon(128, 8, 3);
+            items[16] = new Weapon(186, 14, 4);
+            items[17] = new Weapon(223, 36, 5);
+            items[18] = new Valuable(112, 56);
+            items[19] = new Valuable(113, 56);
+            items[20] = new Valuable(114, 56);
+            items[21] = new Valuable(115, 56);
+            items[22] = new Valuable(116, 56);
+            items[23] = new Valuable(117, 56);
+            items[24] = new Shield(97, 49);
+            items[25] = new Shield(120, 23);
            
         }
-        public void LoadItems()
-        {
-            items[0].Load(94, 11, 2);
-            items[1].Load(84, 20, 3);
-            items[2].Load(21, 5, 1);
-            items[3].Load(76, 16, 1);
-            items[4].Load(36, 10, 1);
-            items[5].Load(17, 19, 1);
-            items[6].Load(42, 19, 1);
-            items[7].Load(86, 20, 3);
-            items[8].Load(88, 20, 3);
-            items[9].Load(89, 4, 1);
-        }
+       
         public void UpdateItems(Map map, Player player)
         {
             for (int i = 0; i < Max_Items; i++)
@@ -62,7 +71,7 @@ namespace Text_Based_RPG
                 }
             }
         }
-        public bool isItemAt(int x, int y)
+        public bool IsItemAt(int x, int y)
         {
             for (int i = 0; i < Max_Items; i++)
             {
