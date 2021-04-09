@@ -8,11 +8,14 @@ namespace Text_Based_RPG
 {
     class ItemManager
     {
-        private static int Max_Items = 26;
+        //makes array that size
         public Item[] items = new Item[Max_Items];
-
+        //total number of enemies
+        private static int Max_Items = 26;
         public void InitItems()
         {
+            //construction of items
+            //gives them meaning through polymorphism
             items[0] = new FirstAidKit(52, 11);
             items[1] = new FirstAidKit(44, 26);
             items[2] = new FirstAidKit(92, 28);
@@ -39,9 +42,9 @@ namespace Text_Based_RPG
             items[23] = new Valuable(117, 56);
             items[24] = new Shield(97, 49);
             items[25] = new Shield(120, 23);
-           
         }
        
+        //cycles through items and updates each one
         public void UpdateItems(Map map, Player player)
         {
             for (int i = 0; i < Max_Items; i++)
@@ -49,6 +52,7 @@ namespace Text_Based_RPG
                 items[i].Update(map, player);
             }
         }
+        //cycles through items and draws each one
         public void DrawItems(Camera camera)
         {
             for (int i = 0; i < Max_Items; i++)
@@ -56,6 +60,7 @@ namespace Text_Based_RPG
                 items[i].Draw(camera);
             }
         }
+        //used to define which item is being picked up
         public void CheckItems(int x, int y)
         {
             for (int i = 0; i < Max_Items; i++)
@@ -71,6 +76,7 @@ namespace Text_Based_RPG
                 }
             }
         }
+        //bool for other objects to detect collision with each items
         public bool IsItemAt(int x, int y)
         {
             for (int i = 0; i < Max_Items; i++)

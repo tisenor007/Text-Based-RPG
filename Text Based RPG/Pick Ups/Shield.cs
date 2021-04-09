@@ -8,6 +8,7 @@ namespace Text_Based_RPG
 {
     class Shield : Item
     {
+        //adds sheild on pickup
         public Shield(int X, int Y)
         {
             pickedUp = false;

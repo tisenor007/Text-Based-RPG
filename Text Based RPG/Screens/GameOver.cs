@@ -10,6 +10,7 @@ namespace Text_Based_RPG
     {
         public bool gameOverLoss;
         public bool gameOverWin;
+        //what you see if you lose
         public void GameOverLossScreen()
         {
             string lossScreen = System.IO.File.ReadAllText("GameOverLossArt.txt");
@@ -18,8 +19,8 @@ namespace Text_Based_RPG
             Console.WriteLine();
             Console.WriteLine("Press any button to exit...");
             Console.ReadKey(true);
-
         }
+        //what you see if you win...
         public void GameOverWinScreen()
         {
             string winScreen = System.IO.File.ReadAllText("GameOverWinScreen.txt");

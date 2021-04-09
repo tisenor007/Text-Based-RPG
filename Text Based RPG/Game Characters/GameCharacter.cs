@@ -8,6 +8,7 @@ namespace Text_Based_RPG
 {
     class GameCharacter
     {
+        //status for game character to be alive or dead, every game character can live and die.
         protected enum VitalStatus
         {
             Alive,
@@ -22,7 +23,7 @@ namespace Text_Based_RPG
         public char character;
         public string name;
         protected VitalStatus vitalStatus;
-        
+        //to switch or set if the game character is dead or alive
         protected void SwitchVitalStatus(VitalStatus newVitalStatus)
         {
             vitalStatus = newVitalStatus;
@@ -35,20 +36,18 @@ namespace Text_Based_RPG
                     Die();
                     break;
             }
-
         }
+        //draw method because every gamecharacter will need to be drawn.....
         public void Draw(Camera camera)
         {
-            camera.DrawToRenderer(character, xLoc, yLoc);
-            //Console.WriteLine(Character);
-            
+            camera.DrawToRenderer(character, xLoc, yLoc); 
         }
+        //take damage for every gamecharacter
         public void TakeDamage(int Damage)
         {
             //spill over effect
             int remainingDamage = Damage - shield;
             shield = shield - Damage;
-
             if (shield <= 0)
             {
                 //when shield is broken damage takes away from health
@@ -57,14 +56,17 @@ namespace Text_Based_RPG
             }
             if (health <= 0)
             {
+                //makes them dead when they're health becomes 0
                 SwitchVitalStatus(VitalStatus.Dead);
                 Console.Beep(1000, 100);
             }
         }
+        //heal method, self explainitory
         public void Heal(int hp)
         {
             health = health + hp;
         }
+        //regenerate sheild method
         public void RegenShield(int sp)
         {
             shield = shield + sp;
@@ -74,6 +76,7 @@ namespace Text_Based_RPG
                 shield = 50;
             } 
         }
+        //properties for dead game characters
         public void Die()
         {
             health = 0;

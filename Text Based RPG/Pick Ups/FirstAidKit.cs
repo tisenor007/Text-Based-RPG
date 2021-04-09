@@ -8,6 +8,7 @@ namespace Text_Based_RPG
 {
     class FirstAidKit :Item
     {
+        //adds health on pickup
         public FirstAidKit(int X, int Y)
         {
             pickedUp = false;

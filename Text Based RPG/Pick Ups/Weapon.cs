@@ -17,6 +17,7 @@ namespace Text_Based_RPG
             Chainsaw
         }
         public WeaponType weapon;
+        //int to determine what weapon will be picked up
         public int weaponBeingPickedUp;
         public Weapon(int X, int Y, int weaponPickUp)
         {
@@ -43,6 +44,7 @@ namespace Text_Based_RPG
         }
         public void SwitchWeapon(WeaponType newWeapon, Player player)
         {
+            //sets what damage the weapons do and what they will be displayed as.......
             weapon = newWeapon;
             switch (weapon)
             {

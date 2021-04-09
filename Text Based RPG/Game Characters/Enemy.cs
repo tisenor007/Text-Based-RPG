@@ -17,14 +17,11 @@ namespace Text_Based_RPG
             Down
         }
         protected Moving direction;
-       
-        
         protected Random rnd = new Random();
+        //switches directions/movement behavior
         protected void SwitchDirection(Moving newDirection)
         {
             direction = newDirection;
-            
-
             switch (direction)
             {
                 case Moving.Still:
@@ -42,15 +39,12 @@ namespace Text_Based_RPG
                 case Moving.Down:
                     yLoc = yLoc + 1;
                     break;
-
             }
         }
-       
-        
+        //behavior every enemy has.....
         public virtual void Update(Map map, Player player, Camera camera, ItemManager itemManager, EnemyManager enemyManager)
         {
             Console.CursorVisible = false;
-       
             if (vitalStatus == VitalStatus.Alive)
             {
                 if (map.IsWallAt(xLoc - 1, yLoc) == true) { SwitchDirection(Moving.Right); }

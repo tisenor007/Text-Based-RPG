@@ -29,24 +29,21 @@ namespace Text_Based_RPG
             attackDamage = 5;
 
         }
+        //specific to the player...
         public void CollectValuable(int money)
         {
             collectedValuables = collectedValuables + money;
         }
         public void Update(Map map, EnemyManager enemyManager, ItemManager itemManager, GameOver gameOver)
         {
-            //makes cursor not visable 
             Console.CursorVisible = false;
-            //sets position and draws character
-            //Console.SetCursorPosition(xLoc, yLoc);
-            //Console.WriteLine(Character);
             ConsoleKeyInfo keyPressed = Console.ReadKey(true);
             
             if (vitalStatus == VitalStatus.Alive)
             {
                 if (keyPressed.Key == ConsoleKey.W)
                 {
-                    //you are able to move unless there is a wall
+                    //collision
                     if (wallExist = map.IsWallAt(xLoc, yLoc - 1))
                     {
                         //do nothing 
@@ -63,7 +60,6 @@ namespace Text_Based_RPG
                     {
                         yLoc = yLoc - 1;
                     }
-
                 }
                 if (keyPressed.Key == ConsoleKey.A)
                 {
@@ -83,7 +79,6 @@ namespace Text_Based_RPG
                     {
                         xLoc = xLoc - 1;
                     }
-
                 }
                 if (keyPressed.Key == ConsoleKey.S)
                 {
@@ -123,6 +118,7 @@ namespace Text_Based_RPG
                         xLoc = xLoc + 1;
                     }
                 }
+                //determines win
                 if (collectedValuables >= 600)
                 {
                     gameOver.gameOverWin = true;
@@ -132,11 +128,13 @@ namespace Text_Based_RPG
             {
                 SwitchVitalStatus(VitalStatus.Dead);
             }
+            //determines loss...
             if (vitalStatus == VitalStatus.Dead)
             {
                 gameOver.gameOverLoss = true;
             }
         }
+        //for others to detect collision with player
         public bool isPlayerAt(int x, int y)
         {
           
@@ -150,42 +148,5 @@ namespace Text_Based_RPG
             
             return false;
         }
-        //public bool isPlayerNear(int x, int y)
-        //{
-
-        //    if (x <= xLoc)
-        //    {
-        //        if (y <= yLoc)
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //    else if (x >= xLoc)
-        //    {
-        //        if (y >= yLoc)
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //    else if (x >= xLoc)
-        //    {
-        //        if (y <= yLoc)
-        //        {
-        //            return true;
-        //        }
-        //    }
-        //    else if (x <= xLoc)
-        //    {
-        //        if (y>= yLoc)
-        //        {
-        //            return true;
-        //        }
-        //    }
-
-        //    return false;
-        //}
-
-
-
     }
 }

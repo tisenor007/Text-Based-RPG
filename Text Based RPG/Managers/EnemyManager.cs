@@ -8,14 +8,15 @@ namespace Text_Based_RPG
 {
     class EnemyManager
     {
-       
-        private static int Enemy_Limit = 31;
-        public int Cap = Enemy_Limit;
+        //enemy count.....
         public Enemy[] enemies = new Enemy[Enemy_Limit];
+        public int cap = Enemy_Limit;
+        private static int Enemy_Limit = 31;
+        
 
         public void InitEnemies()
         {
-         
+            //sets enemies individual definition and coords on construction
             enemies[0] = new Boss(107, 41);
             enemies[1] = new Light(38, 15);
             enemies[2] = new Light(24, 24);
@@ -48,7 +49,7 @@ namespace Text_Based_RPG
             enemies[29] = new SpecializedCombat(129, 52);
             enemies[30] = new SpecializedCombat(226, 23);
         }
-      
+        //updates each enemys
         public void UpdateEnemies(Map map, Player player, Camera camera, ItemManager itemManager, EnemyManager enemyManager)
         {
             for (int i = 0; i < Enemy_Limit; i++)
@@ -57,6 +58,7 @@ namespace Text_Based_RPG
             }
                
         }
+        //draws each enemy
         public void DrawEnemies(Camera camera)
         {
             for (int i = 0; i < Enemy_Limit; i++)
@@ -64,6 +66,7 @@ namespace Text_Based_RPG
                 enemies[i].Draw(camera);
             }
         }
+        //check enemy to for player to check which one its attacking....
         public void CheckEnemies(int x, int y, int playerAttackDamage)
         {
             for (int i = 0; i < Enemy_Limit; i++)
@@ -76,11 +79,9 @@ namespace Text_Based_RPG
                     }
                 }
             }
-               
         }
         
         //collision
-       
         public bool IsEnemyAt(int x, int y)
         {
             for (int i = 0; i < Enemy_Limit; i++)
@@ -95,8 +96,5 @@ namespace Text_Based_RPG
             }
             return false;
         }
-       
-
-
     }
 }

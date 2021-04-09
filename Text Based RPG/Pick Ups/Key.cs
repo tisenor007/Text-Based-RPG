@@ -10,6 +10,7 @@ namespace Text_Based_RPG
     {
         public Key(int X, int Y)
         {
+            //key properties
             pickedUp = false;
             xLoc = X;
             yLoc = Y;
@@ -18,13 +19,16 @@ namespace Text_Based_RPG
 
         public override void Update(Map map, Player player)
         {
+            //if they are picked up doors open and pickup turns invisible and goes off screen.....
             if (pickedUp == true)
             {
+                //lets you know
                 Console.WriteLine("You found a key, this must unlock where the valuables are hidden!");
                 map.openDoors = true;
                 icon = ' ';
                 xLoc = 0;
                 yLoc = 0;
+                //stops console.writeline from repeating
                 pickedUp = false;
             }
         }

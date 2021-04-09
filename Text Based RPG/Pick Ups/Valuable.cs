@@ -10,6 +10,7 @@ namespace Text_Based_RPG
     {
         public Valuable(int X, int Y)
         {
+            //valuable properties...
             pickedUp = false;
             xLoc = X;
             yLoc = Y;
