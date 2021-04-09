@@ -97,7 +97,6 @@ namespace Text_Based_RPG
             else if (renderer[x + offsetX, y + offsetY] == 'B') { Console.ForegroundColor = ConsoleColor.DarkRed; }
             else if (renderer[x + offsetX, y + offsetY] == '#') { Console.ForegroundColor = ConsoleColor.DarkMagenta; }
             else if (renderer[x + offsetX, y + offsetY] == '▓') { Console.ForegroundColor = ConsoleColor.Black; }
-            
             else{ Console.ForegroundColor = ConsoleColor.White;}
         }
        
