@@ -14,11 +14,9 @@ namespace Text_Based_RPG
         public int collectedValuables;
         public string weaponInHand;
 
-        public Player(int X, int Y)
+        public Player()
         {
             //loads player position, character, health
-            xLoc = X;
-            yLoc = Y;
             SwitchVitalStatus(VitalStatus.Alive);
             character = '@';
             health = 100;
@@ -27,12 +25,15 @@ namespace Text_Based_RPG
             name = "Player";
             weaponInHand = "Fist";
             attackDamage = 5;
-
         }
         //specific to the player...
         public void CollectValuable(int money)
         {
             collectedValuables = collectedValuables + money;
+        }
+        public void CheckPlayerWorldLoc(char[,] world, int X, int Y)
+        {
+            if (world[X, Y] == '@') { xLoc = X; yLoc = Y; }
         }
         public void Update(Map map, EnemyManager enemyManager, ItemManager itemManager, GameOver gameOver)
         {

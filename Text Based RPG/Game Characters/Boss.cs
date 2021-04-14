@@ -39,11 +39,11 @@ namespace Text_Based_RPG
 
                 else
                 {
-                    int pos = rnd.Next(1, 5);
-                    if (pos == 1) { Move(Moving.Left); }
-                    else if (pos == 2) { Move(Moving.Right); }
-                    else if (pos == 3) { Move(Moving.Down); }
-                    else if (pos == 3) { Move(Moving.Up); }
+                    int pos = rnd.Next(1, 6);
+                    if (pos == 2) { Move(Moving.Left); }
+                    if (pos == 3) { Move(Moving.Right); }
+                    if (pos == 4) { Move(Moving.Down); }
+                    if (pos == 5) { Move(Moving.Up); }
                 }
 
                 base.Update(map, player, camera, itemManager, enemyManager);

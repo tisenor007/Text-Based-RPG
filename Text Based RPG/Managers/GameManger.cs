@@ -16,21 +16,24 @@ namespace Text_Based_RPG
             Console.Clear();
             mainMenu.ShowInfoScreen();
             Console.Clear();
+
             //intantiation and declaration of objects.....
+
             Map map = new Map();
+            World world = new World();
             GameOver gameOver = new GameOver();
-            Player player = new Player(20, 17);
+            Player player = new Player();
             EnemyManager enemyManager = new EnemyManager();
             ItemManager itemManager = new ItemManager();
             HUD Hud = new HUD();
             Camera camera = new Camera();
-            enemyManager.InitEnemies();
-            itemManager.InitItems();
-            
+            world.InitEntities(enemyManager, itemManager, player);
+
             //gameloop
             while (true)
             {
                 //updates
+                //world.Update(enemyManager, itemManager);
                 itemManager.UpdateItems(map, player);
                 enemyManager.UpdateEnemies(map, player, camera, itemManager, enemyManager);
                 player.Update(map, enemyManager, itemManager, gameOver);

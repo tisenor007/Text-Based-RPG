@@ -52,15 +52,16 @@ namespace Text_Based_RPG
                 if (map.IsWallAt(xLoc, yLoc - 1) == true) { Move(Moving.Down); }
                 if (map.IsWallAt(xLoc, yLoc + 1) == true) { Move(Moving.Up); }
 
-                else if (itemManager.IsItemAt(xLoc - 1, yLoc) == true) { Move(Moving.Right); }
-                else if (itemManager.IsItemAt(xLoc + 1, yLoc) == true) { Move(Moving.Left); }
-                else if (itemManager.IsItemAt(xLoc, yLoc - 1) == true) { Move(Moving.Down); }
-                else if (itemManager.IsItemAt(xLoc, yLoc + 1) == true) { Move(Moving.Up); }
+                //was causing crashes!!
+                //if (itemManager.IsItemAt(xLoc - 1, yLoc) == true) { Move(Moving.Right); }
+                //if (itemManager.IsItemAt(xLoc + 1, yLoc) == true) { Move(Moving.Left); }
+                //if (itemManager.IsItemAt(xLoc, yLoc - 1) == true) { Move(Moving.Down); }
+                //if (itemManager.IsItemAt(xLoc, yLoc + 1) == true) { Move(Moving.Up); }
 
-                else if (enemyManager.IsEnemyAt(xLoc - 1, yLoc) == true) { Move(Moving.Right); }
-                else if (enemyManager.IsEnemyAt(xLoc + 1, yLoc) == true) { Move(Moving.Left); }
-                else if (enemyManager.IsEnemyAt(xLoc, yLoc - 1) == true) { Move(Moving.Down); }
-                else if (enemyManager.IsEnemyAt(xLoc, yLoc + 1) == true) { Move(Moving.Up); }
+                //if (enemyManager.IsEnemyAt(xLoc - 1, yLoc) == true) { Move(Moving.Right); }
+                //if (enemyManager.IsEnemyAt(xLoc + 1, yLoc) == true) { Move(Moving.Left); }
+                //if (enemyManager.IsEnemyAt(xLoc, yLoc - 1) == true) { Move(Moving.Down); }
+                //if (enemyManager.IsEnemyAt(xLoc, yLoc + 1) == true) { Move(Moving.Up); }
             }
             else
             {

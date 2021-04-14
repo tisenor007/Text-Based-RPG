@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game Characters\Boss.cs" />
+    <Compile Include="World.cs" />
     <Compile Include="Screen Elements\Camera.cs" />
     <Compile Include="Pick Ups\FirstAidKit.cs" />
     <Compile Include="Pick Ups\Key.cs" />
@@ -84,6 +85,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Map.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="World.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

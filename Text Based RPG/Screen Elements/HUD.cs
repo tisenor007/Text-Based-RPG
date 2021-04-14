@@ -23,17 +23,55 @@ namespace Text_Based_RPG
             Console.Write(player.name + " weapon in hand: " + player.weaponInHand);
             Console.WriteLine(clear);
             Console.Write("Stolen valuables recoved: " + player.collectedValuables + "/600");
+            Console.WriteLine();
             
             //if an enemy is close display they're stats
-            for (int i = 0; i < enemyManager.cap; i++)
+            for (int i = 0; i < enemyManager.enemyCount; i++)
             {
                 if ((player.xLoc <= enemyManager.enemies[i].xLoc + 5) && (player.xLoc >= enemyManager.enemies[i].xLoc - 5) && (player.yLoc <= enemyManager.enemies[i].yLoc + 5) && (player.yLoc >= enemyManager.enemies[i].yLoc - 5))
                 {
                   Console.WriteLine(clear);
                   Console.Write(enemyManager.enemies[i].name + " enemy number " + i + "'s health: " + enemyManager.enemies[i].health);
-                  Console.WriteLine(clear);
                 }
             }
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
+            Console.WriteLine(clear);
         }
     }
 }

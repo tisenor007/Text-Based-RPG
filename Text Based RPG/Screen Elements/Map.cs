@@ -35,6 +35,7 @@ namespace Text_Based_RPG
                 }
             }
         }
+     
        //draws map to the renderer
         public void DrawToRender(char[,] renderer)
         {
@@ -46,7 +47,7 @@ namespace Text_Based_RPG
                 }
             }
         }
-        //DO NOT NEED UPDATE NO MORE
+       
      
         //for others to detect walls
         public bool IsWallAt(int x, int y)
@@ -71,7 +72,7 @@ namespace Text_Based_RPG
             //without key pickup this char is a wall/door until key is collected.....
             if (openDoors == true)
             {
-                if (map[x, y] == '&')
+                if (map[x, y] == '▒')
                 {
                     return false;
                 }
