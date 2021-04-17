@@ -27,16 +27,19 @@ namespace Text_Based_RPG
             ItemManager itemManager = new ItemManager();
             HUD Hud = new HUD();
             Camera camera = new Camera();
+            Inventory inventory = new Inventory();
             world.InitEntities(enemyManager, itemManager, player);
+
+            
 
             //gameloop
             while (true)
             {
                 //updates
                 //world.Update(enemyManager, itemManager);
-                itemManager.UpdateItems(map, player);
+                itemManager.UpdateItems(map, player, inventory);
                 enemyManager.UpdateEnemies(map, player, camera, itemManager, enemyManager);
-                player.Update(map, enemyManager, itemManager, gameOver);
+                player.Update(map, enemyManager, itemManager, gameOver, inventory);
                 camera.Update(map, player);
 
                 //draws + other game elements(for polish)
@@ -46,8 +49,10 @@ namespace Text_Based_RPG
                 player.Draw(camera);
                 Hud.DisplayHUD(player, enemyManager, camera);
                 camera.Draw();
+                Console.WriteLine("Hit 'i' to open inventory.");
                 
                 //if game is over in anyway break out of game loop.....
+                if (inventory.inventoryOpen == true) { inventory.displayInventory(); }
                 if (gameOver.gameOverWin == true){break;}
                 if (gameOver.gameOverLoss == true){break;}
             }

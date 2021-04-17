@@ -17,7 +17,7 @@ namespace Text_Based_RPG
             icon = '&';
         }
 
-        public override void Update(Map map, Player player)
+        public override void Update(Map map, Player player, Inventory inventory)
         {
             //if they are picked up doors open and pickup turns invisible and goes off screen.....
             if (pickedUp == true)

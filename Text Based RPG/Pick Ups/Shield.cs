@@ -16,11 +16,12 @@ namespace Text_Based_RPG
             yLoc = Y;
             icon = 'S';
         }
-        public override void Update(Map map, Player player)
+        public override void Update(Map map, Player player, Inventory inventory)
         {
             if (pickedUp == true)
             {
-                player.RegenShield(100);
+                //player.RegenShield(100);
+                inventory.addItemToInventory("S");
                 Console.WriteLine("You have found a Sheild!");
                 icon = ' ';
                 xLoc = 0;

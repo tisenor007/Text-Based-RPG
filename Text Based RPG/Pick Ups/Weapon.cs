@@ -27,7 +27,7 @@ namespace Text_Based_RPG
             yLoc = Y;
             icon = 'W';
         }
-        public override void Update(Map map, Player player)
+        public override void Update(Map map, Player player, Inventory inventory)
         {
             if (pickedUp == true)
             {

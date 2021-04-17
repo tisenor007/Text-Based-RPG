@@ -35,7 +35,7 @@ namespace Text_Based_RPG
         {
             if (world[X, Y] == '@') { xLoc = X; yLoc = Y; }
         }
-        public void Update(Map map, EnemyManager enemyManager, ItemManager itemManager, GameOver gameOver)
+        public void Update(Map map, EnemyManager enemyManager, ItemManager itemManager, GameOver gameOver, Inventory inventory)
         {
             Console.CursorVisible = false;
             ConsoleKeyInfo keyPressed = Console.ReadKey(true);
@@ -118,6 +118,14 @@ namespace Text_Based_RPG
                     {
                         xLoc = xLoc + 1;
                     }
+                }
+                if (keyPressed.Key == ConsoleKey.I)
+                {
+                    inventory.inventoryOpen = true;
+                }
+                if (keyPressed.Key == ConsoleKey.Escape)
+                {
+                    inventory.inventoryOpen = false;
                 }
                 //determines win
                 if (collectedValuables >= 600)

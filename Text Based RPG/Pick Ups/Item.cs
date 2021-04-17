@@ -15,7 +15,7 @@ namespace Text_Based_RPG
         public int yLoc;
         //what they are seen as
         protected char icon;
-        public virtual void Update(Map map, Player player)
+        public virtual void Update(Map map, Player player, Inventory inventory)
         {
             //game will tell you, you will need to give an item definition, else it is meaningless.....
             Console.WriteLine("You must define your item!");
