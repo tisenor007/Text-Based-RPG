@@ -47,12 +47,12 @@ namespace Text_Based_RPG
                 itemManager.DrawItems(camera);
                 enemyManager.DrawEnemies(camera);
                 player.Draw(camera);
-                Hud.DisplayHUD(player, enemyManager, camera);
+                Hud.DisplayHUD(player, enemyManager, camera, inventory);
                 camera.Draw();
-                Console.WriteLine("Hit 'i' to open inventory.");
+                
                 
                 //if game is over in anyway break out of game loop.....
-                if (inventory.inventoryOpen == true) { inventory.displayInventory(); }
+                if (inventory.inventoryOpen == true) { inventory.displayInventory(player, itemManager); }
                 if (gameOver.gameOverWin == true){break;}
                 if (gameOver.gameOverLoss == true){break;}
             }

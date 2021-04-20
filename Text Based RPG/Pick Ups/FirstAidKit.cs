@@ -20,12 +20,27 @@ namespace Text_Based_RPG
         {
             if (pickedUp == true)
             {
-                player.Heal(10);
+                //player.Heal(10);
+                inventory.addItemToInventory("First Aid Kit");
                 Console.WriteLine("You have found a first aid kit!");
-                icon = ' ';
+                //icon = ' ';
                 xLoc = 0;
                 yLoc = 0;
                 pickedUp = false;
+            }
+            if (dropped == true)
+            {
+                pickedUp = false;
+                xLoc = player.xLoc;
+                yLoc = player.yLoc;
+                dropped = false;
+            }
+            if (used == true)
+            {
+                player.Heal(10);
+                pickedUp = false;
+                used = false;
+                icon = ' ';
             }
         }
     }

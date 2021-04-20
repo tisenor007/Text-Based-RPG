@@ -21,12 +21,27 @@ namespace Text_Based_RPG
             if (pickedUp == true)
             {
                 //player.RegenShield(100);
-                inventory.addItemToInventory("S");
+                inventory.addItemToInventory("Shield");
                 Console.WriteLine("You have found a Sheild!");
-                icon = ' ';
+                //icon = ' ';
                 xLoc = 0;
                 yLoc = 0;
+                dropped = false;
                 pickedUp = false;
+            }
+            if (dropped == true)
+            {
+                pickedUp = false;
+                xLoc = player.xLoc;
+                yLoc = player.yLoc;
+                dropped = false;
+            }
+            if (used == true)
+            {
+                player.RegenShield(100);
+                pickedUp = false;
+                used = false;
+                icon = ' ';
             }
         }
     }

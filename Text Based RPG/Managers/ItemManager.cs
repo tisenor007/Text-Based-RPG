@@ -16,15 +16,15 @@ namespace Text_Based_RPG
         public void CheckItemWorldLoc(char[,] world, int X, int Y)
         {
                 if (itemCount > itemCap - 1) { return; }
-                else if (world[X, Y] == '+') { items[itemCount] = new FirstAidKit(X, Y); itemCount = itemCount + 1; }
-                else if (world[X, Y] == '&') { items[itemCount] = new Key(X, Y); itemCount = itemCount + 1; }
-                else if (world[X, Y] == 'S') { items[itemCount] = new Shield(X, Y); itemCount = itemCount + 1; }
-                else if (world[X, Y] == '$') { items[itemCount] = new Valuable(X, Y); itemCount = itemCount + 1; }
-                else if (world[X, Y] == '1') { items[itemCount] = new Weapon(X, Y, 1); itemCount = itemCount + 1; }
-                else if (world[X, Y] == '2') { items[itemCount] = new Weapon(X, Y, 2); itemCount = itemCount + 1; }
-                else if (world[X, Y] == 'W') { items[itemCount] = new Weapon(X, Y, 3); itemCount = itemCount + 1; }
-                else if (world[X, Y] == '4') { items[itemCount] = new Weapon(X, Y, 4); itemCount = itemCount + 1; }
-                else if (world[X, Y] == '5') { items[itemCount] = new Weapon(X, Y, 5); itemCount = itemCount + 1; }
+                if (world[X, Y] == '+') { items[itemCount] = new FirstAidKit(X, Y); itemCount = itemCount + 1; }
+                if (world[X, Y] == '&') { items[itemCount] = new Key(X, Y); itemCount = itemCount + 1; }
+                if (world[X, Y] == 'S') { items[itemCount] = new Shield(X, Y); itemCount = itemCount + 1; }
+                if (world[X, Y] == '$') { items[itemCount] = new Valuable(X, Y); itemCount = itemCount + 1; }
+                if (world[X, Y] == '1') { items[itemCount] = new Weapon(X, Y, 1); itemCount = itemCount + 1; }
+                if (world[X, Y] == '2') { items[itemCount] = new Weapon(X, Y, 2); itemCount = itemCount + 1; }
+                if (world[X, Y] == 'W') { items[itemCount] = new Weapon(X, Y, 3); itemCount = itemCount + 1; }
+                if (world[X, Y] == '4') { items[itemCount] = new Weapon(X, Y, 4); itemCount = itemCount + 1; }
+                if (world[X, Y] == '5') { items[itemCount] = new Weapon(X, Y, 5); itemCount = itemCount + 1; }
         }
 
         //cycles through items and updates each one
@@ -52,9 +52,39 @@ namespace Text_Based_RPG
                 {
                     if (y == items[i].yLoc)
                     {
-                      
                         items[i].pickedUp = true;
-                       
+                    }
+                }
+            }
+        }
+        public void CheckToDropItem(char icon, int weapontype)
+        {
+            for (int i = 0; i < itemCount; i++)
+            {
+                if (items[i].xLoc == 0)
+                {
+                    if (items[i].yLoc == 0)
+                    {
+                        if ((items[i].icon == icon) && (items[i].weaponBeingPickedUp == weapontype))
+                        {
+                            items[i].dropped = true;
+                        }
+                    }
+                }
+            }
+        }
+        public void CheckToUseItem(char icon, int weapontype)
+        {
+            for (int i = 0; i < itemCount; i++)
+            {
+                if (items[i].xLoc == 0)
+                {
+                    if (items[i].yLoc == 0)
+                    {
+                        if ((items[i].icon == icon) && (items[i].weaponBeingPickedUp == weapontype))
+                        {
+                            items[i].used = true;
+                        }
                     }
                 }
             }

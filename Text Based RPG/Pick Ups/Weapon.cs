@@ -10,7 +10,7 @@ namespace Text_Based_RPG
     {
         public enum WeaponType
         {
-            Fist,
+            BrassKnuckles,
             BaseballBat,
             Knife,
             Machete,
@@ -18,7 +18,7 @@ namespace Text_Based_RPG
         }
         public WeaponType weapon;
         //int to determine what weapon will be picked up
-        public int weaponBeingPickedUp;
+        
         public Weapon(int X, int Y, int weaponPickUp)
         {
             weaponBeingPickedUp = weaponPickUp;
@@ -31,15 +31,38 @@ namespace Text_Based_RPG
         {
             if (pickedUp == true)
             {
-                icon = ' ';
+                //icon = ' ';
                 xLoc = 0;
                 yLoc = 0;
-                if (weaponBeingPickedUp <= 1) { SwitchWeapon(WeaponType.Fist, player); Console.WriteLine("You picked up " + player.weaponInHand); }
-                if (weaponBeingPickedUp == 2) { SwitchWeapon(WeaponType.BaseballBat, player); Console.WriteLine("You picked up a " + player.weaponInHand); }
-                if (weaponBeingPickedUp == 3) { SwitchWeapon(WeaponType.Knife, player); Console.WriteLine("You picked up a " + player.weaponInHand); }
-                if (weaponBeingPickedUp == 4) { SwitchWeapon(WeaponType.Machete, player); Console.WriteLine("You picked up a " + player.weaponInHand); }
-                if (weaponBeingPickedUp >= 5) { SwitchWeapon(WeaponType.Chainsaw, player); Console.WriteLine("You picked up a " + player.weaponInHand); }
+                if (weaponBeingPickedUp == 1) { //SwitchWeapon(WeaponType.Fist, player); 
+                    inventory.addItemToInventory("Brass Knuckles"); Console.WriteLine("You picked up Brass Knuckles"); }
+                if (weaponBeingPickedUp == 2) { //SwitchWeapon(WeaponType.BaseballBat, player); 
+                    inventory.addItemToInventory("Baseball Bat"); Console.WriteLine("You picked up a Baseball Bat"); }
+                if (weaponBeingPickedUp == 3) { //SwitchWeapon(WeaponType.Knife, player); 
+                    inventory.addItemToInventory("Knife"); Console.WriteLine("You picked up a Knife"); }
+                if (weaponBeingPickedUp == 4) { //SwitchWeapon(WeaponType.Machete, player); 
+                    inventory.addItemToInventory("Machete"); Console.WriteLine("You picked up a Machete"); }
+                if (weaponBeingPickedUp == 5) { //SwitchWeapon(WeaponType.Chainsaw, player); 
+                    inventory.addItemToInventory("Chain Saw"); Console.WriteLine("You picked up a Chain Saw"); }
                 pickedUp = false;
+            }
+            if (dropped == true)
+            {
+                pickedUp = false;
+                xLoc = player.xLoc;
+                yLoc = player.yLoc;
+                dropped = false;
+            }
+            if (used == true)
+            {
+                if (weaponBeingPickedUp == 1){ SwitchWeapon(WeaponType.BrassKnuckles, player);}
+                if (weaponBeingPickedUp == 2){ SwitchWeapon(WeaponType.BaseballBat, player); }
+                if (weaponBeingPickedUp == 3){ SwitchWeapon(WeaponType.Knife, player);}
+                if (weaponBeingPickedUp == 4){ SwitchWeapon(WeaponType.Machete, player);}
+                if (weaponBeingPickedUp == 5){ SwitchWeapon(WeaponType.Chainsaw, player);}
+                pickedUp = false;
+                used = false;
+                icon = ' ';
             }
         }
         public void SwitchWeapon(WeaponType newWeapon, Player player)
@@ -48,8 +71,8 @@ namespace Text_Based_RPG
             weapon = newWeapon;
             switch (weapon)
             {
-                case WeaponType.Fist:
-                    player.weaponInHand = "Fist";
+                case WeaponType.BrassKnuckles:
+                    player.weaponInHand = "Brass Knuckles";
                     player.attackDamage = 5;
                     break;
                 case WeaponType.BaseballBat:

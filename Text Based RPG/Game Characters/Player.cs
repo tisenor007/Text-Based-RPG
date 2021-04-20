@@ -55,7 +55,15 @@ namespace Text_Based_RPG
                     }
                     else if (itemExist = itemManager.IsItemAt(xLoc, yLoc - 1))
                     {
-                        itemManager.CheckItems(xLoc, yLoc - 1);
+                        
+                        if (inventory.IsInventoryFull() == true)
+                        {
+                            itemManager.CheckItems(xLoc, yLoc - 1);
+                        }
+                        else
+                        {
+                            inventory.inventoryFull = true;
+                        }
                     }
                     else
                     {
@@ -74,7 +82,15 @@ namespace Text_Based_RPG
                     }
                     else if (itemExist = itemManager.IsItemAt(xLoc - 1, yLoc))
                     {
-                        itemManager.CheckItems(xLoc - 1, yLoc);
+                        
+                        if (inventory.IsInventoryFull() == true)
+                        {
+                            itemManager.CheckItems(xLoc - 1, yLoc);
+                        }
+                        else
+                        {
+                            inventory.inventoryFull = true;
+                        }
                     }
                     else
                     {
@@ -93,7 +109,14 @@ namespace Text_Based_RPG
                     }
                     else if (itemExist = itemManager.IsItemAt(xLoc, yLoc + 1))
                     {
-                        itemManager.CheckItems(xLoc, yLoc + 1);
+                        if (inventory.IsInventoryFull() == true)
+                        {
+                            itemManager.CheckItems(xLoc, yLoc + 1);
+                        }
+                        else
+                        {
+                            inventory.inventoryFull = true;
+                        }
                     }  
                     else
                     {
@@ -112,7 +135,14 @@ namespace Text_Based_RPG
                     }
                     else if (itemExist = itemManager.IsItemAt(xLoc + 1, yLoc))
                     {
-                        itemManager.CheckItems(xLoc + 1, yLoc);
+                        if (inventory.IsInventoryFull() == true)
+                        {
+                            itemManager.CheckItems(xLoc + 1, yLoc);
+                        }
+                        else
+                        {
+                            inventory.inventoryFull = true;
+                        }
                     }
                     else
                     {
@@ -122,10 +152,6 @@ namespace Text_Based_RPG
                 if (keyPressed.Key == ConsoleKey.I)
                 {
                     inventory.inventoryOpen = true;
-                }
-                if (keyPressed.Key == ConsoleKey.Escape)
-                {
-                    inventory.inventoryOpen = false;
                 }
                 //determines win
                 if (collectedValuables >= 600)

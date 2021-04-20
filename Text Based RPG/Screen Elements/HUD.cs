@@ -9,7 +9,7 @@ namespace Text_Based_RPG
     class HUD
     {
         private string clear = "                                                                                                     ";
-        public void DisplayHUD(Player player, EnemyManager enemyManager, Camera camera)
+        public void DisplayHUD(Player player, EnemyManager enemyManager, Camera camera, Inventory inventory)
         {
             //player stats
             //clear string to prevent overlapping text and values.....
@@ -23,6 +23,17 @@ namespace Text_Based_RPG
             Console.Write(player.name + " weapon in hand: " + player.weaponInHand);
             Console.WriteLine(clear);
             Console.Write("Stolen valuables recoved: " + player.collectedValuables + "/600");
+            Console.WriteLine(clear);
+            Console.Write("Hit 'i' to open inventory....");
+            if (inventory.inventoryFull == true)
+            {
+                Console.WriteLine(clear);
+                Console.Write("YOUR INVENTORY IS FULL!");
+            }
+            else
+            {
+                //nothing
+            }
             Console.WriteLine();
             
             //if an enemy is close display they're stats

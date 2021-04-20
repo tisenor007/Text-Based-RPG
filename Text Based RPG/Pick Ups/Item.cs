@@ -10,11 +10,14 @@ namespace Text_Based_RPG
     {
         //determines if they are picked up or not...
         public bool pickedUp;
+        public bool dropped;
+        public bool used;
+        public int weaponBeingPickedUp;
         //locations.....
         public int xLoc;
         public int yLoc;
         //what they are seen as
-        protected char icon;
+        public char icon;
         public virtual void Update(Map map, Player player, Inventory inventory)
         {
             //game will tell you, you will need to give an item definition, else it is meaningless.....
