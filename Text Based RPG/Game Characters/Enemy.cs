@@ -16,9 +16,11 @@ namespace Text_Based_RPG
             Up,
             Down
         }
+       
         protected Moving direction;
         protected Random rnd = new Random();
         //switches directions/movement behavior
+        
         protected void Move(Moving newDirection)
         {
             direction = newDirection;

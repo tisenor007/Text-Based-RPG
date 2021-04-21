@@ -9,7 +9,7 @@ namespace Text_Based_RPG
     class EnemyManager
     {
         //enemy count.....
-        public static int enemyCap = 0;
+        public static int enemyCap = 100;
         public Enemy[] enemies = new Enemy[enemyCap];
         public int enemyCount = 0;
         
@@ -27,6 +27,13 @@ namespace Text_Based_RPG
             for (int i = 0; i < enemyCount; i++)
             {
                 enemies[i].Update(map, player, camera, itemManager, enemyManager);
+            }
+        }
+        public void SetEnemyColour(char[,] renderer, int x, int y, int offsetX, int offsetY)
+        {
+            for (int i = 0; i < enemyCount; i++)
+            {
+                enemies[i].characterTile.SetTileColour(renderer, x, y, offsetX, offsetY);
             }
         }
         //draws each enemy

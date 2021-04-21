@@ -14,7 +14,8 @@ namespace Text_Based_RPG
             xLoc = X;
             yLoc = Y;
             SwitchVitalStatus(VitalStatus.Alive);
-            character = 'B';
+            characterTile.tileCharacter = 'B';
+            characterTile.tileColour = ConsoleColor.Red;
             //hard to kill
             health = 300;
             shield = 0;

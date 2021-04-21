@@ -14,14 +14,14 @@ namespace Text_Based_RPG
             pickedUp = false;
             xLoc = X;
             yLoc = Y;
-            icon = '$';
+            itemTile.tileCharacter = '$';
         }
         public override void Update(Map map, Player player, Inventory inventory)
         {
             if (pickedUp == true)
             {
                 player.CollectValuable(100);
-                icon = ' ';
+                itemTile.tileCharacter = ' ';
                 xLoc = 0;
                 yLoc = 0;
                 pickedUp = false;

@@ -14,7 +14,7 @@ namespace Text_Based_RPG
             pickedUp = false;
             xLoc = X;
             yLoc = Y;
-            icon = 'S';
+            itemTile.tileCharacter = 'S';
         }
         public override void Update(Map map, Player player, Inventory inventory)
         {
@@ -41,7 +41,7 @@ namespace Text_Based_RPG
                 player.RegenShield(100);
                 pickedUp = false;
                 used = false;
-                icon = ' ';
+                itemTile.tileCharacter = ' ';
             }
         }
     }

@@ -16,7 +16,8 @@ namespace Text_Based_RPG
             yLoc = Y;
             //special properties
             SwitchVitalStatus(VitalStatus.Alive);
-            character = '3';
+            characterTile.tileCharacter = '3';
+            characterTile.tileColour = ConsoleColor.Red;
             health = 50;
             shield = 0;
             name = "Special";

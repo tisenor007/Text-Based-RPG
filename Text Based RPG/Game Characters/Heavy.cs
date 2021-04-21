@@ -16,7 +16,8 @@ namespace Text_Based_RPG
             yLoc = Y;
             //Heavy properties, vary based off enemy types
             SwitchVitalStatus(VitalStatus.Alive);
-            character = 'E';
+            characterTile.tileCharacter = 'E';
+            characterTile.tileColour = ConsoleColor.Red;
             health = 100;
             shield = 0;
             name = "Heavy";

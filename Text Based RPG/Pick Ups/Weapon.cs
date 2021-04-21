@@ -25,13 +25,12 @@ namespace Text_Based_RPG
             pickedUp = false;
             xLoc = X;
             yLoc = Y;
-            icon = 'W';
+            itemTile.tileCharacter = 'W';
         }
         public override void Update(Map map, Player player, Inventory inventory)
         {
             if (pickedUp == true)
             {
-                //icon = ' ';
                 xLoc = 0;
                 yLoc = 0;
                 if (weaponBeingPickedUp == 1) { //SwitchWeapon(WeaponType.Fist, player); 
@@ -55,6 +54,14 @@ namespace Text_Based_RPG
             }
             if (used == true)
             {
+                if (player.weaponInHand == "Fist")
+                {
+
+                }
+                else
+                {
+                    inventory.addItemToInventory(player.weaponInHand);
+                }
                 if (weaponBeingPickedUp == 1){ SwitchWeapon(WeaponType.BrassKnuckles, player);}
                 if (weaponBeingPickedUp == 2){ SwitchWeapon(WeaponType.BaseballBat, player); }
                 if (weaponBeingPickedUp == 3){ SwitchWeapon(WeaponType.Knife, player);}
@@ -62,7 +69,7 @@ namespace Text_Based_RPG
                 if (weaponBeingPickedUp == 5){ SwitchWeapon(WeaponType.Chainsaw, player);}
                 pickedUp = false;
                 used = false;
-                icon = ' ';
+                //itemTile.tileCharacter = ' ';
             }
         }
         public void SwitchWeapon(WeaponType newWeapon, Player player)
@@ -73,7 +80,7 @@ namespace Text_Based_RPG
             {
                 case WeaponType.BrassKnuckles:
                     player.weaponInHand = "Brass Knuckles";
-                    player.attackDamage = 5;
+                    player.attackDamage = 10;
                     break;
                 case WeaponType.BaseballBat:
                     player.weaponInHand = "Baseball Bat";

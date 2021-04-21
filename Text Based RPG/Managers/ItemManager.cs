@@ -43,6 +43,13 @@ namespace Text_Based_RPG
                 items[i].Draw(camera);
             }
         }
+        public void SetItemColour(char[,] renderer, int x, int y, int offsetX, int offsetY)
+        {
+            for (int i = 0; i < itemCount; i++)
+            {
+                items[i].itemTile.SetTileColour(renderer, x, y, offsetX, offsetY);
+            }
+        }
         //used to define which item is being picked up
         public void CheckItems(int x, int y)
         {
@@ -65,7 +72,7 @@ namespace Text_Based_RPG
                 {
                     if (items[i].yLoc == 0)
                     {
-                        if ((items[i].icon == icon) && (items[i].weaponBeingPickedUp == weapontype))
+                        if ((items[i].itemTile.tileCharacter == icon) && (items[i].weaponBeingPickedUp == weapontype))
                         {
                             items[i].dropped = true;
                         }
@@ -81,7 +88,7 @@ namespace Text_Based_RPG
                 {
                     if (items[i].yLoc == 0)
                     {
-                        if ((items[i].icon == icon) && (items[i].weaponBeingPickedUp == weapontype))
+                        if ((items[i].itemTile.tileCharacter == icon) && (items[i].weaponBeingPickedUp == weapontype))
                         {
                             items[i].used = true;
                         }

@@ -8,13 +8,13 @@ namespace Text_Based_RPG
 {
     class Inventory
     {
-        private static int inventorySize = 10;
+        
         public String[] slots = new String[inventorySize];
+        //keeps track of things in iventory
         public int filledInventorySlots = 0;
         public bool inventoryOpen = false;
         public bool inventoryFull = false;
-
-        
+        private static int inventorySize = 10;
         public void addItemToInventory(string item)
         {
             if (filledInventorySlots < inventorySize)
@@ -50,11 +50,33 @@ namespace Text_Based_RPG
                 Console.WriteLine("Inventory slot " + (i+1) + ": " +slots[i]);
             }
             Console.WriteLine();
-            Console.WriteLine("e + enter: return to the game....");
+            Console.WriteLine("b + enter: return to the game....");
+            Console.WriteLine();
+            Console.WriteLine("u + enter: unequip weapon");
             Console.WriteLine();
             Console.WriteLine("Number of slot + enter: select item");
     
             string input = Console.ReadLine();
+            if (input == "u")
+            {
+                //can't unarm your fist!
+                if (player.weaponInHand == "Fist"){Console.WriteLine("You are already unarmed!");}
+                else 
+                {
+                    //if inventory slot is available, puts previous weapon in inventory
+                    if (filledInventorySlots < inventorySize){addItemToInventory(player.weaponInHand);}
+                    else
+                    {
+                        //if inventory is full you just drop you weapon that you are unarming
+                        if (player.weaponInHand == "Brass Knuckles") { itemManager.CheckToDropItem('W', 1);}
+                        if (player.weaponInHand == "Baseball Bat") { itemManager.CheckToDropItem('W', 2);}
+                        if (player.weaponInHand == "Knife") { itemManager.CheckToDropItem('W', 3);}
+                        if (player.weaponInHand == "Machete") { itemManager.CheckToDropItem('W', 4);}
+                        if (player.weaponInHand == "Chain Saw") { itemManager.CheckToDropItem('W', 5);}
+                    }
+                }
+                player.BecomeUnarmed();
+            }
             for (int i = 0; i < inventorySize; i++)
             {
                 if (input == (i + 1).ToString())
@@ -62,10 +84,9 @@ namespace Text_Based_RPG
                     Console.Clear();
                     Console.WriteLine("What would you like to with this item?");
                     Console.WriteLine();
-                    Console.WriteLine("d + enter: drop item  " + "  u + enter to use item");
-                    //Console.Clear();
-                    //string input = Console.ReadLine();
+                    Console.WriteLine("d + enter: drop item  " + "  e + enter to use / equip item");
                     string action = Console.ReadLine();
+                    //if you want to drop and item, it  contacts the item manager to see what it item you are trying to drop and drop it
                     if (action == "d")
                     {
                         if (slots[i] == "Shield") { itemManager.CheckToDropItem('S', 0);slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryOpen = false; Console.Clear(); }
@@ -76,7 +97,8 @@ namespace Text_Based_RPG
                         if (slots[i] == "Machete") { itemManager.CheckToDropItem('W', 4);slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryOpen = false; Console.Clear(); }
                         if (slots[i] == "Chain Saw") { itemManager.CheckToDropItem('W', 5);slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryOpen = false; Console.Clear(); }
                     }
-                    if (action == "u")
+                    //if you want to use an item it contacts item manager to be use an item and uses it.....
+                    if (action == "e")
                     {
                         if (slots[i] == "Shield") { itemManager.CheckToUseItem('S', 0); slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryOpen = false; Console.Clear(); }
                         if (slots[i] == "First Aid Kit") { itemManager.CheckToUseItem('+', 0); slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryOpen = false; Console.Clear(); }
@@ -90,28 +112,9 @@ namespace Text_Based_RPG
                 }
                 //else { return; }
             }
-            //if (input == "1d")
-            //{ 
-            //    if (slots[0] == "Shield") 
-            //    {
-
-            //    } 
-            //    slots[0] = null;
-            //}
-            //if (input == "2d"){slots[1] = null;}
-            //if (input == "3d"){slots[2] = null;}
-            //if (input == "4d"){slots[3] = null;}
-            //if (input == "5d"){slots[4] = null;}
-            //if (input == "6d"){slots[5] = null;}
-            //if (input == "7d"){slots[6] = null;}
-            //if (input == "8d"){slots[7] = null;}
-            //if (input == "9d"){slots[8] = null;}
-            //if (input == "10d"){slots[9] = null;}
-            if (input == "e")
-            {
-                inventoryOpen = false;
-            }
+            if (input == "b"){inventoryOpen = false;}
         }
+        //boolean used by player to see if inventory is full before they pick up an item......
         public bool IsInventoryFull()
         {
             if (filledInventorySlots < inventorySize)

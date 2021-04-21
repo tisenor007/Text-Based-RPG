@@ -13,20 +13,27 @@ namespace Text_Based_RPG
         private bool itemExist;
         public int collectedValuables;
         public string weaponInHand;
+       
 
         public Player()
         {
             //loads player position, character, health
             SwitchVitalStatus(VitalStatus.Alive);
-            character = '@';
+            characterTile.tileCharacter = '@';
+            characterTile.tileColour = ConsoleColor.Cyan;
             health = 100;
             shield = 0;
             collectedValuables = 0;
             name = "Player";
+            BecomeUnarmed();
+        }
+        //specific to the player...
+
+        public void BecomeUnarmed()
+        {
             weaponInHand = "Fist";
             attackDamage = 5;
         }
-        //specific to the player...
         public void CollectValuable(int money)
         {
             collectedValuables = collectedValuables + money;
@@ -39,7 +46,6 @@ namespace Text_Based_RPG
         {
             Console.CursorVisible = false;
             ConsoleKeyInfo keyPressed = Console.ReadKey(true);
-            
             if (vitalStatus == VitalStatus.Alive)
             {
                 if (keyPressed.Key == ConsoleKey.W)

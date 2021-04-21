@@ -30,8 +30,6 @@ namespace Text_Based_RPG
             Inventory inventory = new Inventory();
             world.InitEntities(enemyManager, itemManager, player);
 
-            
-
             //gameloop
             while (true)
             {
@@ -48,8 +46,7 @@ namespace Text_Based_RPG
                 enemyManager.DrawEnemies(camera);
                 player.Draw(camera);
                 Hud.DisplayHUD(player, enemyManager, camera, inventory);
-                camera.Draw();
-                
+                camera.Draw(player, enemyManager, map, itemManager);
                 
                 //if game is over in anyway break out of game loop.....
                 if (inventory.inventoryOpen == true) { inventory.displayInventory(player, itemManager); }

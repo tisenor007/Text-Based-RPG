@@ -10,11 +10,12 @@ namespace Text_Based_RPG
     {
         public char[,] renderer = new char[269, 63]; // same size as map 
         public int endViewY;
+        public int endViewX;
         public int offsetX;
         public int offsetY;
         private int startViewX = 0;
         private int startViewY = 0;
-        private int endViewX;
+       
         public Camera()
         {
             //can set size of camera
@@ -30,7 +31,7 @@ namespace Text_Based_RPG
             //draws the on the renderer every update to prevent trails...
             map.DrawToRender(renderer);
         }
-        public void Draw()
+        public void Draw(Player player, EnemyManager enemyManager, Map map, ItemManager itemManager)
         {
             //always makes camera top left of screen.....
             Console.SetCursorPosition(0, 0);
@@ -52,7 +53,7 @@ namespace Text_Based_RPG
                 {
                     try
                     {
-                        SetColours(x, y);
+                        SetColours(x, y, player, enemyManager, map, itemManager);
                         Console.Write(renderer[x + offsetX, y + offsetY]);
                     }
                     catch
@@ -80,25 +81,14 @@ namespace Text_Based_RPG
             //method to draw items to the renderer
             renderer[x, y] = character;
         }
-        public void SetColours(int x, int y)
+        public void SetColours(int x, int y, Player player, EnemyManager enemyManager, Map map, ItemManager itemManager)
         {
-            //sets all colours
-            if (renderer[x + offsetX, y + offsetY] == '`') { Console.ForegroundColor = ConsoleColor.Green; }
-            else if (renderer[x + offsetX, y + offsetY] == '~') { Console.ForegroundColor = ConsoleColor.Blue; }
-            else if (renderer[x + offsetX, y + offsetY] == '7') { Console.ForegroundColor = ConsoleColor.DarkGray; }
-            else if (renderer[x + offsetX, y + offsetY] == '^') { Console.ForegroundColor = ConsoleColor.DarkGray; }
-            else if (renderer[x + offsetX, y + offsetY] == '-') { Console.ForegroundColor = ConsoleColor.Gray; }
-            else if (renderer[x + offsetX, y + offsetY] == '|') { Console.ForegroundColor = ConsoleColor.Gray; }
-            else if (renderer[x + offsetX, y + offsetY] == '=') { Console.ForegroundColor = ConsoleColor.DarkGray; }
-            else if (renderer[x + offsetX, y + offsetY] == '@') { Console.ForegroundColor = ConsoleColor.Cyan; }
-            else if (renderer[x + offsetX, y + offsetY] == 'e') { Console.ForegroundColor = ConsoleColor.Red; }
-            else if (renderer[x + offsetX, y + offsetY] == 'E') { Console.ForegroundColor = ConsoleColor.Red; }
-            else if (renderer[x + offsetX, y + offsetY] == '3') { Console.ForegroundColor = ConsoleColor.Red; }
-            else if (renderer[x + offsetX, y + offsetY] == 'B') { Console.ForegroundColor = ConsoleColor.DarkRed; }
-            else if (renderer[x + offsetX, y + offsetY] == '#') { Console.ForegroundColor = ConsoleColor.DarkMagenta; }
-            else if (renderer[x + offsetX, y + offsetY] == '▓') { Console.ForegroundColor = ConsoleColor.Black; }
-            else{ Console.ForegroundColor = ConsoleColor.White;}
+            Console.ForegroundColor = ConsoleColor.White;
+            player.characterTile.SetTileColour(renderer, x, y, offsetX, offsetY);
+            enemyManager.SetEnemyColour(renderer, x, y, offsetX, offsetY);
+            //go to map.cs to set tiles and tile colours
+            map.SetMapColours(renderer, x, y, offsetX, offsetY);
+            itemManager.SetItemColour(renderer, x, y, offsetX, offsetY);
         }
-       
     }
 }

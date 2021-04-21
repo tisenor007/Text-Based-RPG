@@ -14,7 +14,7 @@ namespace Text_Based_RPG
             pickedUp = false;
             xLoc = X;
             yLoc = Y;
-            icon = '+';
+            itemTile.tileCharacter = '+';
         }
         public override void Update(Map map, Player player, Inventory inventory)
         {
@@ -40,7 +40,7 @@ namespace Text_Based_RPG
                 player.Heal(10);
                 pickedUp = false;
                 used = false;
-                icon = ' ';
+                itemTile.tileCharacter = ' ';
             }
         }
     }

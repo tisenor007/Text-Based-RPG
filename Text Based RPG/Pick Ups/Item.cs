@@ -8,6 +8,7 @@ namespace Text_Based_RPG
 {
     class Item
     {
+        public Tile itemTile = new Tile(' ', ConsoleColor.White);
         //determines if they are picked up or not...
         public bool pickedUp;
         public bool dropped;
@@ -17,7 +18,7 @@ namespace Text_Based_RPG
         public int xLoc;
         public int yLoc;
         //what they are seen as
-        public char icon;
+        
         public virtual void Update(Map map, Player player, Inventory inventory)
         {
             //game will tell you, you will need to give an item definition, else it is meaningless.....
@@ -26,7 +27,7 @@ namespace Text_Based_RPG
         //draw method for items
         public void Draw(Camera camera)
         {
-            camera.DrawToRenderer(icon, xLoc, yLoc);
+            camera.DrawToRenderer(itemTile.tileCharacter, xLoc, yLoc);
         }
     }
 }

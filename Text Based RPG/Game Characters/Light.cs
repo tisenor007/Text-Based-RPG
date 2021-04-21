@@ -15,7 +15,8 @@ namespace Text_Based_RPG
             yLoc = Y;
             //light properties
             SwitchVitalStatus(VitalStatus.Alive);
-            character = 'e';
+            characterTile.tileCharacter = 'e';
+            characterTile.tileColour = ConsoleColor.Red;
             health = 25;
             shield = 0;
             name = "Light";

@@ -20,9 +20,9 @@ namespace Text_Based_RPG
         public int xLoc;
         public int yLoc;
         public int attackDamage;
-        public char character;
         public string name;
         protected VitalStatus vitalStatus;
+        public Tile characterTile = new Tile(' ', ConsoleColor.White);
         //to switch or set if the game character is dead or alive
         protected void SwitchVitalStatus(VitalStatus newVitalStatus)
         {
@@ -40,7 +40,7 @@ namespace Text_Based_RPG
         //draw method because every gamecharacter will need to be drawn.....
         public void Draw(Camera camera)
         {
-            camera.DrawToRenderer(character, xLoc, yLoc); 
+            camera.DrawToRenderer(characterTile.tileCharacter, xLoc, yLoc);
         }
         //take damage for every gamecharacter
         public void TakeDamage(int Damage)
@@ -79,8 +79,9 @@ namespace Text_Based_RPG
         //properties for dead game characters
         public void Die()
         {
+            characterTile.tileColour = ConsoleColor.White;
             health = 0;
-            character = 'X';
+            characterTile.tileCharacter = 'X';
         }
     }
 }

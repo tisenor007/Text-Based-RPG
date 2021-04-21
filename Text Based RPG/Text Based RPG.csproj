@@ -45,8 +45,8 @@
   <ItemGroup>
     <Compile Include="Game Characters\Boss.cs" />
     <Compile Include="Screen Elements\Inventory.cs" />
-    <Compile Include="Tile.cs" />
-    <Compile Include="World.cs" />
+    <Compile Include="Screen Elements\Tile.cs" />
+    <Compile Include="Screens\World.cs" />
     <Compile Include="Screen Elements\Camera.cs" />
     <Compile Include="Pick Ups\FirstAidKit.cs" />
     <Compile Include="Pick Ups\Key.cs" />

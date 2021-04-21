@@ -14,7 +14,7 @@ namespace Text_Based_RPG
             pickedUp = false;
             xLoc = X;
             yLoc = Y;
-            icon = '&';
+            itemTile.tileCharacter = '&';
         }
 
         public override void Update(Map map, Player player, Inventory inventory)
@@ -25,7 +25,7 @@ namespace Text_Based_RPG
                 //lets you know
                 Console.WriteLine("You found a key, this must unlock where the valuables are hidden!");
                 map.openDoors = true;
-                icon = ' ';
+                itemTile.tileCharacter = ' ';
                 xLoc = 0;
                 yLoc = 0;
                 //stops console.writeline from repeating
