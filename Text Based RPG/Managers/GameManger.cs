@@ -35,7 +35,7 @@ namespace Text_Based_RPG
             {
                 //updates
                 //world.Update(enemyManager, itemManager);
-                itemManager.UpdateItems(map, player, inventory);
+                itemManager.UpdateItems(map, player, inventory, camera);
                 enemyManager.UpdateEnemies(map, player, camera, itemManager, enemyManager);
                 player.Update(map, enemyManager, itemManager, gameOver, inventory);
                 camera.Update(map, player);

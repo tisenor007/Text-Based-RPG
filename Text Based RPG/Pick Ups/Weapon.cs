@@ -27,24 +27,20 @@ namespace Text_Based_RPG
             yLoc = Y;
             itemTile.tileCharacter = 'W';
         }
-        public override void Update(Map map, Player player, Inventory inventory)
+        public override void Update(Map map, Player player, Inventory inventory, Camera camera)
         {
             if (pickedUp == true)
             {
                 xLoc = 0;
                 yLoc = 0;
-                if (weaponBeingPickedUp == 1) { //SwitchWeapon(WeaponType.Fist, player); 
-                    inventory.addItemToInventory("Brass Knuckles"); Console.WriteLine("You picked up Brass Knuckles"); }
-                if (weaponBeingPickedUp == 2) { //SwitchWeapon(WeaponType.BaseballBat, player); 
-                    inventory.addItemToInventory("Baseball Bat"); Console.WriteLine("You picked up a Baseball Bat"); }
-                if (weaponBeingPickedUp == 3) { //SwitchWeapon(WeaponType.Knife, player); 
-                    inventory.addItemToInventory("Knife"); Console.WriteLine("You picked up a Knife"); }
-                if (weaponBeingPickedUp == 4) { //SwitchWeapon(WeaponType.Machete, player); 
-                    inventory.addItemToInventory("Machete"); Console.WriteLine("You picked up a Machete"); }
-                if (weaponBeingPickedUp == 5) { //SwitchWeapon(WeaponType.Chainsaw, player); 
-                    inventory.addItemToInventory("Chain Saw"); Console.WriteLine("You picked up a Chain Saw"); }
+                if (weaponBeingPickedUp == 1) {inventory.addItemToInventory("Brass Knuckles"); infoMessage = "You picked up Brass Knuckles"; base.Update(map, player, inventory, camera);}
+                if (weaponBeingPickedUp == 2) {inventory.addItemToInventory("Baseball Bat"); infoMessage = "You picked up a Baseball Bat"; base.Update(map, player, inventory, camera);}
+                if (weaponBeingPickedUp == 3) {inventory.addItemToInventory("Knife");  infoMessage = "You picked up a Knife"; base.Update(map, player, inventory, camera);}
+                if (weaponBeingPickedUp == 4) {inventory.addItemToInventory("Machete"); infoMessage = "You picked up a Machete"; base.Update(map, player, inventory, camera);}
+                if (weaponBeingPickedUp == 5) {inventory.addItemToInventory("Chain Saw"); infoMessage = "You picked up a Chain Saw"; base.Update(map, player, inventory, camera);}
                 pickedUp = false;
             }
+            
             if (dropped == true)
             {
                 pickedUp = false;

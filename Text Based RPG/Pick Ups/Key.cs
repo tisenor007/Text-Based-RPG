@@ -17,13 +17,14 @@ namespace Text_Based_RPG
             itemTile.tileCharacter = '&';
         }
 
-        public override void Update(Map map, Player player, Inventory inventory)
+        public override void Update(Map map, Player player, Inventory inventory, Camera camera)
         {
             //if they are picked up doors open and pickup turns invisible and goes off screen.....
             if (pickedUp == true)
             {
                 //lets you know
-                Console.WriteLine("You found a key, this must unlock where the valuables are hidden!");
+                infoMessage = "You found a key!";
+                base.Update(map, player, inventory, camera);
                 map.openDoors = true;
                 itemTile.tileCharacter = ' ';
                 xLoc = 0;

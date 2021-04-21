@@ -28,11 +28,11 @@ namespace Text_Based_RPG
         }
 
         //cycles through items and updates each one
-        public void UpdateItems(Map map, Player player, Inventory inventory)
+        public void UpdateItems(Map map, Player player, Inventory inventory, Camera camera)
         {
             for (int i = 0; i < itemCount; i++)
             {
-                items[i].Update(map, player, inventory);
+                items[i].Update(map, player, inventory, camera);
             }
         }
         //cycles through items and draws each one

@@ -14,15 +14,16 @@ namespace Text_Based_RPG
         public bool dropped;
         public bool used;
         public int weaponBeingPickedUp;
+        public string infoMessage; 
         //locations.....
         public int xLoc;
         public int yLoc;
         //what they are seen as
         
-        public virtual void Update(Map map, Player player, Inventory inventory)
+        public virtual void Update(Map map, Player player, Inventory inventory, Camera camera)
         {
-            //game will tell you, you will need to give an item definition, else it is meaningless.....
-            Console.WriteLine("You must define your item!");
+            Console.SetCursorPosition(1, 1);
+            Console.WriteLine(infoMessage);
         }
         //draw method for items
         public void Draw(Camera camera)

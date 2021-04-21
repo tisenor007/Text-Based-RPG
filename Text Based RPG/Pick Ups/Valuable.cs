@@ -16,7 +16,7 @@ namespace Text_Based_RPG
             yLoc = Y;
             itemTile.tileCharacter = '$';
         }
-        public override void Update(Map map, Player player, Inventory inventory)
+        public override void Update(Map map, Player player, Inventory inventory, Camera camera)
         {
             if (pickedUp == true)
             {
@@ -26,6 +26,7 @@ namespace Text_Based_RPG
                 yLoc = 0;
                 pickedUp = false;
             }
+
         }
     }
 }
