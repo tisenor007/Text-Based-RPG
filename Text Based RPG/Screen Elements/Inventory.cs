@@ -17,13 +17,9 @@ namespace Text_Based_RPG
         
         public void addItemToInventory(string item)
         {
-            if (filledInventorySlots == inventorySize)
+            if (filledInventorySlots < inventorySize)
             {
-                inventoryFull = true;
-                return;
-            }
-            else
-            {
+                inventoryFull = false;
                 for (int i = 0; i < inventorySize; i++)
                 {
                     if (slots[i] == null)
@@ -33,10 +29,12 @@ namespace Text_Based_RPG
                         return;
                     }
                 }
-               
             }
-            
-           
+            else
+            {
+                inventoryFull = true;
+                return;
+            }
         }
 
         public void removeItemFromInventory(int itemSlot)
@@ -70,23 +68,23 @@ namespace Text_Based_RPG
                     string action = Console.ReadLine();
                     if (action == "d")
                     {
-                        if (slots[i] == "Shield") { itemManager.CheckToDropItem('S', 0);slots[i] = null; inventoryOpen = false; Console.Clear(); }
-                        if (slots[i] == "First Aid Kit") { itemManager.CheckToDropItem('+', 0);slots[i] = null; inventoryOpen = false; Console.Clear(); }
-                        if (slots[i] == "Brass Knuckles") { itemManager.CheckToDropItem('W', 1);slots[i] = null; inventoryOpen = false; Console.Clear(); }
-                        if (slots[i] == "Baseball Bat") { itemManager.CheckToDropItem('W', 2);slots[i] = null; inventoryOpen = false; Console.Clear(); }
-                        if (slots[i] == "Knife") { itemManager.CheckToDropItem('W', 3);slots[i] = null; inventoryOpen = false; Console.Clear(); }
-                        if (slots[i] == "Machete") { itemManager.CheckToDropItem('W', 4);slots[i] = null; inventoryOpen = false; Console.Clear(); }
-                        if (slots[i] == "Chain Saw") { itemManager.CheckToDropItem('W', 5);slots[i] = null; inventoryOpen = false; Console.Clear(); }
+                        if (slots[i] == "Shield") { itemManager.CheckToDropItem('S', 0);slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryOpen = false; Console.Clear(); }
+                        if (slots[i] == "First Aid Kit") { itemManager.CheckToDropItem('+', 0);slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryOpen = false; Console.Clear(); }
+                        if (slots[i] == "Brass Knuckles") { itemManager.CheckToDropItem('W', 1);slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryOpen = false; Console.Clear(); }
+                        if (slots[i] == "Baseball Bat") { itemManager.CheckToDropItem('W', 2);slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryOpen = false; Console.Clear(); }
+                        if (slots[i] == "Knife") { itemManager.CheckToDropItem('W', 3);slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryOpen = false; Console.Clear(); }
+                        if (slots[i] == "Machete") { itemManager.CheckToDropItem('W', 4);slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryOpen = false; Console.Clear(); }
+                        if (slots[i] == "Chain Saw") { itemManager.CheckToDropItem('W', 5);slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryOpen = false; Console.Clear(); }
                     }
                     if (action == "u")
                     {
-                        if (slots[i] == "Shield") { itemManager.CheckToUseItem('S', 0); slots[i] = null; inventoryOpen = false; Console.Clear(); }
-                        if (slots[i] == "First Aid Kit") { itemManager.CheckToUseItem('+', 0); slots[i] = null; inventoryOpen = false; Console.Clear(); }
-                        if (slots[i] == "Brass Knuckles") { itemManager.CheckToUseItem('W', 1); slots[i] = null; inventoryOpen = false; Console.Clear(); }
-                        if (slots[i] == "Baseball Bat") { itemManager.CheckToUseItem('W', 2); slots[i] = null; inventoryOpen = false; Console.Clear(); }
-                        if (slots[i] == "Knife") { itemManager.CheckToUseItem('W', 3); slots[i] = null; inventoryOpen = false; Console.Clear(); }
-                        if (slots[i] == "Machete") { itemManager.CheckToUseItem('W', 4); slots[i] = null; inventoryOpen = false; Console.Clear(); }
-                        if (slots[i] == "Chain Saw") { itemManager.CheckToUseItem('W', 5); slots[i] = null; inventoryOpen = false; Console.Clear(); }
+                        if (slots[i] == "Shield") { itemManager.CheckToUseItem('S', 0); slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryOpen = false; Console.Clear(); }
+                        if (slots[i] == "First Aid Kit") { itemManager.CheckToUseItem('+', 0); slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryOpen = false; Console.Clear(); }
+                        if (slots[i] == "Brass Knuckles") { itemManager.CheckToUseItem('W', 1); slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryOpen = false; Console.Clear(); }
+                        if (slots[i] == "Baseball Bat") { itemManager.CheckToUseItem('W', 2); slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryOpen = false; Console.Clear(); }
+                        if (slots[i] == "Knife") { itemManager.CheckToUseItem('W', 3); slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryOpen = false; Console.Clear(); }
+                        if (slots[i] == "Machete") { itemManager.CheckToUseItem('W', 4); slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryOpen = false; Console.Clear(); }
+                        if (slots[i] == "Chain Saw") { itemManager.CheckToUseItem('W', 5); slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryOpen = false; Console.Clear(); }
                     }
                     //else { return; }
                 }
@@ -116,19 +114,14 @@ namespace Text_Based_RPG
         }
         public bool IsInventoryFull()
         {
-            if (filledInventorySlots == inventorySize)
+            if (filledInventorySlots < inventorySize)
             {
-                inventoryFull = true;
-                
-                return false;
-            }
-            if (slots[filledInventorySlots] == null)
-            {
+                inventoryFull = false;
                 return true;
             }
             else
             {
-                Console.Clear();
+                inventoryFull = true;
                 return false;
             }
             
