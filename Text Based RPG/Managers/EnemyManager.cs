@@ -9,7 +9,7 @@ namespace Text_Based_RPG
     class EnemyManager
     {
         //enemy count.....
-        public static int enemyCap = 100;
+        public static int enemyCap = 0;
         public Enemy[] enemies = new Enemy[enemyCap];
         public int enemyCount = 0;
         

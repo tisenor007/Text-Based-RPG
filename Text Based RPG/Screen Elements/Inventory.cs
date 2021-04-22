@@ -115,7 +115,7 @@ namespace Text_Based_RPG
             if (input == "b"){inventoryOpen = false;}
         }
         //boolean used by player to see if inventory is full before they pick up an item......
-        public bool IsInventoryFull()
+        public bool IsInventorySlotAvailable()
         {
             if (filledInventorySlots < inventorySize)
             {

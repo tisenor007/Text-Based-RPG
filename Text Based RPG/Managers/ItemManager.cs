@@ -75,6 +75,7 @@ namespace Text_Based_RPG
                         if ((items[i].itemTile.tileCharacter == icon) && (items[i].weaponBeingPickedUp == weapontype))
                         {
                             items[i].dropped = true;
+                            return;
                         }
                     }
                 }

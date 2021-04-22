@@ -32,9 +32,10 @@ namespace Text_Based_RPG
             }
             if (dropped == true)
             {
-                pickedUp = false;
+                
                 xLoc = player.xLoc;
                 yLoc = player.yLoc;
+                pickedUp = false;
                 dropped = false;
             }
             if (used == true)

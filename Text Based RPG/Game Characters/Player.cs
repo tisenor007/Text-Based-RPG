@@ -62,7 +62,7 @@ namespace Text_Based_RPG
                     else if (itemExist = itemManager.IsItemAt(xLoc, yLoc - 1))
                     {
                         
-                        if (inventory.IsInventoryFull() == true)
+                        if (inventory.IsInventorySlotAvailable() == true)
                         {
                             itemManager.CheckItems(xLoc, yLoc - 1);
                         }
@@ -89,7 +89,7 @@ namespace Text_Based_RPG
                     else if (itemExist = itemManager.IsItemAt(xLoc - 1, yLoc))
                     {
                         
-                        if (inventory.IsInventoryFull() == true)
+                        if (inventory.IsInventorySlotAvailable() == true)
                         {
                             itemManager.CheckItems(xLoc - 1, yLoc);
                         }
@@ -115,7 +115,7 @@ namespace Text_Based_RPG
                     }
                     else if (itemExist = itemManager.IsItemAt(xLoc, yLoc + 1))
                     {
-                        if (inventory.IsInventoryFull() == true)
+                        if (inventory.IsInventorySlotAvailable() == true)
                         {
                             itemManager.CheckItems(xLoc, yLoc + 1);
                         }
@@ -141,7 +141,7 @@ namespace Text_Based_RPG
                     }
                     else if (itemExist = itemManager.IsItemAt(xLoc + 1, yLoc))
                     {
-                        if (inventory.IsInventoryFull() == true)
+                        if (inventory.IsInventorySlotAvailable() == true)
                         {
                             itemManager.CheckItems(xLoc + 1, yLoc);
                         }

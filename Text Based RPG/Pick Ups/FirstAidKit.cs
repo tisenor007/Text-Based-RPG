@@ -24,7 +24,7 @@ namespace Text_Based_RPG
                 inventory.addItemToInventory("First Aid Kit");
                 infoMessage = "You have found a first aid kit!";
                 base.Update(map, player, inventory, camera);
-                //icon = ' ';
+                itemTile.tileCharacter = '+';
                 xLoc = 0;
                 yLoc = 0;
                 pickedUp = false;
@@ -32,9 +32,9 @@ namespace Text_Based_RPG
 
             if (dropped == true)
             {
-                pickedUp = false;
                 xLoc = player.xLoc;
                 yLoc = player.yLoc;
+                pickedUp = false;
                 dropped = false;
             }
             if (used == true)
