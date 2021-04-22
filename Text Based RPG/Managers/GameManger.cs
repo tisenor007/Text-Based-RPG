@@ -49,7 +49,7 @@ namespace Text_Based_RPG
                 camera.Draw(player, enemyManager, map, itemManager);
                 
                 //if game is over in anyway break out of game loop.....
-                if (inventory.inventoryOpen == true) { inventory.displayInventory(player, itemManager); }
+                if (inventory.inventoryIsOpen == true) { inventory.OpenInventory(player, itemManager); }
                 if (gameOver.gameOverWin == true){break;}
                 if (gameOver.gameOverLoss == true){break;}
             }

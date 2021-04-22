@@ -9,11 +9,11 @@ namespace Text_Based_RPG
     class EnemyManager
     {
         //enemy count.....
-        public static int enemyCap = 0;
+        public static int enemyCap = 100;
         public Enemy[] enemies = new Enemy[enemyCap];
         public int enemyCount = 0;
         
-        public void CheckEnemyWorldLoc(char[,] world, int X, int Y)
+        public void InitEnemyFromWorldLoc(char[,] world, int X, int Y)
         {
             if (enemyCount > enemyCap - 1) { return; }
             else if (world[X, Y] == 'E') { enemies[enemyCount] = new Heavy(X, Y); enemyCount = enemyCount + 1; }

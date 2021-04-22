@@ -15,15 +15,16 @@ namespace Text_Based_RPG
             xLoc = X;
             yLoc = Y;
             itemTile.tileCharacter = '+';
+            name = "First Aid Kit";
         }
-        public override void Update(Map map, Player player, Inventory inventory, Camera camera)
+        public override void Update(Map map, Player player, Inventory inventory, Camera camera, ItemManager itemManager)
         {
             if (pickedUp == true)
             {
                 //player.Heal(10);
-                inventory.addItemToInventory("First Aid Kit");
+                inventory.addItemToInventory(this);
                 infoMessage = "You have found a first aid kit!";
-                base.Update(map, player, inventory, camera);
+                base.Update(map, player, inventory, camera, itemManager);
                 itemTile.tileCharacter = '+';
                 xLoc = 0;
                 yLoc = 0;

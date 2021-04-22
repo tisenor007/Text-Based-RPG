@@ -38,7 +38,7 @@ namespace Text_Based_RPG
         {
             collectedValuables = collectedValuables + money;
         }
-        public void CheckPlayerWorldLoc(char[,] world, int X, int Y)
+        public void InitPlayerFromWorldLoc(char[,] world, int X, int Y)
         {
             if (world[X, Y] == '@') { xLoc = X; yLoc = Y; }
         }
@@ -64,11 +64,11 @@ namespace Text_Based_RPG
                         
                         if (inventory.IsInventorySlotAvailable() == true)
                         {
-                            itemManager.CheckItems(xLoc, yLoc - 1);
+                            itemManager.CheckAndPickupItems(xLoc, yLoc - 1);
                         }
                         else
                         {
-                            inventory.inventoryFull = true;
+                            inventory.inventoryIsFull = true;
                         }
                     }
                     else
@@ -91,11 +91,11 @@ namespace Text_Based_RPG
                         
                         if (inventory.IsInventorySlotAvailable() == true)
                         {
-                            itemManager.CheckItems(xLoc - 1, yLoc);
+                            itemManager.CheckAndPickupItems(xLoc - 1, yLoc);
                         }
                         else
                         {
-                            inventory.inventoryFull = true;
+                            inventory.inventoryIsFull = true;
                         }
                     }
                     else
@@ -117,11 +117,11 @@ namespace Text_Based_RPG
                     {
                         if (inventory.IsInventorySlotAvailable() == true)
                         {
-                            itemManager.CheckItems(xLoc, yLoc + 1);
+                            itemManager.CheckAndPickupItems(xLoc, yLoc + 1);
                         }
                         else
                         {
-                            inventory.inventoryFull = true;
+                            inventory.inventoryIsFull = true;
                         }
                     }  
                     else
@@ -143,11 +143,11 @@ namespace Text_Based_RPG
                     {
                         if (inventory.IsInventorySlotAvailable() == true)
                         {
-                            itemManager.CheckItems(xLoc + 1, yLoc);
+                            itemManager.CheckAndPickupItems(xLoc + 1, yLoc);
                         }
                         else
                         {
-                            inventory.inventoryFull = true;
+                            inventory.inventoryIsFull = true;
                         }
                     }
                     else
@@ -157,7 +157,7 @@ namespace Text_Based_RPG
                 }
                 if (keyPressed.Key == ConsoleKey.I)
                 {
-                    inventory.inventoryOpen = true;
+                    inventory.inventoryIsOpen = true;
                 }
                 //determines win
                 if (collectedValuables >= 600)

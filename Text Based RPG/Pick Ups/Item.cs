@@ -14,13 +14,14 @@ namespace Text_Based_RPG
         public bool dropped;
         public bool used;
         public int weaponBeingPickedUp;
-        public string infoMessage; 
+        public string infoMessage;
+        public string name;
         //locations.....
         public int xLoc;
         public int yLoc;
         //what they are seen as
         
-        public virtual void Update(Map map, Player player, Inventory inventory, Camera camera)
+        public virtual void Update(Map map, Player player, Inventory inventory, Camera camera, ItemManager itemManager)
         {
             Console.SetCursorPosition(1, 1);
             Console.WriteLine(infoMessage);

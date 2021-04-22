@@ -13,7 +13,7 @@ namespace Text_Based_RPG
         public int itemCount;
         //total number of enemies
         private static int itemCap = 100;
-        public void CheckItemWorldLoc(char[,] world, int X, int Y)
+        public void InitItemFromWorldLoc(char[,] world, int X, int Y)
         {
                 if (itemCount > itemCap - 1) { return; }
                 if (world[X, Y] == '+') { items[itemCount] = new FirstAidKit(X, Y); itemCount = itemCount + 1; }
@@ -32,7 +32,7 @@ namespace Text_Based_RPG
         {
             for (int i = 0; i < itemCount; i++)
             {
-                items[i].Update(map, player, inventory, camera);
+                items[i].Update(map, player, inventory, camera, this);
             }
         }
         //cycles through items and draws each one
@@ -51,7 +51,7 @@ namespace Text_Based_RPG
             }
         }
         //used to define which item is being picked up
-        public void CheckItems(int x, int y)
+        public void CheckAndPickupItems(int x, int y)
         {
             for (int i = 0; i < itemCount; i++)
             {
@@ -60,6 +60,7 @@ namespace Text_Based_RPG
                     if (y == items[i].yLoc)
                     {
                         items[i].pickedUp = true;
+                        return;
                     }
                 }
             }
@@ -81,6 +82,23 @@ namespace Text_Based_RPG
                 }
             }
         }
+        public void CheckItemToSwitchWeapon(char icon, int weapontype, Inventory inventory)
+        {
+            for (int i = 0; i < itemCount; i++)
+            {
+                if (items[i].xLoc == 0)
+                {
+                    if (items[i].yLoc == 0)
+                    {
+                        if ((items[i].itemTile.tileCharacter == icon) && (items[i].weaponBeingPickedUp == weapontype))
+                        {
+                            inventory.addItemToInventory(items[i]);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
         public void CheckToUseItem(char icon, int weapontype)
         {
             for (int i = 0; i < itemCount; i++)
@@ -92,6 +110,7 @@ namespace Text_Based_RPG
                         if ((items[i].itemTile.tileCharacter == icon) && (items[i].weaponBeingPickedUp == weapontype))
                         {
                             items[i].used = true;
+                            return;
                         }
                     }
                 }

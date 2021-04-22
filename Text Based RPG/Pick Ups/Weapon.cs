@@ -26,18 +26,24 @@ namespace Text_Based_RPG
             xLoc = X;
             yLoc = Y;
             itemTile.tileCharacter = 'W';
+
+            if (weaponBeingPickedUp == 1) { name = "Brass Knuckles"; }
+            if (weaponBeingPickedUp == 2) { name = "Baseball Bat"; }
+            if (weaponBeingPickedUp == 3) { name = "Knife";  }
+            if (weaponBeingPickedUp == 4) { name = "Machete"; }
+            if (weaponBeingPickedUp == 5) { name = "Chain Saw"; }
         }
-        public override void Update(Map map, Player player, Inventory inventory, Camera camera)
+        public override void Update(Map map, Player player, Inventory inventory, Camera camera, ItemManager itemManager)
         {
             if (pickedUp == true)
             {
                 xLoc = 0;
                 yLoc = 0;
-                if (weaponBeingPickedUp == 1) {inventory.addItemToInventory("Brass Knuckles"); infoMessage = "You picked up Brass Knuckles"; base.Update(map, player, inventory, camera);}
-                if (weaponBeingPickedUp == 2) {inventory.addItemToInventory("Baseball Bat"); infoMessage = "You picked up a Baseball Bat"; base.Update(map, player, inventory, camera);}
-                if (weaponBeingPickedUp == 3) {inventory.addItemToInventory("Knife");  infoMessage = "You picked up a Knife"; base.Update(map, player, inventory, camera);}
-                if (weaponBeingPickedUp == 4) {inventory.addItemToInventory("Machete"); infoMessage = "You picked up a Machete"; base.Update(map, player, inventory, camera);}
-                if (weaponBeingPickedUp == 5) {inventory.addItemToInventory("Chain Saw"); infoMessage = "You picked up a Chain Saw"; base.Update(map, player, inventory, camera);}
+                if (weaponBeingPickedUp == 1) {inventory.addItemToInventory(this); infoMessage = "You picked up Brass Knuckles"; base.Update(map, player, inventory, camera, itemManager);}
+                if (weaponBeingPickedUp == 2) {inventory.addItemToInventory(this); infoMessage = "You picked up a Baseball Bat"; base.Update(map, player, inventory, camera, itemManager);}
+                if (weaponBeingPickedUp == 3) {inventory.addItemToInventory(this);  infoMessage = "You picked up a Knife"; base.Update(map, player, inventory, camera, itemManager);}
+                if (weaponBeingPickedUp == 4) {inventory.addItemToInventory(this); infoMessage = "You picked up a Machete"; base.Update(map, player, inventory, camera, itemManager);}
+                if (weaponBeingPickedUp == 5) {inventory.addItemToInventory(this); infoMessage = "You picked up a Chain Saw"; base.Update(map, player, inventory, camera, itemManager);}
                 pickedUp = false;
             }
             
@@ -56,7 +62,11 @@ namespace Text_Based_RPG
                 }
                 else
                 {
-                    inventory.addItemToInventory(player.weaponInHand);
+                    if (player.weaponInHand == "Brass Knuckles") { itemManager.CheckItemToSwitchWeapon('W', 1, inventory); }
+                    if (player.weaponInHand == "Baseball Bat") { itemManager.CheckItemToSwitchWeapon('W', 2, inventory); }
+                    if (player.weaponInHand == "Knife") { itemManager.CheckItemToSwitchWeapon('W', 3, inventory); }
+                    if (player.weaponInHand == "Machete") { itemManager.CheckItemToSwitchWeapon('W', 4, inventory); }
+                    if (player.weaponInHand == "Chain Saw") { itemManager.CheckItemToSwitchWeapon('W', 5, inventory); }
                 }
                 if (weaponBeingPickedUp == 1){ SwitchWeapon(WeaponType.BrassKnuckles, player);}
                 if (weaponBeingPickedUp == 2){ SwitchWeapon(WeaponType.BaseballBat, player); }
@@ -75,23 +85,23 @@ namespace Text_Based_RPG
             switch (weapon)
             {
                 case WeaponType.BrassKnuckles:
-                    player.weaponInHand = "Brass Knuckles";
+                    player.weaponInHand = name;
                     player.attackDamage = 10;
                     break;
                 case WeaponType.BaseballBat:
-                    player.weaponInHand = "Baseball Bat";
+                    player.weaponInHand = name;
                     player.attackDamage = 25;
                     break;
                 case WeaponType.Knife:
-                    player.weaponInHand = "Knife";
+                    player.weaponInHand = name;
                     player.attackDamage = 50;
                     break;
                 case WeaponType.Machete:
-                    player.weaponInHand = "Machete";
+                    player.weaponInHand = name;
                     player.attackDamage = 75;
                     break;
                 case WeaponType.Chainsaw:
-                    player.weaponInHand = "Chain Saw";
+                    player.weaponInHand = name;
                     player.attackDamage = 100;
                     break;
 

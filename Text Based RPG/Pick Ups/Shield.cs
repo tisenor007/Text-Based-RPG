@@ -15,15 +15,16 @@ namespace Text_Based_RPG
             xLoc = X;
             yLoc = Y;
             itemTile.tileCharacter = 'S';
+            name = "Shield";
         }
-        public override void Update(Map map, Player player, Inventory inventory, Camera camera)
+        public override void Update(Map map, Player player, Inventory inventory, Camera camera, ItemManager itemManager)
         {
             if (pickedUp == true)
             {
                 //player.RegenShield(100);
-                inventory.addItemToInventory("Shield");
+                inventory.addItemToInventory(this);
                 infoMessage ="You have found a Sheild!";
-                base.Update(map, player, inventory, camera);
+                base.Update(map, player, inventory, camera, itemManager);
                 //icon = ' ';
                 xLoc = 0;
                 yLoc = 0;

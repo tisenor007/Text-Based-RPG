@@ -39,9 +39,9 @@ namespace Text_Based_RPG
             {
                 for (int x = 0; x < currWorldLine.Length; x++)
                 {
-                    enemyManager.CheckEnemyWorldLoc(world, x, y);
-                    itemManager.CheckItemWorldLoc(world, x, y);
-                    player.CheckPlayerWorldLoc(world, x, y);
+                    enemyManager.InitEnemyFromWorldLoc(world, x, y);
+                    itemManager.InitItemFromWorldLoc(world, x, y);
+                    player.InitPlayerFromWorldLoc(world, x, y);
                 }
             }
         }

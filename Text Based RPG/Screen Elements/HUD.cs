@@ -25,7 +25,7 @@ namespace Text_Based_RPG
             Console.Write("Stolen valuables recoved: " + player.collectedValuables + "/600");
             Console.WriteLine(clear);
             Console.Write("Hit 'i' to open inventory....");
-            if (inventory.inventoryFull == true)
+            if (inventory.inventoryIsFull == true)
             {
                 Console.WriteLine(clear);
                 Console.Write("YOUR INVENTORY IS FULL!");
