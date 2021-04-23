@@ -39,6 +39,7 @@ namespace Text_Based_RPG
                 enemyManager.UpdateEnemies(map, player, camera, itemManager, enemyManager);
                 player.Update(map, enemyManager, itemManager, gameOver, inventory);
                 camera.Update(map, player);
+                inventory.Update(player, itemManager);
 
                 //draws + other game elements(for polish)
                 
@@ -49,7 +50,7 @@ namespace Text_Based_RPG
                 camera.Draw(player, enemyManager, map, itemManager);
                 
                 //if game is over in anyway break out of game loop.....
-                if (inventory.inventoryIsOpen == true) { inventory.OpenInventory(player, itemManager); }
+                
                 if (gameOver.gameOverWin == true){break;}
                 if (gameOver.gameOverLoss == true){break;}
             }

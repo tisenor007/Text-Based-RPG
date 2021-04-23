@@ -14,16 +14,13 @@ namespace Text_Based_RPG
         public bool inventoryIsOpen = false;
         public bool inventoryIsFull = false;
         private static int inventorySize = 10;
-       //public Inventory()
-       // {
-       //     for (int i = 0; i < inventorySize; i++)
-       //     {
-       //         slots[i] = new Item();
-       //     }
-       // }
+
+        public void Update(Player player, ItemManager itemManager)
+        {
+            if (inventoryIsOpen == true) { OpenInventory(player, itemManager); }
+        }
         public void addItemToInventory(Item item)
         {
-            
             if (filledInventorySlots < inventorySize)
             {
                 inventoryIsFull = false;
@@ -47,6 +44,7 @@ namespace Text_Based_RPG
         public void removeItemFromInventory(int itemSlot)
         {
             slots[itemSlot] = null;
+            filledInventorySlots = filledInventorySlots - 1;
         }
 
         public void OpenInventory(Player player, ItemManager itemManager)
@@ -60,7 +58,7 @@ namespace Text_Based_RPG
                 }
                 else
                 {
-                    Console.WriteLine("Inventory slot " + (i + 1) + ": " + slots[i].name);
+                    Console.WriteLine("Inventory slot " + (i + 1) + ": " + slots[i].itemType);
                 }
                 
             }
@@ -75,26 +73,26 @@ namespace Text_Based_RPG
             if (input == "u")
             {
                 //can't unarm your fist!
-                if (player.weaponInHand == "Fist"){Console.WriteLine("You are already unarmed!");}
+                if (player.weaponInHand.itemType == Item.ItemType.Fist){Console.WriteLine("You are already unarmed!");}
                 else 
                 {
                     //if inventory slot is available, puts previous weapon in inventory
                     if (filledInventorySlots < inventorySize) 
                     {
-                        if (player.weaponInHand == "Brass Knuckles") { itemManager.CheckItemToSwitchWeapon('W', 1, this); }
-                        if (player.weaponInHand == "Baseball Bat") { itemManager.CheckItemToSwitchWeapon('W', 2, this); }
-                        if (player.weaponInHand == "Knife") { itemManager.CheckItemToSwitchWeapon('W', 3, this); }
-                        if (player.weaponInHand == "Machete") { itemManager.CheckItemToSwitchWeapon('W', 4, this); }
-                        if (player.weaponInHand == "Chain Saw") { itemManager.CheckItemToSwitchWeapon('W', 5, this); }
+                        if (player.weaponInHand.itemType == Item.ItemType.BrassKnuckles) { itemManager.CheckItemToSwitchWeapon('W', Item.ItemType.BrassKnuckles, this); }
+                        if (player.weaponInHand.itemType == Item.ItemType.BaseballBat) { itemManager.CheckItemToSwitchWeapon('W', Item.ItemType.BaseballBat, this); }
+                        if (player.weaponInHand.itemType == Item.ItemType.Knife) { itemManager.CheckItemToSwitchWeapon('W', Item.ItemType.Knife, this); }
+                        if (player.weaponInHand.itemType == Item.ItemType.Machete) { itemManager.CheckItemToSwitchWeapon('W', Item.ItemType.Machete, this); }
+                        if (player.weaponInHand.itemType == Item.ItemType.Chainsaw) { itemManager.CheckItemToSwitchWeapon('W', Item.ItemType.Chainsaw, this); }
                     }
                     else
                     {
                         //if inventory is full you just drop you weapon that you are unarming
-                        if (player.weaponInHand == "Brass Knuckles") { itemManager.CheckToDropItem('W', 1); }
-                        if (player.weaponInHand == "Baseball Bat") { itemManager.CheckToDropItem('W', 2); }
-                        if (player.weaponInHand == "Knife") { itemManager.CheckToDropItem('W', 3); }
-                        if (player.weaponInHand == "Machete") { itemManager.CheckToDropItem('W', 4); }
-                        if (player.weaponInHand == "Chain Saw") { itemManager.CheckToDropItem('W', 5); }
+                        if (player.weaponInHand.itemType == Item.ItemType.BrassKnuckles) { itemManager.CheckToDropItem('W', Item.ItemType.BrassKnuckles); }
+                        if (player.weaponInHand.itemType == Item.ItemType.BaseballBat) { itemManager.CheckToDropItem('W', Item.ItemType.BaseballBat); }
+                        if (player.weaponInHand.itemType == Item.ItemType.Knife) { itemManager.CheckToDropItem('W', Item.ItemType.Knife); }
+                        if (player.weaponInHand.itemType == Item.ItemType.Machete) { itemManager.CheckToDropItem('W', Item.ItemType.Machete); }
+                        if (player.weaponInHand.itemType == Item.ItemType.Chainsaw) { itemManager.CheckToDropItem('W', Item.ItemType.Chainsaw); }
                     }
                 }
                 player.BecomeUnarmed();
@@ -112,25 +110,25 @@ namespace Text_Based_RPG
                     if (action == "d")
                     {
                         if (slots[i] == null) { return; }
-                        else if (slots[i].name == "Shield") { itemManager.CheckToDropItem('S', 0);slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryIsOpen = false; Console.Clear(); }
-                        else if (slots[i].name == "First Aid Kit") { itemManager.CheckToDropItem('+', 0);slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryIsOpen = false; Console.Clear(); }
-                        else if (slots[i].name == "Brass Knuckles") { itemManager.CheckToDropItem('W', 1);slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryIsOpen = false; Console.Clear(); }
-                        else if (slots[i].name == "Baseball Bat") { itemManager.CheckToDropItem('W', 2);slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryIsOpen = false; Console.Clear(); }
-                        else if (slots[i].name == "Knife") { itemManager.CheckToDropItem('W', 3);slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryIsOpen = false; Console.Clear(); }
-                        else if (slots[i].name == "Machete") { itemManager.CheckToDropItem('W', 4);slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryIsOpen = false; Console.Clear(); }
-                        else if (slots[i].name == "Chain Saw") { itemManager.CheckToDropItem('W', 5);slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryIsOpen = false; Console.Clear(); }
+                        else if (slots[i].itemType == Item.ItemType.Shield) { itemManager.CheckToDropItem('S', Item.ItemType.Shield);removeItemFromInventory(i); inventoryIsOpen = false; Console.Clear(); }
+                        else if (slots[i].itemType == Item.ItemType.FirstAidKit) { itemManager.CheckToDropItem('+', Item.ItemType.FirstAidKit); removeItemFromInventory(i); inventoryIsOpen = false; Console.Clear(); }
+                        else if (slots[i].itemType == Item.ItemType.BrassKnuckles) { itemManager.CheckToDropItem('W', Item.ItemType.BrassKnuckles); removeItemFromInventory(i); inventoryIsOpen = false; Console.Clear(); }
+                        else if (slots[i].itemType == Item.ItemType.BaseballBat) { itemManager.CheckToDropItem('W', Item.ItemType.BaseballBat); removeItemFromInventory(i); inventoryIsOpen = false; Console.Clear(); }
+                        else if (slots[i].itemType == Item.ItemType.Knife) { itemManager.CheckToDropItem('W', Item.ItemType.Knife); removeItemFromInventory(i); inventoryIsOpen = false; Console.Clear(); }
+                        else if (slots[i].itemType == Item.ItemType.Machete) { itemManager.CheckToDropItem('W', Item.ItemType.Machete); removeItemFromInventory(i); inventoryIsOpen = false; Console.Clear(); }
+                        else if (slots[i].itemType == Item.ItemType.Chainsaw) { itemManager.CheckToDropItem('W', Item.ItemType.Chainsaw); removeItemFromInventory(i); inventoryIsOpen = false; Console.Clear(); }
                     }
                     //if you want to use an item it contacts item manager to be use an item and uses it.....
                     if (action == "e")
                     {
                         if (slots[i] == null) { return; }
-                        else if (slots[i].name == "Shield") { itemManager.CheckToUseItem('S', 0); slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryIsOpen = false; Console.Clear(); }
-                        else if (slots[i].name == "First Aid Kit") { itemManager.CheckToUseItem('+', 0); slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryIsOpen = false; Console.Clear();}
-                        else if (slots[i].name == "Brass Knuckles") { itemManager.CheckToUseItem('W', 1); slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryIsOpen = false; Console.Clear(); }
-                        else if (slots[i].name == "Baseball Bat") { itemManager.CheckToUseItem('W', 2); slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryIsOpen = false; Console.Clear(); }
-                        else if (slots[i].name == "Knife") { itemManager.CheckToUseItem('W', 3); slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryIsOpen = false; Console.Clear(); }
-                        else if (slots[i].name == "Machete") { itemManager.CheckToUseItem('W', 4); slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryIsOpen = false; Console.Clear(); }
-                        else if (slots[i].name == "Chain Saw") { itemManager.CheckToUseItem('W', 5); slots[i] = null; filledInventorySlots = filledInventorySlots - 1; inventoryIsOpen = false; Console.Clear(); }
+                        else if (slots[i].itemType == Item.ItemType.Shield) { itemManager.CheckToUseItem('S', Item.ItemType.Shield); removeItemFromInventory(i); inventoryIsOpen = false; Console.Clear(); }
+                        else if (slots[i].itemType == Item.ItemType.FirstAidKit) { itemManager.CheckToUseItem('+', Item.ItemType.FirstAidKit); removeItemFromInventory(i); inventoryIsOpen = false; Console.Clear();}
+                        else if (slots[i].itemType == Item.ItemType.BrassKnuckles) { itemManager.CheckToUseItem('W', Item.ItemType.BrassKnuckles); removeItemFromInventory(i); inventoryIsOpen = false; Console.Clear(); }
+                        else if (slots[i].itemType == Item.ItemType.BaseballBat) { itemManager.CheckToUseItem('W', Item.ItemType.BaseballBat); removeItemFromInventory(i); inventoryIsOpen = false; Console.Clear(); }
+                        else if (slots[i].itemType == Item.ItemType.Knife) { itemManager.CheckToUseItem('W', Item.ItemType.Knife); removeItemFromInventory(i); inventoryIsOpen = false; Console.Clear(); }
+                        else if (slots[i].itemType == Item.ItemType.Machete) { itemManager.CheckToUseItem('W', Item.ItemType.Machete); removeItemFromInventory(i); inventoryIsOpen = false; Console.Clear(); }
+                        else if (slots[i].itemType == Item.ItemType.Chainsaw) { itemManager.CheckToUseItem('W', Item.ItemType.Chainsaw); removeItemFromInventory(i); inventoryIsOpen = false; Console.Clear(); }
                     }
                     //else { return; }
                 }

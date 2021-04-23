@@ -8,14 +8,27 @@ namespace Text_Based_RPG
 {
     class Item
     {
+        public enum ItemType
+        {
+            FirstAidKit,
+            Shield,
+            Key, 
+            Valuable,
+            Fist,
+            BrassKnuckles,
+            BaseballBat,
+            Knife,
+            Machete,
+            Chainsaw
+        }
+
+        public ItemType itemType;
         public Tile itemTile = new Tile(' ', ConsoleColor.White);
         //determines if they are picked up or not...
         public bool pickedUp;
         public bool dropped;
         public bool used;
-        public int weaponBeingPickedUp;
         public string infoMessage;
-        public string name;
         //locations.....
         public int xLoc;
         public int yLoc;
@@ -30,6 +43,8 @@ namespace Text_Based_RPG
         public void Draw(Camera camera)
         {
             camera.DrawToRenderer(itemTile.tileCharacter, xLoc, yLoc);
+
         }
+
     }
 }

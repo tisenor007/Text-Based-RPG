@@ -15,7 +15,7 @@ namespace Text_Based_RPG
             xLoc = X;
             yLoc = Y;
             itemTile.tileCharacter = '$';
-            name = "Valuable";
+            itemType = ItemType.Valuable;
         }
         public override void Update(Map map, Player player, Inventory inventory, Camera camera, ItemManager itemManager)
         {

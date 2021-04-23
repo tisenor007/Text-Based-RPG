@@ -12,7 +12,7 @@ namespace Text_Based_RPG
         private bool enemyExist;
         private bool itemExist;
         public int collectedValuables;
-        public string weaponInHand;
+        public Item weaponInHand;
        
 
         public Player()
@@ -25,13 +25,14 @@ namespace Text_Based_RPG
             shield = 0;
             collectedValuables = 0;
             name = "Player";
+            weaponInHand = new Weapon(0,0,0);
             BecomeUnarmed();
         }
         //specific to the player...
 
         public void BecomeUnarmed()
         {
-            weaponInHand = "Fist";
+            weaponInHand.itemType = Item.ItemType.Fist;
             attackDamage = 5;
         }
         public void CollectValuable(int money)

@@ -20,7 +20,7 @@ namespace Text_Based_RPG
             Console.WriteLine(clear);
             Console.Write(player.name + " sheild health: " + player.shield);
             Console.WriteLine(clear);
-            Console.Write(player.name + " weapon in hand: " + player.weaponInHand);
+            Console.Write(player.name + " weapon in hand: " + player.weaponInHand.itemType);
             Console.WriteLine(clear);
             Console.Write("Stolen valuables recoved: " + player.collectedValuables + "/600");
             Console.WriteLine(clear);

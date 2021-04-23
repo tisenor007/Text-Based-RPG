@@ -20,11 +20,11 @@ namespace Text_Based_RPG
                 if (world[X, Y] == '&') { items[itemCount] = new Key(X, Y); itemCount = itemCount + 1; }
                 if (world[X, Y] == 'S') { items[itemCount] = new Shield(X, Y); itemCount = itemCount + 1; }
                 if (world[X, Y] == '$') { items[itemCount] = new Valuable(X, Y); itemCount = itemCount + 1; }
-                if (world[X, Y] == '1') { items[itemCount] = new Weapon(X, Y, 1); itemCount = itemCount + 1; }
-                if (world[X, Y] == '2') { items[itemCount] = new Weapon(X, Y, 2); itemCount = itemCount + 1; }
-                if (world[X, Y] == 'W') { items[itemCount] = new Weapon(X, Y, 3); itemCount = itemCount + 1; }
-                if (world[X, Y] == '4') { items[itemCount] = new Weapon(X, Y, 4); itemCount = itemCount + 1; }
-                if (world[X, Y] == '5') { items[itemCount] = new Weapon(X, Y, 5); itemCount = itemCount + 1; }
+                if (world[X, Y] == '1') { items[itemCount] = new Weapon(X, Y, Item.ItemType.BrassKnuckles); itemCount = itemCount + 1; }
+                if (world[X, Y] == '2') { items[itemCount] = new Weapon(X, Y, Item.ItemType.BaseballBat); itemCount = itemCount + 1; }
+                if (world[X, Y] == 'W') { items[itemCount] = new Weapon(X, Y, Item.ItemType.Knife); itemCount = itemCount + 1; }
+                if (world[X, Y] == '4') { items[itemCount] = new Weapon(X, Y, Item.ItemType.Machete); itemCount = itemCount + 1; }
+                if (world[X, Y] == '5') { items[itemCount] = new Weapon(X, Y, Item.ItemType.Chainsaw); itemCount = itemCount + 1; }
         }
 
         //cycles through items and updates each one
@@ -65,7 +65,7 @@ namespace Text_Based_RPG
                 }
             }
         }
-        public void CheckToDropItem(char icon, int weapontype)
+        public void CheckToDropItem(char icon, Item.ItemType weapontype)
         {
             for (int i = 0; i < itemCount; i++)
             {
@@ -73,7 +73,7 @@ namespace Text_Based_RPG
                 {
                     if (items[i].yLoc == 0)
                     {
-                        if ((items[i].itemTile.tileCharacter == icon) && (items[i].weaponBeingPickedUp == weapontype))
+                        if ((items[i].itemTile.tileCharacter == icon) && (items[i].itemType == weapontype))
                         {
                             items[i].dropped = true;
                             return;
@@ -82,7 +82,7 @@ namespace Text_Based_RPG
                 }
             }
         }
-        public void CheckItemToSwitchWeapon(char icon, int weapontype, Inventory inventory)
+        public void CheckItemToSwitchWeapon(char icon, Item.ItemType weapontype, Inventory inventory)
         {
             for (int i = 0; i < itemCount; i++)
             {
@@ -90,7 +90,7 @@ namespace Text_Based_RPG
                 {
                     if (items[i].yLoc == 0)
                     {
-                        if ((items[i].itemTile.tileCharacter == icon) && (items[i].weaponBeingPickedUp == weapontype))
+                        if ((items[i].itemTile.tileCharacter == icon) && (items[i].itemType == weapontype))
                         {
                             inventory.addItemToInventory(items[i]);
                             return;
@@ -99,7 +99,7 @@ namespace Text_Based_RPG
                 }
             }
         }
-        public void CheckToUseItem(char icon, int weapontype)
+        public void CheckToUseItem(char icon, Item.ItemType weapontype)
         {
             for (int i = 0; i < itemCount; i++)
             {
@@ -107,7 +107,7 @@ namespace Text_Based_RPG
                 {
                     if (items[i].yLoc == 0)
                     {
-                        if ((items[i].itemTile.tileCharacter == icon) && (items[i].weaponBeingPickedUp == weapontype))
+                        if ((items[i].itemTile.tileCharacter == icon) && (items[i].itemType == weapontype))
                         {
                             items[i].used = true;
                             return;

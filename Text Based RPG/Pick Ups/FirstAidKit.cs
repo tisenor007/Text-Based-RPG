@@ -15,7 +15,7 @@ namespace Text_Based_RPG
             xLoc = X;
             yLoc = Y;
             itemTile.tileCharacter = '+';
-            name = "First Aid Kit";
+            itemType = ItemType.FirstAidKit;
         }
         public override void Update(Map map, Player player, Inventory inventory, Camera camera, ItemManager itemManager)
         {
