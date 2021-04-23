@@ -25,7 +25,7 @@ namespace Text_Based_RPG
             shield = 0;
             collectedValuables = 0;
             name = "Player";
-            weaponInHand = new Weapon(0,0,0);
+            weaponInHand = new Item();
             BecomeUnarmed();
         }
         //specific to the player...
