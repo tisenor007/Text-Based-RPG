@@ -79,11 +79,11 @@ namespace Text_Based_RPG
                     //if inventory slot is available, puts previous weapon in inventory
                     if (filledInventorySlots < inventorySize) 
                     {
-                        if (player.weaponInHand.itemType == Item.ItemType.BrassKnuckles) { itemManager.CheckItemToSwitchWeapon('W', Item.ItemType.BrassKnuckles, this); }
-                        if (player.weaponInHand.itemType == Item.ItemType.BaseballBat) { itemManager.CheckItemToSwitchWeapon('W', Item.ItemType.BaseballBat, this); }
-                        if (player.weaponInHand.itemType == Item.ItemType.Knife) { itemManager.CheckItemToSwitchWeapon('W', Item.ItemType.Knife, this); }
-                        if (player.weaponInHand.itemType == Item.ItemType.Machete) { itemManager.CheckItemToSwitchWeapon('W', Item.ItemType.Machete, this); }
-                        if (player.weaponInHand.itemType == Item.ItemType.Chainsaw) { itemManager.CheckItemToSwitchWeapon('W', Item.ItemType.Chainsaw, this); }
+                        if (player.weaponInHand.itemType == Item.ItemType.BrassKnuckles) { itemManager.CheckandSwitchWeapon('W', Item.ItemType.BrassKnuckles, this); }
+                        if (player.weaponInHand.itemType == Item.ItemType.BaseballBat) { itemManager.CheckandSwitchWeapon('W', Item.ItemType.BaseballBat, this); }
+                        if (player.weaponInHand.itemType == Item.ItemType.Knife) { itemManager.CheckandSwitchWeapon('W', Item.ItemType.Knife, this); }
+                        if (player.weaponInHand.itemType == Item.ItemType.Machete) { itemManager.CheckandSwitchWeapon('W', Item.ItemType.Machete, this); }
+                        if (player.weaponInHand.itemType == Item.ItemType.Chainsaw) { itemManager.CheckandSwitchWeapon('W', Item.ItemType.Chainsaw, this); }
                     }
                     else
                     {

@@ -82,7 +82,7 @@ namespace Text_Based_RPG
                 }
             }
         }
-        public void CheckItemToSwitchWeapon(char icon, Item.ItemType weapontype, Inventory inventory)
+        public void CheckandSwitchWeapon(char icon, Item.ItemType weapontype, Inventory inventory)
         {
             for (int i = 0; i < itemCount; i++)
             {
