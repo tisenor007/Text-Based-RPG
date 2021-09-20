@@ -21,7 +21,7 @@ namespace Text_Based_RPG
             xLoc = x;
             yLoc = y;
         }
-        public void Update()
+        public override void Update()
         {
             switch(player.isPlayerAt(xLoc, yLoc))
             {

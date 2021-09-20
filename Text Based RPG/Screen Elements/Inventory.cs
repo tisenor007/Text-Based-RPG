@@ -87,22 +87,33 @@ namespace Text_Based_RPG
                     {
                         if (slots[x] != null)
                         {
-                            for (bool inputCheck = false; inputCheck == false;)
+                            if (slots[x].itemType == Item.ItemType.Key)
                             {
                                 Console.Clear();
-                                Console.WriteLine("Do you want to sell " + slots[x].CheckName() + " for " + slots[x].CheckPrice() + "?");
-                                Console.WriteLine("Y) Yes     N) No");
-                                ConsoleKeyInfo secondaryInput = Console.ReadKey(true);
+                                Console.WriteLine("You cannot sell this item.");
+                                Console.WriteLine("Press any key to continue.");
+                                Console.ReadKey(true);
+                                return;
+                            }
+                            else
+                            {
+                                for (bool inputCheck = false; inputCheck == false;)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("Do you want to sell " + slots[x].CheckName() + " for " + slots[x].CheckPrice() + "?");
+                                    Console.WriteLine("Y) Yes     N) No");
+                                    ConsoleKeyInfo secondaryInput = Console.ReadKey(true);
 
-                                if (secondaryInput.Key == ConsoleKey.Y)
-                                {
-                                    player.GainMoney(slots[x].CheckPrice());
-                                    removeItemFromInventory(x);
-                                    inputCheck = true;
-                                }
-                                else if (secondaryInput.Key == ConsoleKey.N)
-                                {
-                                    inputCheck = true;
+                                    if (secondaryInput.Key == ConsoleKey.Y)
+                                    {
+                                        player.GainMoney(slots[x].CheckPrice());
+                                        removeItemFromInventory(x);
+                                        inputCheck = true;
+                                    }
+                                    else if (secondaryInput.Key == ConsoleKey.N)
+                                    {
+                                        inputCheck = true;
+                                    }
                                 }
                             }
                             sellMenuOpen = false;

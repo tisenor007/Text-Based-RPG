@@ -44,7 +44,7 @@ namespace Text_Based_RPG
         {
             camera.DrawToRenderer(characterTile.tileCharacter, xLoc, yLoc);
         }
-        public void Update()
+        public virtual void Update()
         {
             //to be done per character
         }
