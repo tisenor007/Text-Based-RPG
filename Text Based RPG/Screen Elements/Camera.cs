@@ -16,11 +16,12 @@ namespace Text_Based_RPG
         private int startViewX = 0;
         private int startViewY = 0;
        
-        public Camera()
+        public Camera(Map map)
         {
             //can set size of camera
             endViewY = 10;
             endViewX = 35;
+            map.DrawToRender(renderer);
         }
         //attaches camera to player
         public void Update(Map map, Player player)

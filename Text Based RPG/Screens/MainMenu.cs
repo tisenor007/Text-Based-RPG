@@ -13,15 +13,18 @@ namespace Text_Based_RPG
         {
            string titleScreen = System.IO.File.ReadAllText("MainMenuArt.txt");
             Console.WriteLine(titleScreen);
+            Console.WriteLine("Original Made by Trenton");
+            Console.WriteLine("Expanded by Jared");
+            Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Press any button - New Game");
-            Console.WriteLine("B - Quit");
+            Console.WriteLine("Q - Quit");
+
             ConsoleKeyInfo keyPressed = Console.ReadKey(true);
-            if (keyPressed.Key == ConsoleKey.B)
+            if (keyPressed.Key == ConsoleKey.Q)
             {
                 System.Environment.Exit(1);
             }
-            Console.ReadKey(true);
             Console.Beep(2200, 100);
             return;
         }

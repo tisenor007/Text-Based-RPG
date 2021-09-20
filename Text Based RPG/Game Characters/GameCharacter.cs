@@ -23,6 +23,8 @@ namespace Text_Based_RPG
         public string name;
         protected VitalStatus vitalStatus;
         public Tile characterTile = new Tile(' ', ConsoleColor.White);
+
+        private int shieldCap = 1000;
         //to switch or set if the game character is dead or alive
         protected void SwitchVitalStatus(VitalStatus newVitalStatus)
         {
@@ -70,10 +72,10 @@ namespace Text_Based_RPG
         public void RegenShield(int sp)
         {
             shield = shield + sp;
-            if (shield >= 50)
+            if (shield >= shieldCap)
             {
                 //shield is capped at 100
-                shield = 50;
+                shield = shieldCap;
             } 
         }
         //properties for dead game characters

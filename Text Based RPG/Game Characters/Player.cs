@@ -13,7 +13,7 @@ namespace Text_Based_RPG
         private bool itemExist;
         public int collectedValuables;
         public Item weaponInHand;
-       
+        private Currency wallet = new Currency();
 
         public Player()
         {
@@ -43,7 +43,7 @@ namespace Text_Based_RPG
         {
             if (world[X, Y] == '@') { xLoc = X; yLoc = Y; }
         }
-        public void Update(Map map, EnemyManager enemyManager, ItemManager itemManager, GameOver gameOver, Inventory inventory)
+        public void Update(Map map, EnemyManager enemyManager, ItemManager itemManager, GameOver gameOver, Inventory inventory, ShopManager shopManager)
         {
             Console.CursorVisible = false;
             ConsoleKeyInfo keyPressed = Console.ReadKey(true);
@@ -189,6 +189,23 @@ namespace Text_Based_RPG
             }
             
             return false;
+        }
+
+        public void GainMoney(int moneyToGain)
+        {
+            wallet.AddMoney(moneyToGain);
+        }
+        public void LoseMoney(int moneyToLose)
+        {
+            wallet.TakeMoney(moneyToLose);
+        }
+        public void SetMoney(int money)
+        {
+            wallet.AddMoney(money);
+        }
+        public int CheckMoney()
+        {
+            return wallet.CheckMoney();
         }
     }
 }

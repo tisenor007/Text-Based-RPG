@@ -17,6 +17,10 @@ namespace Text_Based_RPG
 
         public void Update(Player player, ItemManager itemManager)
         {
+            if (inventoryIsFull)
+                inventorySize = filledInventorySlots + 1;
+            else
+                inventorySize = 10;
             if (inventoryIsOpen == true) { OpenInventory(player, itemManager); }
         }
         public void addItemToInventory(Item item)
@@ -45,6 +49,68 @@ namespace Text_Based_RPG
         {
             slots[itemSlot] = null;
             filledInventorySlots = filledInventorySlots - 1;
+        }
+        public void SellInventory(Player player)
+        {
+            for (bool sellMenuOpen = true; sellMenuOpen = true;)
+            {
+                Console.Clear();
+                Console.WriteLine("Clerk: What do you want to sell to me?");
+                Console.WriteLine();
+                for (int i = 0; i < inventorySize; i++)
+                {
+                    if (slots[i] == null)
+                    {
+                        Console.WriteLine("Inventory slot " + (i + 1) + ": ");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Inventory slot " + (i + 1) + ": " + slots[i].itemType);
+                    }
+
+                }
+                Console.WriteLine();
+                Console.WriteLine("To sell an item, press the related number of said item.");
+                Console.WriteLine();
+                Console.WriteLine("B) Exit");
+                Console.WriteLine();
+
+                ConsoleKeyInfo input = Console.ReadKey(true);
+                for (int x = 0; x < inventorySize; x++)
+                {
+                    if (input.Key == ConsoleKey.B)
+                    {
+                        sellMenuOpen = false;
+                        return;
+                    }
+                    else if (((int)input.Key)-48 == x+1)
+                    {
+                        if (slots[x] != null)
+                        {
+                            for (bool inputCheck = false; inputCheck == false;)
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Do you want to sell " + slots[x].CheckName() + " for " + slots[x].CheckPrice() + "?");
+                                Console.WriteLine("Y) Yes     N) No");
+                                ConsoleKeyInfo secondaryInput = Console.ReadKey(true);
+
+                                if (secondaryInput.Key == ConsoleKey.Y)
+                                {
+                                    player.GainMoney(slots[x].CheckPrice());
+                                    removeItemFromInventory(x);
+                                    inputCheck = true;
+                                }
+                                else if (secondaryInput.Key == ConsoleKey.N)
+                                {
+                                    inputCheck = true;
+                                }
+                            }
+                            sellMenuOpen = false;
+                        }
+                    }
+                }
+            }
+
         }
 
         public void OpenInventory(Player player, ItemManager itemManager)

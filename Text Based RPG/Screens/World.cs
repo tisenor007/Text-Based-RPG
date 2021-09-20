@@ -33,7 +33,7 @@ namespace Text_Based_RPG
                 }
             }
         }
-        public void InitEntities(EnemyManager enemyManager, ItemManager itemManager, Player player)
+        public void InitEntities(EnemyManager enemyManager, ItemManager itemManager, Player player, Inventory inventory)
         {
             for (int y = 0; y < worldData.Length; y++)
             {

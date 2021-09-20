@@ -16,6 +16,9 @@ namespace Text_Based_RPG
             yLoc = Y;
             itemTile.tileCharacter = '+';
             itemType = ItemType.FirstAidKit;
+            name = "First Aid Kit";
+            Random rand = new Random();
+            SetPrice(rand.Next(1, 10));
         }
         public override void Update(Map map, Player player, Inventory inventory, Camera camera, ItemManager itemManager)
         {
@@ -23,7 +26,7 @@ namespace Text_Based_RPG
             {
                 //player.Heal(10);
                 inventory.addItemToInventory(this);
-                infoMessage = "You have found a first aid kit!";
+                infoMessage = "You have found a " + name +"!";
                 base.Update(map, player, inventory, camera, itemManager);
                 itemTile.tileCharacter = '+';
                 xLoc = 0;
