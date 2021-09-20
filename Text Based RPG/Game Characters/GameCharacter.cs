@@ -44,6 +44,10 @@ namespace Text_Based_RPG
         {
             camera.DrawToRenderer(characterTile.tileCharacter, xLoc, yLoc);
         }
+        public void Update()
+        {
+            //to be done per character
+        }
         //take damage for every gamecharacter
         public void TakeDamage(int Damage)
         {
@@ -84,6 +88,11 @@ namespace Text_Based_RPG
             characterTile.tileColour = ConsoleColor.White;
             health = 0;
             characterTile.tileCharacter = 'X';
+        }
+        public void Disappear()
+        {
+            xLoc = 0;
+            yLoc = 0;
         }
     }
 }

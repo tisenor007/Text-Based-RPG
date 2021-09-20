@@ -75,5 +75,12 @@ namespace Text_Based_RPG
             }
             return false;
         }
+
+        public void AddHeavyEnemy(int x, int y)
+        {
+            if (enemyCount > enemyCap - 1) { return; }
+            enemies[enemyCount] = new Heavy(x,y);
+            enemyCount += 1;
+        }
     }
 }

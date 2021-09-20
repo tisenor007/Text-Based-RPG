@@ -12,15 +12,21 @@ namespace Text_Based_RPG
         private Random rand = new Random();
         private Item newItem = new Item();
         private Player player;
-        private Shopkeeper shopKeeper;
+        private GameCharacter shopKeeper;
         private Camera camera;
         private Inventory inventory;
-        public Shop(int shopCenterX, int shopCenterY, int shopWidth, int shopHeight, bool isShopVertical, int amountOfItems, ItemManager itemManager, Player playerReference, Camera cam, Inventory inventoryReference)
+        private EnemyManager enemyManager;
+        private int xLoc;
+        private int yLoc;
+        public Shop(int shopCenterX, int shopCenterY, int shopWidth, int shopHeight, bool isShopVertical, int amountOfItems, ItemManager itemManager, Player playerReference, Camera cam, Inventory inventoryReference, EnemyManager enemyManagerReference)
         {
             isShopOpen = true;
             player = playerReference;
             camera = cam;
             inventory = inventoryReference;
+            enemyManager = enemyManagerReference;
+            xLoc = shopCenterX;
+            yLoc = shopCenterY;
 
             shopKeeper = new Shopkeeper(shopCenterX, shopCenterY, player, this);
             if (isShopVertical)
@@ -80,7 +86,7 @@ namespace Text_Based_RPG
                     Console.Clear();
                     Console.WriteLine("Do you want to buy this " + itemToBuy.CheckName() + "!");
                     Console.WriteLine("Cost: " + itemToBuy.CheckPrice() + "    Gold: " + player.CheckMoney());
-                    Console.WriteLine("Y) Yes    N) No");
+                    Console.WriteLine("Y) Yes    N) No      S) Steal");
                     ConsoleKeyInfo keyPressed = Console.ReadKey(true);
                     if (keyPressed.Key == ConsoleKey.Y)
                     {
@@ -90,14 +96,31 @@ namespace Text_Based_RPG
                     } else if (keyPressed.Key == ConsoleKey.N)
                     {
                         shopLoop = false;
+                    } else if(keyPressed.Key == ConsoleKey.S)
+                    {
+                        PickUpItem(itemToBuy);
+                        isShopOpen = false;
+                        shopKeeper = new Heavy(shopKeeper.xLoc, shopKeeper.yLoc);
+                        shopLoop = false;
                     }
                 } else
                 {
                     Console.Clear();
                     Console.WriteLine("You cannot afford this " + itemToBuy.CheckName() + "!");
                     Console.WriteLine("Cost: " + itemToBuy.CheckPrice() + "    Gold: " + player.CheckMoney());
-                    Console.ReadKey(true);
-                    shopLoop = false;
+                    Console.WriteLine("L) Leave   S) Steal");
+                    ConsoleKeyInfo keyPressed = Console.ReadKey(true);
+                    if (keyPressed.Key == ConsoleKey.L)
+                    {
+                        shopLoop = false;
+                    }
+                    else if (keyPressed.Key == ConsoleKey.S)
+                    {
+                        PickUpItem(itemToBuy);
+                        isShopOpen = false;
+                        StolenItem();
+                        shopLoop = false;
+                    }
                 }
             }
         }       
@@ -134,6 +157,12 @@ namespace Text_Based_RPG
                     newItem = new FirstAidKit(x, y);
                     break;
             }
+        }
+
+        private void StolenItem()
+        {
+            enemyManager.AddHeavyEnemy(xLoc, yLoc);
+            shopKeeper.Disappear();
         }
     }
 }

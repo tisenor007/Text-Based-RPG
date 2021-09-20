@@ -9,7 +9,6 @@ namespace Text_Based_RPG
     class Shopkeeper : GameCharacter
     {
         private Currency wallet;
-        private bool isHostile;
         private string avatar = "C";
         private Player player;
         private Shop shop;
@@ -32,6 +31,12 @@ namespace Text_Based_RPG
                 case false:
                     break;
             }
+        }
+
+        public void Disappear()
+        {
+            xLoc = 0;
+            yLoc = 0;
         }
     }
 }
