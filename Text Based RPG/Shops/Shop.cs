@@ -100,7 +100,9 @@ namespace Text_Based_RPG
                     {
                         PickUpItem(itemToBuy);
                         isShopOpen = false;
-                        shopKeeper = new Heavy(shopKeeper.xLoc, shopKeeper.yLoc);
+                        Console.Clear();
+                        Console.WriteLine("Clerk: You thief! I'll make you regret robbing me!");
+                        Console.ReadKey(true);
                         shopLoop = false;
                     }
                 } else
@@ -119,6 +121,9 @@ namespace Text_Based_RPG
                         PickUpItem(itemToBuy);
                         isShopOpen = false;
                         StolenItem();
+                        Console.Clear();
+                        Console.WriteLine("Clerk: You thief! I'll make you regret robbing me!");
+                        Console.ReadKey(true);
                         shopLoop = false;
                     }
                 }
