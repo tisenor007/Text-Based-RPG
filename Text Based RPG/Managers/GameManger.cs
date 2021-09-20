@@ -33,11 +33,18 @@ namespace Text_Based_RPG
             itemManager.SetShopManager(shopManager);
 
             //gameloop
+            Hud.DisplayHUD(player, enemyManager, camera, inventory);
+            camera.Draw(player, enemyManager, map, itemManager);
             while (true)
             {
                 
                 //draws + other game elements(for polish)
                 shopManager.Update();
+                itemManager.UpdateItems(map, player, inventory, camera);
+                inventory.Update(player, itemManager);
+                player.Update(map, enemyManager, itemManager, gameOver, inventory, shopManager);
+                camera.Update(map, player);
+                enemyManager.UpdateEnemies(map, player, camera, itemManager, enemyManager);
 
                 itemManager.DrawItems(camera);
                 Hud.DisplayHUD(player, enemyManager, camera, inventory);
@@ -49,11 +56,7 @@ namespace Text_Based_RPG
 
                 //updates
                 //world.Update(enemyManager, itemManager);
-                itemManager.UpdateItems(map, player, inventory, camera);
-                inventory.Update(player, itemManager);
-                player.Update(map, enemyManager, itemManager, gameOver, inventory, shopManager);
-                camera.Update(map, player);
-                enemyManager.UpdateEnemies(map, player, camera, itemManager, enemyManager);
+                
 
                 //if game is over in anyway break out of game loop.....
 

@@ -87,7 +87,7 @@ namespace Text_Based_RPG
                     {
                         if (slots[x] != null)
                         {
-                            if (slots[x].itemType == Item.ItemType.Key)
+                            if (slots[x].itemType == Item.ItemType.Key || slots[x].itemType == Item.ItemType.Valuable)
                             {
                                 Console.Clear();
                                 Console.WriteLine("You cannot sell this item.");
