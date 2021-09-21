@@ -2,7 +2,6 @@
 {
     class Shopkeeper : GameCharacter
     {
-        private Currency wallet;
         private string avatar = "C";
         private Player player;
         private Shop shop;
@@ -20,6 +19,7 @@
             switch(player.isPlayerAt(xLoc, yLoc))
             {
                 case true:
+                    player.ReturnToLastPosition();
                     shop.SellMenu();
                     break;
                 case false:

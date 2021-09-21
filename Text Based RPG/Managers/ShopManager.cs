@@ -8,7 +8,7 @@
         {
             shops = new Shop[3];
             shops[0] = new Shop(44, 10, 3, 1, true, 3, itemManager, player, cam, inventory, enemyManager);
-            shops[1] = new Shop(118, 9, 3, 1, false, 3, itemManager, player, cam, inventory, enemyManager);
+            shops[1] = new Shop(118, 9, 1, 2, true, 3, itemManager, player, cam, inventory, enemyManager);
             shops[2] = new Shop(47, 24, 2, -2, true, 3, itemManager, player, cam, inventory, enemyManager);
         }
 

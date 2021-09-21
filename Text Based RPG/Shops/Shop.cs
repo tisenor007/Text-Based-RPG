@@ -8,7 +8,7 @@ namespace Text_Based_RPG
         private Random rand = new Random();
         private Item newItem = new Item();
         private Player player;
-        private GameCharacter shopKeeper;
+        private Shopkeeper shopKeeper;
         private Camera camera;
         private Inventory inventory;
         private EnemyManager enemyManager;
@@ -25,6 +25,7 @@ namespace Text_Based_RPG
             yLoc = shopCenterY;
 
             shopKeeper = new Shopkeeper(shopCenterX, shopCenterY, player, this);
+            shopKeeper.SetMoney(30);
             if (isShopVertical)
             {
                for(int x = 0; x < amountOfItems; x++)
@@ -70,7 +71,92 @@ namespace Text_Based_RPG
         }
         public void SellMenu()
         {
-            inventory.SellInventory(player);
+            for (bool sellMenuOpen = true; sellMenuOpen == true;)
+            {
+                Console.Clear();
+                Console.WriteLine("Clerk: What do you want to sell to me?");
+                Console.WriteLine();
+                inventory.SellInventoryDisplay(player, shopKeeper);
+                Console.WriteLine();
+                Console.WriteLine("Clerk's Gold: " + shopKeeper.CheckMoney() + "      " + "Your Gold: " + player.CheckMoney());
+                Console.WriteLine();
+                Console.WriteLine("To sell an item, press the related number of said item.");
+                Console.WriteLine();
+                Console.WriteLine("E) Exit");
+                Console.WriteLine();
+
+                ConsoleKeyInfo input = Console.ReadKey(true);
+                for (int x = 0; x < inventory.InventorySize(); x++)
+                {
+                    if (input.Key == ConsoleKey.B)
+                    {
+                        sellMenuOpen = false;
+                        return;
+                    }
+                    else if (((int)input.Key) - 48 == x + 1)
+                    {
+                        if (inventory.InventorySlots(x) != null)
+                        {
+                            if (inventory.InventorySlots(x).itemType == Item.ItemType.Key || inventory.InventorySlots(x).itemType == Item.ItemType.Valuable)
+                            {
+                                Console.Clear();
+                                Console.WriteLine("You cannot sell this item.");
+                                Console.WriteLine("Press any key to continue.");
+                                Console.ReadKey(true);
+                                return;
+                            }
+                            else
+                            {
+                                for (bool inputCheck = false; inputCheck == false;)
+                                {
+                                    if (shopKeeper.CheckMoney() >= inventory.InventorySlots(x).CheckPrice())
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Do you want to sell " + inventory.InventorySlots(x).CheckName() + " for " + inventory.InventorySlots(x).CheckPrice() + "?");
+                                        Console.WriteLine("Clerk's Gold: " + shopKeeper.CheckMoney() + "      " + "Your Gold: " + player.CheckMoney());
+                                        Console.WriteLine("Y) Yes     N) No");
+                                        ConsoleKeyInfo secondaryInput = Console.ReadKey(true);
+
+                                        if (secondaryInput.Key == ConsoleKey.Y)
+                                        {
+                                            player.GainMoney(inventory.InventorySlots(x).CheckPrice());
+                                            shopKeeper.LoseMoney(inventory.InventorySlots(x).CheckPrice());
+                                            inventory.removeItemFromInventory(x);
+                                            inputCheck = true;
+                                        }
+                                        else if (secondaryInput.Key == ConsoleKey.N)
+                                        {
+                                            inputCheck = true;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("The Clerk cannot afford the original price of " + inventory.InventorySlots(x).CheckPrice() + ".");
+                                        Console.WriteLine("Do you still want to sell " + inventory.InventorySlots(x).CheckName() + " for " + shopKeeper.CheckMoney() + "?");
+                                        Console.WriteLine("Clerk's Gold: " + shopKeeper.CheckMoney() + "      " + "Your Gold: " + player.CheckMoney());
+                                        Console.WriteLine("Y) Yes     N) No");
+                                        ConsoleKeyInfo secondaryInput = Console.ReadKey(true);
+
+                                        if (secondaryInput.Key == ConsoleKey.Y)
+                                        {
+                                            player.GainMoney(shopKeeper.CheckMoney());
+                                            shopKeeper.LoseMoney(shopKeeper.CheckMoney());
+                                            inventory.removeItemFromInventory(x);
+                                            inputCheck = true;
+                                        }
+                                        else if (secondaryInput.Key == ConsoleKey.N)
+                                        {
+                                            inputCheck = true;
+                                        }
+                                    }
+                                }
+                            }
+                            sellMenuOpen = false;
+                        }
+                    }
+                }
+            }
         }
 
             private void Purchase(Item itemToBuy)
@@ -89,6 +175,7 @@ namespace Text_Based_RPG
                         PickUpItem(itemToBuy);
                         player.LoseMoney(itemToBuy.CheckPrice());
                         shopLoop = false;
+                        shopKeeper.GainMoney(itemToBuy.CheckPrice());
                     } else if (keyPressed.Key == ConsoleKey.N)
                     {
                         shopLoop = false;
@@ -96,6 +183,7 @@ namespace Text_Based_RPG
                     {
                         PickUpItem(itemToBuy);
                         isShopOpen = false;
+                        StolenItem();
                         Console.Clear();
                         Console.WriteLine("Clerk: You thief! I'll make you regret robbing me!");
                         Console.ReadKey(true);

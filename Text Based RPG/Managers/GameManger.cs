@@ -39,10 +39,10 @@ namespace Text_Based_RPG
             {
                 
                 //draws + other game elements(for polish)
-                shopManager.Update();
                 itemManager.UpdateItems(map, player, inventory, camera);
-                inventory.Update(player, itemManager);
                 player.Update(map, enemyManager, itemManager, gameOver, inventory, shopManager);
+                shopManager.Update();
+                inventory.Update(player, itemManager);
                 camera.Update(map, player);
                 enemyManager.UpdateEnemies(map, player, camera, itemManager, enemyManager);
 

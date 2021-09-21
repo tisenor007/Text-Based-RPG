@@ -25,6 +25,7 @@ namespace Text_Based_RPG
         public Tile characterTile = new Tile(' ', ConsoleColor.White);
 
         private int shieldCap = 1000;
+        private Currency wallet = new Currency();
         //to switch or set if the game character is dead or alive
         protected void SwitchVitalStatus(VitalStatus newVitalStatus)
         {
@@ -93,6 +94,23 @@ namespace Text_Based_RPG
         {
             xLoc = 0;
             yLoc = 0;
+        }
+
+        public void GainMoney(int moneyToGain)
+        {
+            wallet.AddMoney(moneyToGain);
+        }
+        public void LoseMoney(int moneyToLose)
+        {
+            wallet.TakeMoney(moneyToLose);
+        }
+        public void SetMoney(int money)
+        {
+            wallet.AddMoney(money);
+        }
+        public int CheckMoney()
+        {
+            return wallet.CheckMoney();
         }
     }
 }
