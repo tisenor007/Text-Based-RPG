@@ -90,12 +90,6 @@ namespace Text_Based_RPG
             health = 0;
             characterTile.tileCharacter = 'X';
         }
-        public void Disappear()
-        {
-            xLoc = 0;
-            yLoc = 0;
-        }
-
         public void GainMoney(int moneyToGain)
         {
             wallet.AddMoney(moneyToGain);

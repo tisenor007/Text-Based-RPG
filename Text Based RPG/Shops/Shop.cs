@@ -223,7 +223,7 @@ namespace Text_Based_RPG
 
         private void CreateItem(int x, int y)
         {
-            switch (rand.Next(0, 5))
+            switch (rand.Next(0, 6))
             {
                 case 0:
                     newItem = new Shield(x, y);
