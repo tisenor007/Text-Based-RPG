@@ -16,7 +16,7 @@ namespace Text_Based_RPG
             Console.ForegroundColor = ConsoleColor.White;
             Console.SetCursorPosition(0, camera.endViewY + 2);
             Console.WriteLine(clear);
-            Console.Write(player.name + " health: " + player.health +"       " + player.xLoc +", "+player.yLoc);
+            Console.Write(player.name + " health: " + player.health +"             " + player.xLoc +", "+player.yLoc);
             Console.WriteLine(clear);
             Console.Write(player.name + " shield health: " + player.shield + "       Gold: " + player.CheckMoney());
             Console.WriteLine(clear);

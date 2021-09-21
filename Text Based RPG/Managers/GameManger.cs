@@ -46,17 +46,13 @@ namespace Text_Based_RPG
                 camera.Update(map, player);
                 enemyManager.UpdateEnemies(map, player, camera, itemManager, enemyManager);
 
+                // updates
                 itemManager.DrawItems(camera);
                 Hud.DisplayHUD(player, enemyManager, camera, inventory);
                 enemyManager.DrawEnemies(camera);
                 shopManager.Draw();
                 player.Draw(camera);
-                camera.Draw(player, enemyManager, map, itemManager);
-
-
-                //updates
-                //world.Update(enemyManager, itemManager);
-                
+                camera.Draw(player, enemyManager, map, itemManager);               
 
                 //if game is over in anyway break out of game loop.....
 

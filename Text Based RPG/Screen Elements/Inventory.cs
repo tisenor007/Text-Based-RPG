@@ -8,7 +8,7 @@ namespace Text_Based_RPG
 {
     class Inventory
     {
-        public Item[] slots = new Item[inventorySize];
+        public Item[] slots = new Item[inventorySize*10];
         //keeps track of things in iventory
         public int filledInventorySlots = 0;
         public bool inventoryIsOpen = false;
@@ -17,7 +17,7 @@ namespace Text_Based_RPG
 
         public void Update(Player player, ItemManager itemManager)
         {
-            if (inventoryIsFull)
+            if (filledInventorySlots >= 9)
                 inventorySize = filledInventorySlots + 1;
             else
                 inventorySize = 10;
