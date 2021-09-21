@@ -18,7 +18,8 @@ namespace Text_Based_RPG
         public void Update(Player player, ItemManager itemManager)
         {
             if (filledInventorySlots >= 9)
-                inventorySize = filledInventorySlots + 1;
+                if(filledInventorySlots + 1 <= (inventorySize*10)-1)
+                    inventorySize = filledInventorySlots + 1;
             else
                 inventorySize = 10;
             if (inventoryIsOpen == true) { OpenInventory(player, itemManager); }

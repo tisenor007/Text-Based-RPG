@@ -64,7 +64,8 @@ namespace Text_Based_RPG
             if (isShopOpen)
             {
                 Purchase(itemToBuy);
-            } else
+            }
+            else
             {
                 PickUpItem(itemToBuy);
             }
