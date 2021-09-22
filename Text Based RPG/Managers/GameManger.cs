@@ -30,7 +30,7 @@ namespace Text_Based_RPG
 
             //gameloop
             Hud.DisplayHUD(player, enemyManager, camera, inventory);
-            camera.Draw(player, enemyManager, map, itemManager);
+            camera.Draw(player, enemyManager, map, itemManager, shopManager);
             while (true)
             {
                 
@@ -48,7 +48,7 @@ namespace Text_Based_RPG
                 enemyManager.DrawEnemies(camera);
                 shopManager.Draw();
                 player.Draw(camera);
-                camera.Draw(player, enemyManager, map, itemManager);               
+                camera.Draw(player, enemyManager, map, itemManager, shopManager);               
 
                 //if game is over in anyway break out of game loop.....
 

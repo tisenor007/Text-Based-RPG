@@ -45,6 +45,10 @@ namespace Text_Based_RPG
         {
             camera.DrawToRenderer(characterTile.tileCharacter, xLoc, yLoc);
         }
+        public void SetTileColor(char[,] renderer, int x, int y, int offsetX, int offsetY)
+        {
+            characterTile.SetTileColour(renderer, x, y, offsetX, offsetY);
+        }
         public virtual void Update()
         {
             //to be done per character

@@ -32,7 +32,7 @@ namespace Text_Based_RPG
             //draws the on the renderer every update to prevent trails...
             map.DrawToRender(renderer);
         }
-        public void Draw(Player player, EnemyManager enemyManager, Map map, ItemManager itemManager)
+        public void Draw(Player player, EnemyManager enemyManager, Map map, ItemManager itemManager, ShopManager shopManager)
         {
             //always makes camera top left of screen.....
             Console.SetCursorPosition(0, 0);
@@ -54,7 +54,7 @@ namespace Text_Based_RPG
                 {
                     try
                     {
-                        SetColours(x, y, player, enemyManager, map, itemManager);
+                        SetColours(x, y, player, enemyManager, map, itemManager, shopManager);
                         Console.Write(renderer[x + offsetX, y + offsetY]);
                     }
                     catch
@@ -82,11 +82,12 @@ namespace Text_Based_RPG
             //method to draw items to the renderer
             renderer[x, y] = character;
         }
-        public void SetColours(int x, int y, Player player, EnemyManager enemyManager, Map map, ItemManager itemManager)
+        public void SetColours(int x, int y, Player player, EnemyManager enemyManager, Map map, ItemManager itemManager, ShopManager shopManager)
         {
             Console.ForegroundColor = ConsoleColor.White;
             player.characterTile.SetTileColour(renderer, x, y, offsetX, offsetY);
             enemyManager.SetEnemyColour(renderer, x, y, offsetX, offsetY);
+            shopManager.GetFirstShopKeeper().SetTileColor(renderer, x, y, offsetX, offsetY);
             //go to map.cs to set tiles and tile colours
             map.SetMapColours(renderer, x, y, offsetX, offsetY);
             itemManager.SetItemColour(renderer, x, y, offsetX, offsetY);

@@ -5,7 +5,7 @@ namespace Text_Based_RPG
     class Shop
     {
         private bool isShopOpen;
-        private Random rand = new Random();
+        private Random rand;
         private Item newItem = new Item();
         private Player player;
         private Shopkeeper shopKeeper;
@@ -14,7 +14,8 @@ namespace Text_Based_RPG
         private EnemyManager enemyManager;
         private int xLoc;
         private int yLoc;
-        public Shop(int shopCenterX, int shopCenterY, int shopWidth, int shopHeight, bool isShopVertical, int amountOfItems, ItemManager itemManager, Player playerReference, Camera cam, Inventory inventoryReference, EnemyManager enemyManagerReference)
+        private int previousItemID = 0;
+        public Shop(int shopCenterX, int shopCenterY, int shopWidth, int shopHeight, bool isShopVertical, int amountOfItems, ItemManager itemManager, Player playerReference, Camera cam, Inventory inventoryReference, EnemyManager enemyManagerReference, Random randReference)
         {
             isShopOpen = true;
             player = playerReference;
@@ -23,6 +24,7 @@ namespace Text_Based_RPG
             enemyManager = enemyManagerReference;
             xLoc = shopCenterX;
             yLoc = shopCenterY;
+            rand = randReference;
 
             shopKeeper = new Shopkeeper(shopCenterX, shopCenterY, player, this);
             shopKeeper.SetMoney(30);
@@ -70,6 +72,10 @@ namespace Text_Based_RPG
                 PickUpItem(itemToBuy);
             }
         }
+        public Shopkeeper GetShopKeeper()
+        {
+            return shopKeeper;
+        }
         public void SellMenu()
         {
             for (bool sellMenuOpen = true; sellMenuOpen == true;)
@@ -89,7 +95,7 @@ namespace Text_Based_RPG
                 ConsoleKeyInfo input = Console.ReadKey(true);
                 for (int x = 0; x < inventory.InventorySize(); x++)
                 {
-                    if (input.Key == ConsoleKey.B)
+                    if (input.Key == ConsoleKey.E)
                     {
                         sellMenuOpen = false;
                         return;
@@ -160,7 +166,7 @@ namespace Text_Based_RPG
             }
         }
 
-            private void Purchase(Item itemToBuy)
+        private void Purchase(Item itemToBuy)
         {
             for (bool shopLoop = true; shopLoop != false;)
             {
@@ -223,7 +229,13 @@ namespace Text_Based_RPG
 
         private void CreateItem(int x, int y)
         {
-            switch (rand.Next(0, 6))
+            int randomItem = rand.Next(8);
+            while (randomItem == previousItemID)
+            {
+                randomItem = rand.Next(8);
+            }
+            previousItemID = randomItem;
+            switch (randomItem)
             {
                 case 0:
                     newItem = new Shield(x, y);
@@ -242,6 +254,12 @@ namespace Text_Based_RPG
                     break;
                 case 5:
                     newItem = new Weapon(x, y, Item.ItemType.Machete);
+                    break;
+                case 6:
+                    newItem = new Shield(x, y);
+                    break;
+                case 7:
+                    newItem = new FirstAidKit(x, y);
                     break;
                 default:
                     newItem = new FirstAidKit(x, y);

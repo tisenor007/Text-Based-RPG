@@ -2,7 +2,7 @@
 {
     class Shopkeeper : GameCharacter
     {
-        private string avatar = "C";
+        private char avatar = 'C';
         private Player player;
         private Shop shop;
 
@@ -10,7 +10,8 @@
         {
             shop = shopReference;
             player = playerReference;
-            characterTile.tileCharacter = 'C';
+            characterTile.tileCharacter = avatar;
+            characterTile.tileColour = System.ConsoleColor.Yellow;
             xLoc = x;
             yLoc = y;
         }

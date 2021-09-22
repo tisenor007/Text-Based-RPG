@@ -29,6 +29,9 @@ namespace Text_Based_RPG
         }
         public override void Update(Map map, Player player, Inventory inventory, Camera camera, ItemManager itemManager)
         {
+            if (isShopItem == true)
+                itemTile.tileColour = ConsoleColor.Yellow;
+
             if (pickedUp == true)
             {
                 xLoc = 0;

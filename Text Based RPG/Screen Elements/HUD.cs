@@ -8,7 +8,7 @@ namespace Text_Based_RPG
 {
     class HUD
     {
-        private string clear = "                                                                                                     ";
+        private string clear = "                                                                                                                     ";
         public void DisplayHUD(Player player, EnemyManager enemyManager, Camera camera, Inventory inventory)
         {
             //player stats
