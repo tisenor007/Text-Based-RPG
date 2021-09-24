@@ -45,7 +45,7 @@ namespace Text_Based_RPG
                 Console.Write("-");
             }
             Console.Write("+");
-            Console.WriteLine();
+            Console.WriteLine("                                                                          ");
             for (int y = startViewY; y < endViewY; y++)
             {
                 Console.ForegroundColor = ConsoleColor.White;
@@ -64,7 +64,7 @@ namespace Text_Based_RPG
                 }
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("|");
-                Console.WriteLine();
+                Console.WriteLine("                                                                          ");
             }
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("+");
@@ -75,7 +75,7 @@ namespace Text_Based_RPG
             }
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("+");
-            Console.WriteLine();
+            Console.WriteLine("                                                                          ");
         }
         public void DrawToRenderer(char character, int x, int y)
         {
