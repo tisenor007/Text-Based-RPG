@@ -82,6 +82,10 @@ namespace Text_Based_RPG
             itemType = newWeapon;
             switch (itemType)
             {
+                case ItemType.Fist:
+                    player.weaponInHand.itemType = ItemType.Fist;
+                    player.attackDamage = 5;
+                    break;
                 case ItemType.BrassKnuckles:
                     player.weaponInHand.itemType = ItemType.BrassKnuckles;
                     player.attackDamage = 10;

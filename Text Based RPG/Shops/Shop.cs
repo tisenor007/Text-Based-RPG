@@ -5,7 +5,7 @@ namespace Text_Based_RPG
     class Shop
     {
         private bool isShopOpen;
-        private Random rand;
+        private Random rand = new Random();
         private Item newItem = new Item();
         private Player player;
         private Shopkeeper shopKeeper;
@@ -15,7 +15,7 @@ namespace Text_Based_RPG
         private int xLoc;
         private int yLoc;
         private int previousItemID = 0;
-        public Shop(int shopCenterX, int shopCenterY, int shopWidth, int shopHeight, bool isShopVertical, int amountOfItems, ItemManager itemManager, Player playerReference, Camera cam, Inventory inventoryReference, EnemyManager enemyManagerReference, Random randReference)
+        public Shop(int shopCenterX, int shopCenterY, int shopWidth, int shopHeight, bool isShopVertical, int amountOfItems, ItemManager itemManager, Player playerReference, Camera cam, Inventory inventoryReference, EnemyManager enemyManagerReference)
         {
             isShopOpen = true;
             player = playerReference;
@@ -24,7 +24,6 @@ namespace Text_Based_RPG
             enemyManager = enemyManagerReference;
             xLoc = shopCenterX;
             yLoc = shopCenterY;
-            rand = randReference;
 
             shopKeeper = new Shopkeeper(shopCenterX, shopCenterY, player, this);
             shopKeeper.SetMoney(30);

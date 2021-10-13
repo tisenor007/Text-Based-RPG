@@ -20,7 +20,7 @@ namespace Text_Based_RPG
             characterTile.tileCharacter = '@';
             characterTile.tileColour = ConsoleColor.Cyan;
             health = 100;
-            shield = 0;
+            shield = 50;
             collectedValuables = 0;
             name = "Player";
             weaponInHand = new Item();

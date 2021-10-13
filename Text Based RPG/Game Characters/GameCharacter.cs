@@ -24,7 +24,8 @@ namespace Text_Based_RPG
         protected VitalStatus vitalStatus;
         public Tile characterTile = new Tile(' ', ConsoleColor.White);
 
-        private int shieldCap = 1000;
+        private int shieldCap = 50;
+        private int healthCap = 100;
         private Currency wallet = new Currency();
         //to switch or set if the game character is dead or alive
         protected void SwitchVitalStatus(VitalStatus newVitalStatus)
@@ -76,6 +77,11 @@ namespace Text_Based_RPG
         public void Heal(int hp)
         {
             health = health + hp;
+            if (health >= healthCap)
+            {
+                //health is capped at 100
+                health = healthCap;
+            }
         }
         //regenerate sheild method
         public void RegenShield(int sp)
@@ -83,7 +89,7 @@ namespace Text_Based_RPG
             shield = shield + sp;
             if (shield >= shieldCap)
             {
-                //shield is capped at 100
+                //shield is capped at 50
                 shield = shieldCap;
             } 
         }

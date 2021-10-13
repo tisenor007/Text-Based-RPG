@@ -24,8 +24,8 @@ namespace Text_Based_RPG
             HUD Hud = new HUD();
             Camera camera = new Camera(map);
             Inventory inventory = new Inventory();
-            ShopManager shopManager = new ShopManager(itemManager, player, camera, inventory, enemyManager);
-            world.InitEntities(enemyManager, itemManager, player, inventory);
+            ShopManager shopManager = new ShopManager();
+            world.InitEntities(enemyManager, itemManager, player, camera, inventory, shopManager);
             itemManager.SetShopManager(shopManager);
 
             //gameloop
