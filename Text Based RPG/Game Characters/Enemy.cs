@@ -19,6 +19,8 @@ namespace Text_Based_RPG
        
         protected Moving direction;
         protected Random rnd = new Random();
+        protected int goldAmountToGive = 10;
+        protected bool gaveGold = false;
         //switches directions/movement behavior
         
         protected void Move(Moving newDirection)
@@ -67,6 +69,11 @@ namespace Text_Based_RPG
             }
             else
             {
+                if (!gaveGold)
+                {
+                    player.GainMoney(goldAmountToGive);
+                    gaveGold = true;
+                }
                 SwitchVitalStatus(VitalStatus.Dead);
             }
         }

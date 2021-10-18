@@ -8,7 +8,7 @@ namespace Text_Based_RPG
 {
     class Inventory
     {
-        public Item[] slots = new Item[inventorySize];
+        public Item[] slots = new Item[inventorySize*10];
         //keeps track of things in iventory
         public int filledInventorySlots = 0;
         public bool inventoryIsOpen = false;
@@ -17,7 +17,20 @@ namespace Text_Based_RPG
 
         public void Update(Player player, ItemManager itemManager)
         {
+            if (filledInventorySlots >= 9)
+                if(filledInventorySlots + 1 <= (inventorySize*10)-1)
+                    inventorySize = filledInventorySlots + 1;
+            else
+                inventorySize = 10;
             if (inventoryIsOpen == true) { OpenInventory(player, itemManager); }
+        }
+        public int InventorySize()
+        {
+            return inventorySize;
+        }
+        public Item InventorySlots(int index)
+        {
+            return slots[index];
         }
         public void addItemToInventory(Item item)
         {
@@ -45,6 +58,20 @@ namespace Text_Based_RPG
         {
             slots[itemSlot] = null;
             filledInventorySlots = filledInventorySlots - 1;
+        }
+        public void SellInventoryDisplay(Player player, Shopkeeper shopKeeper)
+        { 
+            for (int i = 0; i < inventorySize; i++)
+            {
+                if (slots[i] == null)
+                {
+                    Console.WriteLine("Inventory slot " + (i + 1) + ": ");
+                }
+                else
+                {
+                    Console.WriteLine("Inventory slot " + (i + 1) + ": " + slots[i].itemType);
+                }
+            }
         }
 
         public void OpenInventory(Player player, ItemManager itemManager)

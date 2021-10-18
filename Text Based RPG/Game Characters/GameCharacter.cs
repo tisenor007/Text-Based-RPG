@@ -23,6 +23,10 @@ namespace Text_Based_RPG
         public string name;
         protected VitalStatus vitalStatus;
         public Tile characterTile = new Tile(' ', ConsoleColor.White);
+
+        private int shieldCap = 50;
+        private int healthCap = 100;
+        private Currency wallet = new Currency();
         //to switch or set if the game character is dead or alive
         protected void SwitchVitalStatus(VitalStatus newVitalStatus)
         {
@@ -41,6 +45,14 @@ namespace Text_Based_RPG
         public void Draw(Camera camera)
         {
             camera.DrawToRenderer(characterTile.tileCharacter, xLoc, yLoc);
+        }
+        public void SetTileColor(char[,] renderer, int x, int y, int offsetX, int offsetY)
+        {
+            characterTile.SetTileColour(renderer, x, y, offsetX, offsetY);
+        }
+        public virtual void Update()
+        {
+            //to be done per character
         }
         //take damage for every gamecharacter
         public void TakeDamage(int Damage)
@@ -65,15 +77,20 @@ namespace Text_Based_RPG
         public void Heal(int hp)
         {
             health = health + hp;
+            if (health >= healthCap)
+            {
+                //health is capped at 100
+                health = healthCap;
+            }
         }
         //regenerate sheild method
         public void RegenShield(int sp)
         {
             shield = shield + sp;
-            if (shield >= 50)
+            if (shield >= shieldCap)
             {
-                //shield is capped at 100
-                shield = 50;
+                //shield is capped at 50
+                shield = shieldCap;
             } 
         }
         //properties for dead game characters
@@ -82,6 +99,22 @@ namespace Text_Based_RPG
             characterTile.tileColour = ConsoleColor.White;
             health = 0;
             characterTile.tileCharacter = 'X';
+        }
+        public void GainMoney(int moneyToGain)
+        {
+            wallet.AddMoney(moneyToGain);
+        }
+        public void LoseMoney(int moneyToLose)
+        {
+            wallet.TakeMoney(moneyToLose);
+        }
+        public void SetMoney(int money)
+        {
+            wallet.AddMoney(money);
+        }
+        public int CheckMoney()
+        {
+            return wallet.CheckMoney();
         }
     }
 }

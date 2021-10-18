@@ -8,17 +8,17 @@ namespace Text_Based_RPG
 {
     class HUD
     {
-        private string clear = "                                                                                                     ";
+        private string clear = "                                                                                                                     ";
         public void DisplayHUD(Player player, EnemyManager enemyManager, Camera camera, Inventory inventory)
         {
             //player stats
             //clear string to prevent overlapping text and values.....
             Console.ForegroundColor = ConsoleColor.White;
-            Console.SetCursorPosition(0, camera.endViewY + 1);
+            Console.SetCursorPosition(0, camera.endViewY + 2);
             Console.WriteLine(clear);
-            Console.Write(player.name + " health: " + player.health);
+            Console.Write(player.name + " health: " + player.health +"             " + player.xLoc +", "+player.yLoc);
             Console.WriteLine(clear);
-            Console.Write(player.name + " sheild health: " + player.shield);
+            Console.Write(player.name + " shield health: " + player.shield + "       Gold: " + player.CheckMoney());
             Console.WriteLine(clear);
             Console.Write(player.name + " weapon in hand: " + player.weaponInHand.itemType);
             Console.WriteLine(clear);
@@ -29,10 +29,6 @@ namespace Text_Based_RPG
             {
                 Console.WriteLine(clear);
                 Console.Write("YOUR INVENTORY IS FULL!");
-            }
-            else
-            {
-                //nothing
             }
             Console.WriteLine();
             
@@ -45,35 +41,6 @@ namespace Text_Based_RPG
                   Console.Write(enemyManager.enemies[i].name + " enemy number " + i + "'s health: " + enemyManager.enemies[i].health);
                 }
             }
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
-            Console.WriteLine(clear);
             Console.WriteLine(clear);
             Console.WriteLine(clear);
             Console.WriteLine(clear);

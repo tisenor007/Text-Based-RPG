@@ -13,6 +13,26 @@ namespace Text_Based_RPG
         public int itemCount;
         //total number of enemies
         private static int itemCap = 100;
+
+        private ShopManager shopManager;
+        public void SetShopManager(ShopManager shopManagerReference)
+        {
+            shopManager = shopManagerReference;
+        }
+
+        //this runs as part of the Shop's init
+        public void AddShopItem(Item itemToAdd)
+        {
+            for(int x = 0; x < itemCap; x++)
+            {
+                if(items[x] == null)
+                {
+                    items[x] = itemToAdd;
+                    itemCount = itemCount + 1;
+                    return;
+                }
+            }
+        }
         public void InitItemFromWorldLoc(char[,] world, int X, int Y)
         {
                 if (itemCount > itemCap - 1) { return; }
@@ -59,8 +79,15 @@ namespace Text_Based_RPG
                 {
                     if (y == items[i].yLoc)
                     {
-                        items[i].pickedUp = true;
-                        return;
+                        if (CheckForShopItem(items[i]))
+                        {
+                            shopManager.PurchaseFromShop(items[i].GetShop(), items[i]);
+                        }
+                        else
+                        {
+                            items[i].pickedUp = true;
+                            return;
+                        }
                     }
                 }
             }
@@ -130,6 +157,11 @@ namespace Text_Based_RPG
                 }
             }
             return false;
+        }
+
+        public bool CheckForShopItem(Item itemToCheck)
+        {
+            return itemToCheck.IsShopItem();
         }
     }
 }

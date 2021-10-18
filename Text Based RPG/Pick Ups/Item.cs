@@ -33,9 +33,16 @@ namespace Text_Based_RPG
         public int xLoc;
         public int yLoc;
         //what they are seen as
+
+        private int price;
+        private Shop shop;
+        protected bool isShopItem = false;
+        protected string name;
         
         public virtual void Update(Map map, Player player, Inventory inventory, Camera camera, ItemManager itemManager)
         {
+            if (isShopItem == true)
+                itemTile.tileColour = ConsoleColor.Yellow;
             Console.SetCursorPosition(1, 1);
             Console.WriteLine(infoMessage);
         }
@@ -43,7 +50,40 @@ namespace Text_Based_RPG
         public void Draw(Camera camera)
         {
             camera.DrawToRenderer(itemTile.tileCharacter, xLoc, yLoc);
+        }
 
+        public bool IsShopItem()
+        {
+            return isShopItem;
+        }
+        public Shop GetShop()
+        {
+            return shop;
+        }
+        public void SetPrice(int priceToSet)
+        {
+            price = priceToSet;
+        }
+        public void SetShopItem(bool shopItemBoolean)
+        {
+            isShopItem = shopItemBoolean;
+        }
+        public int CheckPrice()
+        {
+            return price;
+        }
+        public void SetPosition(int x, int y)
+        {
+            xLoc = x;
+            yLoc = y;
+        }
+        public void SetShop(Shop shopToSet)
+        {
+            shop = shopToSet;
+        }
+        public string CheckName()
+        {
+            return name;
         }
 
     }

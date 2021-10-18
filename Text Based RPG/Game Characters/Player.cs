@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
@@ -13,7 +9,9 @@ namespace Text_Based_RPG
         private bool itemExist;
         public int collectedValuables;
         public Item weaponInHand;
-       
+
+        private int previousXLoc;
+        private int previousYLoc;
 
         public Player()
         {
@@ -22,11 +20,13 @@ namespace Text_Based_RPG
             characterTile.tileCharacter = '@';
             characterTile.tileColour = ConsoleColor.Cyan;
             health = 100;
-            shield = 0;
+            shield = 50;
             collectedValuables = 0;
             name = "Player";
             weaponInHand = new Item();
             BecomeUnarmed();
+            previousXLoc = xLoc;
+            previousYLoc = yLoc;
         }
         //specific to the player...
 
@@ -43,13 +43,13 @@ namespace Text_Based_RPG
         {
             if (world[X, Y] == '@') { xLoc = X; yLoc = Y; }
         }
-        public void Update(Map map, EnemyManager enemyManager, ItemManager itemManager, GameOver gameOver, Inventory inventory)
+        public void Update(Map map, EnemyManager enemyManager, ItemManager itemManager, GameOver gameOver, Inventory inventory, ShopManager shopManager)
         {
             Console.CursorVisible = false;
-            ConsoleKeyInfo keyPressed = Console.ReadKey(true);
+            ConsoleKey keyPressed = Console.ReadKey(true).Key;
             if (vitalStatus == VitalStatus.Alive)
             {
-                if (keyPressed.Key == ConsoleKey.W)
+                if (keyPressed == ConsoleKey.W)
                 {
                     //collision
                     if (wallExist = map.IsWallAt(xLoc, yLoc - 1))
@@ -74,10 +74,12 @@ namespace Text_Based_RPG
                     }
                     else
                     {
+                        previousXLoc = xLoc;
+                        previousYLoc = yLoc;
                         yLoc = yLoc - 1;
                     }
                 }
-                if (keyPressed.Key == ConsoleKey.A)
+                if (keyPressed == ConsoleKey.A)
                 {
                     if (wallExist = map.IsWallAt(xLoc - 1, yLoc))
                     {
@@ -101,10 +103,12 @@ namespace Text_Based_RPG
                     }
                     else
                     {
+                        previousXLoc = xLoc;
+                        previousYLoc = yLoc;
                         xLoc = xLoc - 1;
                     }
                 }
-                if (keyPressed.Key == ConsoleKey.S)
+                if (keyPressed == ConsoleKey.S)
                 {
                     if (wallExist = map.IsWallAt(xLoc, yLoc + 1))
                     {
@@ -127,10 +131,12 @@ namespace Text_Based_RPG
                     }  
                     else
                     {
+                        previousXLoc = xLoc;
+                        previousYLoc = yLoc;
                         yLoc = yLoc + 1;
                     }
                 }
-                if (keyPressed.Key == ConsoleKey.D)
+                if (keyPressed == ConsoleKey.D)
                 {
                     if (wallExist = map.IsWallAt(xLoc + 1, yLoc))
                     {
@@ -153,10 +159,12 @@ namespace Text_Based_RPG
                     }
                     else
                     {
+                        previousXLoc = xLoc;
+                        previousYLoc = yLoc;
                         xLoc = xLoc + 1;
                     }
                 }
-                if (keyPressed.Key == ConsoleKey.I)
+                if (keyPressed == ConsoleKey.I)
                 {
                     inventory.inventoryIsOpen = true;
                 }
@@ -189,6 +197,12 @@ namespace Text_Based_RPG
             }
             
             return false;
+        }
+
+        public void ReturnToLastPosition()
+        {
+            xLoc = previousXLoc;
+            yLoc = previousYLoc;
         }
     }
 }

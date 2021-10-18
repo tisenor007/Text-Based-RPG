@@ -55,6 +55,11 @@ namespace Text_Based_RPG
             else
             {
                 SwitchVitalStatus(VitalStatus.Dead);
+                if (!gaveGold)
+                {
+                    player.GainMoney(goldAmountToGive);
+                    gaveGold = true;
+                }
             }
 
 

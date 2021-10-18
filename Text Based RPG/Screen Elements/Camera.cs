@@ -16,11 +16,12 @@ namespace Text_Based_RPG
         private int startViewX = 0;
         private int startViewY = 0;
        
-        public Camera()
+        public Camera(Map map)
         {
             //can set size of camera
             endViewY = 10;
             endViewX = 35;
+            map.DrawToRender(renderer);
         }
         //attaches camera to player
         public void Update(Map map, Player player)
@@ -31,7 +32,7 @@ namespace Text_Based_RPG
             //draws the on the renderer every update to prevent trails...
             map.DrawToRender(renderer);
         }
-        public void Draw(Player player, EnemyManager enemyManager, Map map, ItemManager itemManager)
+        public void Draw(Player player, EnemyManager enemyManager, Map map, ItemManager itemManager, ShopManager shopManager)
         {
             //always makes camera top left of screen.....
             Console.SetCursorPosition(0, 0);
@@ -44,7 +45,7 @@ namespace Text_Based_RPG
                 Console.Write("-");
             }
             Console.Write("+");
-            Console.WriteLine();
+            Console.WriteLine("                                                                          ");
             for (int y = startViewY; y < endViewY; y++)
             {
                 Console.ForegroundColor = ConsoleColor.White;
@@ -53,7 +54,7 @@ namespace Text_Based_RPG
                 {
                     try
                     {
-                        SetColours(x, y, player, enemyManager, map, itemManager);
+                        SetColours(x, y, player, enemyManager, map, itemManager, shopManager);
                         Console.Write(renderer[x + offsetX, y + offsetY]);
                     }
                     catch
@@ -63,7 +64,7 @@ namespace Text_Based_RPG
                 }
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("|");
-                Console.WriteLine();
+                Console.WriteLine("                                                                          ");
             }
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("+");
@@ -74,18 +75,19 @@ namespace Text_Based_RPG
             }
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("+");
-            Console.WriteLine();
+            Console.WriteLine("                                                                          ");
         }
         public void DrawToRenderer(char character, int x, int y)
         {
             //method to draw items to the renderer
             renderer[x, y] = character;
         }
-        public void SetColours(int x, int y, Player player, EnemyManager enemyManager, Map map, ItemManager itemManager)
+        public void SetColours(int x, int y, Player player, EnemyManager enemyManager, Map map, ItemManager itemManager, ShopManager shopManager)
         {
             Console.ForegroundColor = ConsoleColor.White;
             player.characterTile.SetTileColour(renderer, x, y, offsetX, offsetY);
             enemyManager.SetEnemyColour(renderer, x, y, offsetX, offsetY);
+            shopManager.GetFirstShopKeeper().SetTileColor(renderer, x, y, offsetX, offsetY);
             //go to map.cs to set tiles and tile colours
             map.SetMapColours(renderer, x, y, offsetX, offsetY);
             itemManager.SetItemColour(renderer, x, y, offsetX, offsetY);

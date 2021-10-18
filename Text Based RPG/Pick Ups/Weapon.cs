@@ -19,18 +19,28 @@ namespace Text_Based_RPG
             xLoc = X;
             yLoc = Y;
             itemTile.tileCharacter = 'W';
+            if (itemType == ItemType.BrassKnuckles) { name = "Brass Knuckles"; }
+            else if (itemType == ItemType.BaseballBat) { name = "Baseball Bat"; }
+            else if (itemType == ItemType.Knife) { name = "Knife"; }
+            else if (itemType == ItemType.Machete) { name = "Machete"; }
+            else if (itemType == ItemType.Chainsaw) { name = "Chainsaw"; }
+            Random rand = new Random();
+            SetPrice(rand.Next(1, 10));
         }
         public override void Update(Map map, Player player, Inventory inventory, Camera camera, ItemManager itemManager)
         {
+            if (isShopItem == true)
+                itemTile.tileColour = ConsoleColor.Yellow;
+
             if (pickedUp == true)
             {
                 xLoc = 0;
                 yLoc = 0;
-                if (itemType == ItemType.BrassKnuckles) {inventory.addItemToInventory(this); infoMessage = "You picked up Brass Knuckles"; base.Update(map, player, inventory, camera, itemManager);}
-                if (itemType == ItemType.BaseballBat) {inventory.addItemToInventory(this); infoMessage = "You picked up a Baseball Bat"; base.Update(map, player, inventory, camera, itemManager);}
-                if (itemType == ItemType.Knife) {inventory.addItemToInventory(this);  infoMessage = "You picked up a Knife"; base.Update(map, player, inventory, camera, itemManager);}
-                if (itemType == ItemType.Machete) {inventory.addItemToInventory(this); infoMessage = "You picked up a Machete"; base.Update(map, player, inventory, camera, itemManager);}
-                if (itemType == ItemType.Chainsaw) {inventory.addItemToInventory(this); infoMessage = "You picked up a Chain Saw"; base.Update(map, player, inventory, camera, itemManager);}
+                if (itemType == ItemType.BrassKnuckles) {inventory.addItemToInventory(this); infoMessage = "You have found a " + name + "!"; base.Update(map, player, inventory, camera, itemManager);}
+                else if (itemType == ItemType.BaseballBat) {inventory.addItemToInventory(this); infoMessage = "You have found a " + name + "!"; base.Update(map, player, inventory, camera, itemManager);}
+                else if (itemType == ItemType.Knife) {inventory.addItemToInventory(this); infoMessage = "You have found a " + name + "!"; base.Update(map, player, inventory, camera, itemManager);}
+                else if (itemType == ItemType.Machete) {inventory.addItemToInventory(this); infoMessage = "You have found a " + name + "!"; base.Update(map, player, inventory, camera, itemManager);}
+                else if (itemType == ItemType.Chainsaw) {inventory.addItemToInventory(this); infoMessage = "You have found a " + name + "!"; base.Update(map, player, inventory, camera, itemManager);}
                 pickedUp = false;
             }
             
@@ -72,6 +82,10 @@ namespace Text_Based_RPG
             itemType = newWeapon;
             switch (itemType)
             {
+                case ItemType.Fist:
+                    player.weaponInHand.itemType = ItemType.Fist;
+                    player.attackDamage = 5;
+                    break;
                 case ItemType.BrassKnuckles:
                     player.weaponInHand.itemType = ItemType.BrassKnuckles;
                     player.attackDamage = 10;

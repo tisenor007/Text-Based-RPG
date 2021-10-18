@@ -12,6 +12,7 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -44,6 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game Characters\Boss.cs" />
+    <Compile Include="Managers\DataManager.cs" />
+    <Compile Include="Shops\Currency.cs" />
+    <Compile Include="Shops\Shop.cs" />
+    <Compile Include="Shops\Shopkeeper.cs" />
+    <Compile Include="Managers\ShopManager.cs" />
     <Compile Include="Screen Elements\Inventory.cs" />
     <Compile Include="Screen Elements\Tile.cs" />
     <Compile Include="Screens\World.cs" />
@@ -89,6 +95,7 @@
     <Content Include="Map.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="GameCharacter.txt" />
     <Content Include="World.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

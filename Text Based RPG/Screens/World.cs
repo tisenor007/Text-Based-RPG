@@ -33,7 +33,7 @@ namespace Text_Based_RPG
                 }
             }
         }
-        public void InitEntities(EnemyManager enemyManager, ItemManager itemManager, Player player)
+        public void InitEntities(EnemyManager enemyManager, ItemManager itemManager, Player player, Camera camera, Inventory inventory, ShopManager shopManager)
         {
             for (int y = 0; y < worldData.Length; y++)
             {
@@ -41,6 +41,7 @@ namespace Text_Based_RPG
                 {
                     enemyManager.InitEnemyFromWorldLoc(world, x, y);
                     itemManager.InitItemFromWorldLoc(world, x, y);
+                    shopManager.InitShopFromWorldLoc(world, x, y, itemManager, player, camera, inventory, enemyManager);
                     player.InitPlayerFromWorldLoc(world, x, y);
                 }
             }

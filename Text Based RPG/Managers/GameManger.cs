@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Text_Based_RPG
 {
@@ -26,31 +22,36 @@ namespace Text_Based_RPG
             EnemyManager enemyManager = new EnemyManager();
             ItemManager itemManager = new ItemManager();
             HUD Hud = new HUD();
-            Camera camera = new Camera();
+            Camera camera = new Camera(map);
             Inventory inventory = new Inventory();
-            world.InitEntities(enemyManager, itemManager, player);
+            ShopManager shopManager = new ShopManager();
+            world.InitEntities(enemyManager, itemManager, player, camera, inventory, shopManager);
+            itemManager.SetShopManager(shopManager);
 
             //gameloop
+            Hud.DisplayHUD(player, enemyManager, camera, inventory);
+            camera.Draw(player, enemyManager, map, itemManager, shopManager);
             while (true)
             {
-                //updates
-                //world.Update(enemyManager, itemManager);
-                itemManager.UpdateItems(map, player, inventory, camera);
-                enemyManager.UpdateEnemies(map, player, camera, itemManager, enemyManager);
-                player.Update(map, enemyManager, itemManager, gameOver, inventory);
-                camera.Update(map, player);
-                inventory.Update(player, itemManager);
-
+                
                 //draws + other game elements(for polish)
-                
+                itemManager.UpdateItems(map, player, inventory, camera);
+                player.Update(map, enemyManager, itemManager, gameOver, inventory, shopManager);
+                shopManager.Update();
+                inventory.Update(player, itemManager);
+                camera.Update(map, player);
+                enemyManager.UpdateEnemies(map, player, camera, itemManager, enemyManager);
+
+                // updates
                 itemManager.DrawItems(camera);
-                enemyManager.DrawEnemies(camera);
-                player.Draw(camera);
                 Hud.DisplayHUD(player, enemyManager, camera, inventory);
-                camera.Draw(player, enemyManager, map, itemManager);
-                
+                enemyManager.DrawEnemies(camera);
+                shopManager.Draw();
+                player.Draw(camera);
+                camera.Draw(player, enemyManager, map, itemManager, shopManager);               
+
                 //if game is over in anyway break out of game loop.....
-                
+
                 if (gameOver.gameOverWin == true){break;}
                 if (gameOver.gameOverLoss == true){break;}
             }
