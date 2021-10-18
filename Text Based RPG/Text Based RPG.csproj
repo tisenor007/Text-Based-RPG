@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game Characters\Boss.cs" />
+    <Compile Include="Global.cs" />
     <Compile Include="Managers\DataManager.cs" />
     <Compile Include="Shops\Currency.cs" />
     <Compile Include="Shops\Shop.cs" />
@@ -95,7 +96,9 @@
     <Content Include="Map.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="GameCharacter.txt" />
+    <Content Include="PlayerStats.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="World.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

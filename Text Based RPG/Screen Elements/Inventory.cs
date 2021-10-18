@@ -13,7 +13,7 @@ namespace Text_Based_RPG
         public int filledInventorySlots = 0;
         public bool inventoryIsOpen = false;
         public bool inventoryIsFull = false;
-        private static int inventorySize = 10;
+        private static int inventorySize = Global.playerInventorySlots;
 
         public void Update(Player player, ItemManager itemManager)
         {

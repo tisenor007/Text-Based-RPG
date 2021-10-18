@@ -17,12 +17,12 @@ namespace Text_Based_RPG
         {
             //loads player position, character, health
             SwitchVitalStatus(VitalStatus.Alive);
-            characterTile.tileCharacter = '@';
+            characterTile.tileCharacter = Global.playerAppearance;
             characterTile.tileColour = ConsoleColor.Cyan;
-            health = 100;
-            shield = 50;
+            health = Global.playerHealth;
+            shield = Global.playerShield;
             collectedValuables = 0;
-            name = "Player";
+            name = Global.playerName;
             weaponInHand = new Item();
             BecomeUnarmed();
             previousXLoc = xLoc;

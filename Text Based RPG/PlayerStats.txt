@@ -1,0 +1,10 @@
+﻿Player Inventory Slots
+10
+
+Player Inventory.....FirstAid,Shield,BrassKnuckles,BaseballBat,Knife,Machete,Chainsaw:
+ ; ; ; ; ; ; ; ; ; ;
+
+Player Health, Shield, Char, Name:
+100;50;@;Player
+
+

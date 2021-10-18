@@ -6,6 +6,7 @@ namespace Text_Based_RPG
     {
         public void RunGame()
         {
+            Global global = new Global();
             //main title
             MainMenu mainMenu = new MainMenu();
             mainMenu.StartMainMenu();
