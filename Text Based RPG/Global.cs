@@ -16,9 +16,8 @@ namespace Text_Based_RPG
         public static int playerShield;
         public static char playerAppearance;
         public static string playerName;
-        public static int playerInventorySlots;
-        //public static 
-        public static Item[] playerInventorySlotData;
+        public static int playerInventorySlotAmount;
+        public static string[] playerInventoryData;
         public Global()
         {
             SetPlayerStats();
@@ -29,7 +28,7 @@ namespace Text_Based_RPG
             Data = System.IO.File.ReadAllLines("PlayerStats.txt");
             DataLine = Data[1];
             DataLineSections = DataLine.Split(';');
-            playerInventorySlots = int.Parse(DataLineSections[0]);
+            playerInventorySlotAmount = int.Parse(DataLineSections[0]);
             DataLine = Data[7];
             DataLineSections = DataLine.Split(';');
             playerHealth = int.Parse(DataLineSections[0]);
@@ -38,9 +37,18 @@ namespace Text_Based_RPG
             playerName = DataLineSections[3];
             DataLine = Data[4];
             DataLineSections = DataLine.Split(';');
-            for (int i = 0; i <= playerInventorySlots; i++)
+        }
+        public void SetInventory()
+        {
+            playerInventoryData = new string[playerInventorySlotAmount];
+            for (int i = 0; i <= playerInventorySlotAmount -1 ; i++)
             {
-                //if ()
+                
+                if (DataLineSections[i] == Item.ItemType.FirstAidKit.ToString())
+                {
+                    playerInventoryData[i] = "FirstAid";
+                }
+               
             }
         }
     }

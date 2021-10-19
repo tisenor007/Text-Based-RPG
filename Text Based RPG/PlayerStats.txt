@@ -2,7 +2,7 @@
 10
 
 Player Inventory.....FirstAid,Shield,BrassKnuckles,BaseballBat,Knife,Machete,Chainsaw:
- ; ; ; ; ; ; ; ; ; ;
+FirstAid;FirstAid; ; ; ; ;FirstAid; ; ;  
 
 Player Health, Shield, Char, Name:
 100;50;@;Player

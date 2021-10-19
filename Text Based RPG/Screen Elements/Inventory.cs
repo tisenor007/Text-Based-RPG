@@ -8,25 +8,36 @@ namespace Text_Based_RPG
 {
     class Inventory
     {
-        public Item[] slots = new Item[inventorySize*10];
+        public Item[] slots = new Item[Global.playerInventorySlotAmount];
         //keeps track of things in iventory
         public int filledInventorySlots = 0;
         public bool inventoryIsOpen = false;
         public bool inventoryIsFull = false;
-        private static int inventorySize = Global.playerInventorySlots;
-
+        //private static int inventorySize = Global.playerInventorySlotAmount;
+        public Inventory()
+        {
+            for (int i = 0; i <= Global.playerInventorySlotAmount - 1; i++)
+            {
+                if (Global.playerInventoryData[i] == "FirstAid")
+                {
+                    slots[i] = new Item();
+                    slots[i].itemType = Item.ItemType.FirstAidKit;
+                    filledInventorySlots = filledInventorySlots + 1;
+                }
+            }
+        }
         public void Update(Player player, ItemManager itemManager)
         {
             if (filledInventorySlots >= 9)
-                if(filledInventorySlots + 1 <= (inventorySize*10)-1)
-                    inventorySize = filledInventorySlots + 1;
+                if(filledInventorySlots + 1 <= (Global.playerInventorySlotAmount) -1)
+                    Global.playerInventorySlotAmount = filledInventorySlots + 1;
             else
-                inventorySize = 10;
+                    Global.playerInventorySlotAmount = 10;
             if (inventoryIsOpen == true) { OpenInventory(player, itemManager); }
         }
         public int InventorySize()
         {
-            return inventorySize;
+            return Global.playerInventorySlotAmount;
         }
         public Item InventorySlots(int index)
         {
@@ -34,10 +45,10 @@ namespace Text_Based_RPG
         }
         public void addItemToInventory(Item item)
         {
-            if (filledInventorySlots < inventorySize)
+            if (filledInventorySlots < Global.playerInventorySlotAmount)
             {
                 inventoryIsFull = false;
-                for (int i = 0; i < inventorySize; i++)
+                for (int i = 0; i < Global.playerInventorySlotAmount; i++)
                 {
                     if (slots[i] == null)
                     {
@@ -61,7 +72,7 @@ namespace Text_Based_RPG
         }
         public void SellInventoryDisplay(Player player, Shopkeeper shopKeeper)
         { 
-            for (int i = 0; i < inventorySize; i++)
+            for (int i = 0; i < Global.playerInventorySlotAmount; i++)
             {
                 if (slots[i] == null)
                 {
@@ -77,7 +88,7 @@ namespace Text_Based_RPG
         public void OpenInventory(Player player, ItemManager itemManager)
         {
             Console.Clear();
-            for (int i = 0; i < inventorySize; i++)
+            for (int i = 0; i < Global.playerInventorySlotAmount; i++)
             {
                 if (slots[i] == null)
                 {
@@ -104,7 +115,7 @@ namespace Text_Based_RPG
                 else 
                 {
                     //if inventory slot is available, puts previous weapon in inventory
-                    if (filledInventorySlots < inventorySize) 
+                    if (filledInventorySlots < Global.playerInventorySlotAmount) 
                     {
                         if (player.weaponInHand.itemType == Item.ItemType.BrassKnuckles) { itemManager.CheckandSwitchWeapon('W', Item.ItemType.BrassKnuckles, this); }
                         if (player.weaponInHand.itemType == Item.ItemType.BaseballBat) { itemManager.CheckandSwitchWeapon('W', Item.ItemType.BaseballBat, this); }
@@ -124,7 +135,7 @@ namespace Text_Based_RPG
                 }
                 player.BecomeUnarmed();
             }
-            for (int i = 0; i < inventorySize; i++)
+            for (int i = 0; i < Global.playerInventorySlotAmount; i++)
             {
                 if (input == (i + 1).ToString())
                 {
@@ -166,7 +177,7 @@ namespace Text_Based_RPG
         //boolean used by player to see if inventory is full before they pick up an item......
         public bool IsInventorySlotAvailable()
         {
-            if (filledInventorySlots < inventorySize)
+            if (filledInventorySlots < Global.playerInventorySlotAmount)
             {
                 inventoryIsFull = false;
                 return true;
