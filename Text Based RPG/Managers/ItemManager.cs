@@ -46,6 +46,17 @@ namespace Text_Based_RPG
                 if (world[X, Y] == '4') { items[itemCount] = new Weapon(X, Y, Item.ItemType.Machete); itemCount = itemCount + 1; }
                 if (world[X, Y] == '5') { items[itemCount] = new Weapon(X, Y, Item.ItemType.Chainsaw); itemCount = itemCount + 1; }
         }
+        public void CreateItemInInventory(Item.ItemType itemType)
+        {
+            if (itemCount > itemCap - 1) { return; }
+            if (itemType == Item.ItemType.FirstAidKit) { items[itemCount] = new FirstAidKit(0, 0); items[itemCount].pickedUp = true; itemCount = itemCount + 1;}
+            if (itemType == Item.ItemType.Shield) { items[itemCount] = new Shield(0, 0); items[itemCount].pickedUp = true; itemCount = itemCount + 1;}
+            if (itemType == Item.ItemType.BrassKnuckles) { items[itemCount] = new Weapon(0, 0, itemType); items[itemCount].pickedUp = true; itemCount = itemCount + 1;}
+            if (itemType == Item.ItemType.BaseballBat) { items[itemCount] = new Weapon(0, 0, itemType); items[itemCount].pickedUp = true; itemCount = itemCount + 1;}
+            if (itemType == Item.ItemType.Knife) { items[itemCount] = new Weapon(0, 0, itemType); items[itemCount].pickedUp = true; itemCount = itemCount + 1; }
+            if (itemType == Item.ItemType.Machete) { items[itemCount] = new Weapon(0, 0, itemType); items[itemCount].pickedUp = true; itemCount = itemCount + 1;}
+            if (itemType == Item.ItemType.Chainsaw) { items[itemCount] = new Weapon(0, 0, itemType); items[itemCount].pickedUp = true; itemCount = itemCount + 1;}
+        }
 
         //cycles through items and updates each one
         public void UpdateItems(Map map, Player player, Inventory inventory, Camera camera)

@@ -14,15 +14,37 @@ namespace Text_Based_RPG
         public bool inventoryIsOpen = false;
         public bool inventoryIsFull = false;
         //private static int inventorySize = Global.playerInventorySlotAmount;
-        public Inventory()
+        public Inventory(ItemManager itemManager)
         {
             for (int i = 0; i <= Global.playerInventorySlotAmount - 1; i++)
             {
-                if (Global.playerInventoryData[i] == "FirstAid")
+                if (Global.playerInventoryData[i] == Item.ItemType.FirstAidKit.ToString())
                 {
-                    slots[i] = new Item();
-                    slots[i].itemType = Item.ItemType.FirstAidKit;
-                    filledInventorySlots = filledInventorySlots + 1;
+                    setInventorySlot(i, itemManager, Item.ItemType.FirstAidKit);
+                }
+                if (Global.playerInventoryData[i] == Item.ItemType.Shield.ToString())
+                {
+                    setInventorySlot(i, itemManager, Item.ItemType.Shield);
+                }
+                if (Global.playerInventoryData[i] == Item.ItemType.BrassKnuckles.ToString())
+                {
+                    setInventorySlot(i, itemManager, Item.ItemType.BrassKnuckles);
+                }
+                if (Global.playerInventoryData[i] == Item.ItemType.BaseballBat.ToString())
+                {
+                    setInventorySlot(i, itemManager, Item.ItemType.BaseballBat);
+                }
+                if (Global.playerInventoryData[i] == Item.ItemType.Knife.ToString())
+                {
+                    setInventorySlot(i, itemManager, Item.ItemType.Knife);
+                }
+                if (Global.playerInventoryData[i] == Item.ItemType.Machete.ToString())
+                {
+                    setInventorySlot(i, itemManager, Item.ItemType.Machete);
+                }
+                if (Global.playerInventoryData[i] == Item.ItemType.Chainsaw.ToString())
+                {
+                    setInventorySlot(i, itemManager, Item.ItemType.Chainsaw);
                 }
             }
         }
@@ -34,6 +56,13 @@ namespace Text_Based_RPG
             else
                     Global.playerInventorySlotAmount = 10;
             if (inventoryIsOpen == true) { OpenInventory(player, itemManager); }
+        }
+        public void setInventorySlot(int slotNumber, ItemManager itemManager, Item.ItemType itemName)
+        {
+            itemManager.CreateItemInInventory(itemName);
+            slots[slotNumber] = new Item();
+            slots[slotNumber].itemType = itemName;
+            filledInventorySlots = filledInventorySlots + 1;
         }
         public int InventorySize()
         {
