@@ -39,10 +39,10 @@ namespace Text_Based_RPG
             {
                 for (int x = 0; x < currWorldLine.Length; x++)
                 {
+                    player.InitPlayerFromWorldLoc(world, x, y);
                     enemyManager.InitEnemyFromWorldLoc(world, x, y);
                     itemManager.InitItemFromWorldLoc(world, x, y);
                     shopManager.InitShopFromWorldLoc(world, x, y, itemManager, player, camera, inventory, enemyManager);
-                    player.InitPlayerFromWorldLoc(world, x, y);
                 }
             }
         }

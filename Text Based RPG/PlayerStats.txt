@@ -1,6 +1,6 @@
 ﻿Player Inventory Slots
 10
-1=FirstAidKit
+Slot4=FirstAidKit
 Player Inventory.....FirstAidKit,Shield,BrassKnuckles,BaseballBat,Knife,Machete,Chainsaw:
 FirstAidKit;FirstAidKit;Shield;BrassKnuckles;BaseballBat;Knife;FirstAidKit;Machete;Chainsaw; 
 

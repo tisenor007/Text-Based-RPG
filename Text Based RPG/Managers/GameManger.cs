@@ -34,8 +34,8 @@ namespace Text_Based_RPG
             camera.Draw(player, enemyManager, map, itemManager, shopManager);
             while (true)
             {
-                
-                //draws + other game elements(for polish)
+
+                // updates
                 itemManager.UpdateItems(map, player, inventory, camera);
                 player.Update(map, enemyManager, itemManager, gameOver, inventory, shopManager);
                 shopManager.Update();
@@ -43,7 +43,7 @@ namespace Text_Based_RPG
                 camera.Update(map, player);
                 enemyManager.UpdateEnemies(map, player, camera, itemManager, enemyManager);
 
-                // updates
+                //draws + other game elements(for polish)
                 itemManager.DrawItems(camera);
                 Hud.DisplayHUD(player, enemyManager, camera, inventory);
                 enemyManager.DrawEnemies(camera);

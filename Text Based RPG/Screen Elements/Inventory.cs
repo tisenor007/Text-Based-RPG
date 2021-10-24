@@ -13,9 +13,11 @@ namespace Text_Based_RPG
         public int filledInventorySlots = 0;
         public bool inventoryIsOpen = false;
         public bool inventoryIsFull = false;
+        public bool settingUpInventory;
         //private static int inventorySize = Global.playerInventorySlotAmount;
         public Inventory(ItemManager itemManager)
         {
+            settingUpInventory = true;
             for (int i = 0; i <= Global.playerInventorySlotAmount - 1; i++)
             {
                 if (Global.playerInventoryData[i] == Item.ItemType.FirstAidKit.ToString())
@@ -47,6 +49,7 @@ namespace Text_Based_RPG
                     setInventorySlot(i, itemManager, Item.ItemType.Chainsaw);
                 }
             }
+            settingUpInventory = false;
         }
         public void Update(Player player, ItemManager itemManager)
         {
@@ -63,6 +66,7 @@ namespace Text_Based_RPG
             slots[slotNumber] = new Item();
             slots[slotNumber].itemType = itemName;
             filledInventorySlots = filledInventorySlots + 1;
+           
         }
         public int InventorySize()
         {

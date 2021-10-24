@@ -49,13 +49,13 @@ namespace Text_Based_RPG
         public void CreateItemInInventory(Item.ItemType itemType)
         {
             if (itemCount > itemCap - 1) { return; }
-            if (itemType == Item.ItemType.FirstAidKit) { items[itemCount] = new FirstAidKit(0, 0); items[itemCount].pickedUp = true; itemCount = itemCount + 1;}
-            if (itemType == Item.ItemType.Shield) { items[itemCount] = new Shield(0, 0); items[itemCount].pickedUp = true; itemCount = itemCount + 1;}
-            if (itemType == Item.ItemType.BrassKnuckles) { items[itemCount] = new Weapon(0, 0, itemType); items[itemCount].pickedUp = true; itemCount = itemCount + 1;}
-            if (itemType == Item.ItemType.BaseballBat) { items[itemCount] = new Weapon(0, 0, itemType); items[itemCount].pickedUp = true; itemCount = itemCount + 1;}
-            if (itemType == Item.ItemType.Knife) { items[itemCount] = new Weapon(0, 0, itemType); items[itemCount].pickedUp = true; itemCount = itemCount + 1; }
-            if (itemType == Item.ItemType.Machete) { items[itemCount] = new Weapon(0, 0, itemType); items[itemCount].pickedUp = true; itemCount = itemCount + 1;}
-            if (itemType == Item.ItemType.Chainsaw) { items[itemCount] = new Weapon(0, 0, itemType); items[itemCount].pickedUp = true; itemCount = itemCount + 1;}
+            if (itemType == Item.ItemType.FirstAidKit) { items[itemCount] = new FirstAidKit(0, 0); itemCount = itemCount + 1;}
+            if (itemType == Item.ItemType.Shield) { items[itemCount] = new Shield(0, 0); itemCount = itemCount + 1;}
+            if (itemType == Item.ItemType.BrassKnuckles) { items[itemCount] = new Weapon(0, 0, itemType); itemCount = itemCount + 1;}
+            if (itemType == Item.ItemType.BaseballBat) { items[itemCount] = new Weapon(0, 0, itemType); itemCount = itemCount + 1;}
+            if (itemType == Item.ItemType.Knife) { items[itemCount] = new Weapon(0, 0, itemType); itemCount = itemCount + 1; }
+            if (itemType == Item.ItemType.Machete) { items[itemCount] = new Weapon(0, 0, itemType); itemCount = itemCount + 1;}
+            if (itemType == Item.ItemType.Chainsaw) { items[itemCount] = new Weapon(0, 0, itemType); itemCount = itemCount + 1;}
         }
 
         //cycles through items and updates each one
@@ -86,15 +86,15 @@ namespace Text_Based_RPG
         {
             for (int i = 0; i < itemCount; i++)
             {
-                if (x == items[i].xLoc)
+                if (x == items[i].xLoc && items[i].pickedUp == false)
                 {
-                    if (y == items[i].yLoc)
+                    if (y == items[i].yLoc && items[i].pickedUp == false)
                     {
-                        if (CheckForShopItem(items[i]))
+                        if (CheckForShopItem(items[i]) && items[i].pickedUp == false)
                         {
                             shopManager.PurchaseFromShop(items[i].GetShop(), items[i]);
                         }
-                        else
+                        else if (items[i].pickedUp == false)
                         {
                             items[i].pickedUp = true;
                             return;

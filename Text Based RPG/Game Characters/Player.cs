@@ -60,7 +60,7 @@ namespace Text_Based_RPG
                     {
                         enemyManager.CheckEnemies(xLoc, yLoc - 1, attackDamage);
                     }
-                    else if (itemExist = itemManager.IsItemAt(xLoc, yLoc - 1))
+                    else if (itemExist = itemManager.IsItemAt(xLoc, yLoc - 1) && inventory.settingUpInventory == false)
                     {
                         
                         if (inventory.IsInventorySlotAvailable() == true)

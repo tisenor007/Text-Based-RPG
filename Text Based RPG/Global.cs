@@ -9,10 +9,8 @@ namespace Text_Based_RPG
     class Global
     {
         static string[] Data;
-        static string[,] allData = new string[Data.Length, DataLine.Length];
         static string DataLine;
         static string[] DataLineSections;
-        static char dataTile;
         
 
         public static int playerHealth;
@@ -23,18 +21,22 @@ namespace Text_Based_RPG
         public static string[] playerInventoryData;
         public Global()
         {
+            SetPlayerStats();
             Data = System.IO.File.ReadAllLines("PlayerStats.txt");
-            for (int y = 0; y <= Data.Length - 1; y = y + 1)
+            for (int i = 0; i <= Data.Length - 1; i = i + 1)
             {
-                DataLine = Data[y];
-                for (int x = 0; x <= DataLine.Length - 1; x = x + 1)
+                DataLineSections = Data[i].Split('=');
+                for (int l = 0; l <= DataLineSections.Length - 1; l = l + 1)
                 {
-                    dataTile = DataLine[x];
-                    //allData[y,x] = dataTile;
-                    if (allData[1,x] == "1")
+                    for (int s = 0; s <= playerInventorySlotAmount - 1; s = s + 1)
                     {
-                        DataLine.Split('=');
-
+                        if (DataLineSections[l].ToLower() == "slot" + s)
+                        {
+                            if (DataLineSections[l + 1] == Item.ItemType.FirstAidKit.ToString())
+                            {
+                                playerInventoryData[s -1] = Item.ItemType.FirstAidKit.ToString();
+                            }
+                        }
                     }
                 }
             }
@@ -56,38 +58,38 @@ namespace Text_Based_RPG
             DataLineSections = DataLine.Split(';');
             playerInventoryData = new string[playerInventorySlotAmount];
 
-            for (int i = 0; i <= playerInventorySlotAmount - 1; i++)
-            {
+            //for (int i = 0; i <= playerInventorySlotAmount - 1; i++)
+            //{
 
-                if (DataLineSections[i] == Item.ItemType.FirstAidKit.ToString())
-                {
-                    playerInventoryData[i] = Item.ItemType.FirstAidKit.ToString();
-                }
-                if (DataLineSections[i] == Item.ItemType.Shield.ToString())
-                {
-                    playerInventoryData[i] = Item.ItemType.Shield.ToString();
-                }
-                if (DataLineSections[i] == Item.ItemType.BrassKnuckles.ToString())
-                {
-                    playerInventoryData[i] = Item.ItemType.BrassKnuckles.ToString();
-                }
-                if (DataLineSections[i] == Item.ItemType.BaseballBat.ToString())
-                {
-                    playerInventoryData[i] = Item.ItemType.BaseballBat.ToString();
-                }
-                if (DataLineSections[i] == Item.ItemType.Knife.ToString())
-                {
-                    playerInventoryData[i] = Item.ItemType.Knife.ToString();
-                }
-                if (DataLineSections[i] == Item.ItemType.Machete.ToString())
-                {
-                    playerInventoryData[i] = Item.ItemType.Machete.ToString();
-                }
-                if (DataLineSections[i] == Item.ItemType.Chainsaw.ToString())
-                {
-                    playerInventoryData[i] = Item.ItemType.Chainsaw.ToString();
-                }
-            }
+            //    if (DataLineSections[i] == Item.ItemType.FirstAidKit.ToString())
+            //    {
+            //        playerInventoryData[i] = Item.ItemType.FirstAidKit.ToString();
+            //    }
+            //    if (DataLineSections[i] == Item.ItemType.Shield.ToString())
+            //    {
+            //        playerInventoryData[i] = Item.ItemType.Shield.ToString();
+            //    }
+            //    if (DataLineSections[i] == Item.ItemType.BrassKnuckles.ToString())
+            //    {
+            //        playerInventoryData[i] = Item.ItemType.BrassKnuckles.ToString();
+            //    }
+            //    if (DataLineSections[i] == Item.ItemType.BaseballBat.ToString())
+            //    {
+            //        playerInventoryData[i] = Item.ItemType.BaseballBat.ToString();
+            //    }
+            //    if (DataLineSections[i] == Item.ItemType.Knife.ToString())
+            //    {
+            //        playerInventoryData[i] = Item.ItemType.Knife.ToString();
+            //    }
+            //    if (DataLineSections[i] == Item.ItemType.Machete.ToString())
+            //    {
+            //        playerInventoryData[i] = Item.ItemType.Machete.ToString();
+            //    }
+            //    if (DataLineSections[i] == Item.ItemType.Chainsaw.ToString())
+            //    {
+            //        playerInventoryData[i] = Item.ItemType.Chainsaw.ToString();
+            //    }
+            //}
 
         }
     }
