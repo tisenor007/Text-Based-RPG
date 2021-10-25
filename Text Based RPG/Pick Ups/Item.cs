@@ -36,14 +36,18 @@ namespace Text_Based_RPG
 
         private int price;
         private Shop shop;
+        private Random rand = new Random(); 
         protected bool isShopItem = false;
         protected string name;
-        
+        public Item()
+        {
+            SetPrice(rand.Next(1, 10));
+        }
         public virtual void Update(Map map, Player player, Inventory inventory, Camera camera, ItemManager itemManager)
         {
             if (isShopItem == true)
                 itemTile.tileColour = ConsoleColor.Yellow;
-            Console.SetCursorPosition(1, 1);
+            //Console.SetCursorPosition(1, 1);
             Console.WriteLine(infoMessage);
         }
         //draw method for items

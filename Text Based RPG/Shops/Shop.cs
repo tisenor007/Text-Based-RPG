@@ -86,20 +86,20 @@ namespace Text_Based_RPG
                 Console.WriteLine();
                 Console.WriteLine("Clerk's Gold: " + shopKeeper.CheckMoney() + "      " + "Your Gold: " + player.CheckMoney());
                 Console.WriteLine();
-                Console.WriteLine("To sell an item, press the related number of said item.");
+                Console.WriteLine("To sell an item, press the related number of said item + enter.");
                 Console.WriteLine();
-                Console.WriteLine("E) Exit");
+                Console.WriteLine("E + enter) Exit");
                 Console.WriteLine();
 
-                ConsoleKeyInfo input = Console.ReadKey(true);
+                string input = Console.ReadLine();
                 for (int x = 0; x < inventory.InventorySize(); x++)
                 {
-                    if (input.Key == ConsoleKey.E)
+                    if (input == "e")
                     {
                         sellMenuOpen = false;
                         return;
                     }
-                    else if (((int)input.Key) - 48 == x + 1)
+                    else if (Convert.ToInt16(input) == x + 1)// - 48 == x + 1)
                     {
                         if (inventory.InventorySlots(x) != null)
                         {

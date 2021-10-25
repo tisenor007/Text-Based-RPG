@@ -8,9 +8,11 @@ namespace Text_Based_RPG
 {
     class Global
     {
+        //general data
         static string[] data;
         static string[] dataLineSections;
 
+        //player
         public static int playerHealth;
         public static int playerShield;
         public static char playerAppearance;
@@ -19,32 +21,40 @@ namespace Text_Based_RPG
         public static string[] playerInventoryData;
         public static string playerStartingWeapon;
 
+        //map
         public static int mapWidth;
         public static int mapHeight;
 
+        //LightEnemy
         public static int lightHealth;
         public static int lightShield;
         public static char lightAppearance;
         public static string lightName;
         public static int lightAttackDamage;
 
+        //SpecializedCombatEnemy
         public static int SCHealth;
         public static int SCShield;
         public static char SCAppearance;
         public static string SCName;
         public static int SCAttackDamage;
 
+        //HeavyEnemy
         public static int heavyHealth;
         public static int heavyShield;
         public static char heavyAppearance;
         public static string heavyName;
         public static int heavyAttackDamage;
 
+        //Boss
         public static int bossHealth;
         public static int bossShield;
         public static char bossAppearance;
         public static string bossName;
         public static int bossAttackDamage;
+
+        public static char shopAppearance;
+       //public static 
         public Global()
         {
             SetMapStats();
