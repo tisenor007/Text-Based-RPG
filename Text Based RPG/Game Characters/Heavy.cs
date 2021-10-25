@@ -16,12 +16,14 @@ namespace Text_Based_RPG
             yLoc = Y;
             //Heavy properties, vary based off enemy types
             SwitchVitalStatus(VitalStatus.Alive);
-            characterTile.tileCharacter = 'E';
+            characterTile.tileCharacter = Global.heavyAppearance;
             characterTile.tileColour = ConsoleColor.Red;
-            health = 100;
-            shield = 0;
-            name = "Heavy";
-            attackDamage = 5;
+            health = Global.heavyHealth;
+            healthCap = Global.heavyHealth;
+            shield = Global.heavyShield;
+            shieldCap = Global.heavyShield;
+            name = Global.heavyName;
+            attackDamage = Global.heavyAttackDamage;
         }
         //update method with specific enemy AI behavior, anything else is taken from the main enemy class
         public override void Update(Map map, Player player, Camera camera, ItemManager itemManager, EnemyManager enemyManager)

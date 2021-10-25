@@ -21,11 +21,11 @@ namespace Text_Based_RPG
         public int yLoc;
         public int attackDamage;
         public string name;
-        protected VitalStatus vitalStatus;
         public Tile characterTile = new Tile(' ', ConsoleColor.White);
-
-        private int shieldCap = 50;
-        private int healthCap = 100;
+        protected VitalStatus vitalStatus;
+        
+        protected int shieldCap;
+        protected int healthCap;
         private Currency wallet = new Currency();
         //to switch or set if the game character is dead or alive
         protected void SwitchVitalStatus(VitalStatus newVitalStatus)

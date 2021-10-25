@@ -53,16 +53,16 @@ namespace Text_Based_RPG
             }
             if (used == true)
             {
-                if (player.weaponInHand.itemType == ItemType.Fist)
+                if (player.equippedWeapon.itemType == ItemType.Fist)
                 {
 
                 }
                 
-                else if (player.weaponInHand.itemType == ItemType.BrassKnuckles) { itemManager.CheckandSwitchWeapon('W', ItemType.BrassKnuckles, inventory); }
-                else if (player.weaponInHand.itemType == ItemType.BaseballBat) { itemManager.CheckandSwitchWeapon('W', ItemType.BrassKnuckles, inventory); }
-                else if (player.weaponInHand.itemType == ItemType.Knife) { itemManager.CheckandSwitchWeapon('W', ItemType.Knife, inventory); }
-                else if (player.weaponInHand.itemType == ItemType.Machete) { itemManager.CheckandSwitchWeapon('W', ItemType.Machete, inventory); }
-                else if (player.weaponInHand.itemType == ItemType.Chainsaw) { itemManager.CheckandSwitchWeapon('W', ItemType.Chainsaw, inventory); }
+                else if (player.equippedWeapon.itemType == ItemType.BrassKnuckles) { itemManager.CheckandSwitchWeapon('W', ItemType.BrassKnuckles, inventory); }
+                else if (player.equippedWeapon.itemType == ItemType.BaseballBat) { itemManager.CheckandSwitchWeapon('W', ItemType.BrassKnuckles, inventory); }
+                else if (player.equippedWeapon.itemType == ItemType.Knife) { itemManager.CheckandSwitchWeapon('W', ItemType.Knife, inventory); }
+                else if (player.equippedWeapon.itemType == ItemType.Machete) { itemManager.CheckandSwitchWeapon('W', ItemType.Machete, inventory); }
+                else if (player.equippedWeapon.itemType == ItemType.Chainsaw) { itemManager.CheckandSwitchWeapon('W', ItemType.Chainsaw, inventory); }
                 
                 if (itemType == ItemType.BrassKnuckles) { SwitchWeapon(ItemType.BrassKnuckles, player);}
                 if (itemType == ItemType.BaseballBat) { SwitchWeapon(ItemType.BaseballBat, player); }
@@ -83,27 +83,27 @@ namespace Text_Based_RPG
             switch (itemType)
             {
                 case ItemType.Fist:
-                    player.weaponInHand.itemType = ItemType.Fist;
+                    player.equippedWeapon.itemType = ItemType.Fist;
                     player.attackDamage = 5;
                     break;
                 case ItemType.BrassKnuckles:
-                    player.weaponInHand.itemType = ItemType.BrassKnuckles;
+                    player.equippedWeapon.itemType = ItemType.BrassKnuckles;
                     player.attackDamage = 10;
                     break;
                 case ItemType.BaseballBat:
-                    player.weaponInHand.itemType = ItemType.BaseballBat;
+                    player.equippedWeapon.itemType = ItemType.BaseballBat;
                     player.attackDamage = 25;
                     break;
                 case ItemType.Knife:
-                    player.weaponInHand.itemType = ItemType.Knife;
+                    player.equippedWeapon.itemType = ItemType.Knife;
                     player.attackDamage = 50;
                     break;
                 case ItemType.Machete:
-                    player.weaponInHand.itemType = ItemType.Machete;
+                    player.equippedWeapon.itemType = ItemType.Machete;
                     player.attackDamage = 75;
                     break;
                 case ItemType.Chainsaw:
-                    player.weaponInHand.itemType = ItemType.Chainsaw;
+                    player.equippedWeapon.itemType = ItemType.Chainsaw;
                     player.attackDamage = 100;
                     break;
 

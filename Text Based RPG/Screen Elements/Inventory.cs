@@ -144,29 +144,29 @@ namespace Text_Based_RPG
             if (input == "u")
             {
                 //can't unarm your fist!
-                if (player.weaponInHand.itemType == Item.ItemType.Fist){Console.WriteLine("You are already unarmed!");}
+                if (player.equippedWeapon.itemType == Item.ItemType.Fist){Console.WriteLine("You are already unarmed!");}
                 else 
                 {
                     //if inventory slot is available, puts previous weapon in inventory
                     if (filledInventorySlots < Global.playerInventorySlotAmount) 
                     {
-                        if (player.weaponInHand.itemType == Item.ItemType.BrassKnuckles) { itemManager.CheckandSwitchWeapon('W', Item.ItemType.BrassKnuckles, this); }
-                        if (player.weaponInHand.itemType == Item.ItemType.BaseballBat) { itemManager.CheckandSwitchWeapon('W', Item.ItemType.BaseballBat, this); }
-                        if (player.weaponInHand.itemType == Item.ItemType.Knife) { itemManager.CheckandSwitchWeapon('W', Item.ItemType.Knife, this); }
-                        if (player.weaponInHand.itemType == Item.ItemType.Machete) { itemManager.CheckandSwitchWeapon('W', Item.ItemType.Machete, this); }
-                        if (player.weaponInHand.itemType == Item.ItemType.Chainsaw) { itemManager.CheckandSwitchWeapon('W', Item.ItemType.Chainsaw, this); }
+                        if (player.equippedWeapon.itemType == Item.ItemType.BrassKnuckles) { itemManager.CheckandSwitchWeapon('W', Item.ItemType.BrassKnuckles, this); }
+                        if (player.equippedWeapon.itemType == Item.ItemType.BaseballBat) { itemManager.CheckandSwitchWeapon('W', Item.ItemType.BaseballBat, this); }
+                        if (player.equippedWeapon.itemType == Item.ItemType.Knife) { itemManager.CheckandSwitchWeapon('W', Item.ItemType.Knife, this); }
+                        if (player.equippedWeapon.itemType == Item.ItemType.Machete) { itemManager.CheckandSwitchWeapon('W', Item.ItemType.Machete, this); }
+                        if (player.equippedWeapon.itemType == Item.ItemType.Chainsaw) { itemManager.CheckandSwitchWeapon('W', Item.ItemType.Chainsaw, this); }
                     }
                     else
                     {
                         //if inventory is full you just drop you weapon that you are unarming
-                        if (player.weaponInHand.itemType == Item.ItemType.BrassKnuckles) { itemManager.CheckToDropItem('W', Item.ItemType.BrassKnuckles); }
-                        if (player.weaponInHand.itemType == Item.ItemType.BaseballBat) { itemManager.CheckToDropItem('W', Item.ItemType.BaseballBat); }
-                        if (player.weaponInHand.itemType == Item.ItemType.Knife) { itemManager.CheckToDropItem('W', Item.ItemType.Knife); }
-                        if (player.weaponInHand.itemType == Item.ItemType.Machete) { itemManager.CheckToDropItem('W', Item.ItemType.Machete); }
-                        if (player.weaponInHand.itemType == Item.ItemType.Chainsaw) { itemManager.CheckToDropItem('W', Item.ItemType.Chainsaw); }
+                        if (player.equippedWeapon.itemType == Item.ItemType.BrassKnuckles) { itemManager.CheckToDropItem('W', Item.ItemType.BrassKnuckles); }
+                        if (player.equippedWeapon.itemType == Item.ItemType.BaseballBat) { itemManager.CheckToDropItem('W', Item.ItemType.BaseballBat); }
+                        if (player.equippedWeapon.itemType == Item.ItemType.Knife) { itemManager.CheckToDropItem('W', Item.ItemType.Knife); }
+                        if (player.equippedWeapon.itemType == Item.ItemType.Machete) { itemManager.CheckToDropItem('W', Item.ItemType.Machete); }
+                        if (player.equippedWeapon.itemType == Item.ItemType.Chainsaw) { itemManager.CheckToDropItem('W', Item.ItemType.Chainsaw); }
                     }
                 }
-                player.BecomeUnarmed();
+                player.equippedWeapon.SwitchWeapon(Item.ItemType.Fist, player);
             }
             for (int i = 0; i < Global.playerInventorySlotAmount; i++)
             {

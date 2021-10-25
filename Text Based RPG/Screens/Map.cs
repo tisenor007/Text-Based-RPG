@@ -8,7 +8,7 @@ namespace Text_Based_RPG
 {
     class Map
     {   
-        public char[,] map = new char[269, 63]; // size of map....
+        public char[,] map = new char[Global.mapWidth, Global.mapHeight]; // size of map....
         public string[] mapData;
         public string currMapLine;
         public bool openDoors = false;
@@ -34,7 +34,7 @@ namespace Text_Based_RPG
         public Map()
         {
             //mapData reads file through lines - Gets Y
-            mapData = System.IO.File.ReadAllLines("Map.txt");
+            mapData = System.IO.File.ReadAllLines("Map-World/Map.txt");
             for (y = 0; y <= mapData.Length - 1; y = y + 1)
             { 
                 //string created to be = to 1 / current line of map

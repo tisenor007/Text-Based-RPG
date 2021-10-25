@@ -18,9 +18,9 @@ namespace Text_Based_RPG
             Console.WriteLine(clear);
             Console.Write(player.name + " health: " + player.health +"             " + player.xLoc +", "+player.yLoc);
             Console.WriteLine(clear);
-            Console.Write(player.name + " shield health: " + player.shield + "       Gold: " + player.CheckMoney());
+            Console.Write(player.name + " shield condition: " + player.shield + "       Gold: " + player.CheckMoney());
             Console.WriteLine(clear);
-            Console.Write(player.name + " weapon in hand: " + player.weaponInHand.itemType);
+            Console.Write(player.name + " weapon in hand: " + player.equippedWeapon.itemType);
             Console.WriteLine(clear);
             Console.Write("Stolen valuables recoved: " + player.collectedValuables + "/600");
             Console.WriteLine(clear);
@@ -28,7 +28,8 @@ namespace Text_Based_RPG
             if (inventory.inventoryIsFull == true)
             {
                 Console.WriteLine(clear);
-                Console.Write("YOUR INVENTORY IS FULL!");
+                Console.WriteLine("YOUR INVENTORY IS FULL!");
+                Console.WriteLine(clear);
             }
             Console.WriteLine();
             

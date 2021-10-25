@@ -8,7 +8,7 @@ namespace Text_Based_RPG
         private bool enemyExist;
         private bool itemExist;
         public int collectedValuables;
-        public Item weaponInHand;
+        public Weapon equippedWeapon = new Weapon(0,0,Item.ItemType.Fist);
 
         private int previousXLoc;
         private int previousYLoc;
@@ -21,20 +21,45 @@ namespace Text_Based_RPG
             characterTile.tileColour = ConsoleColor.Cyan;
             health = Global.playerHealth;
             shield = Global.playerShield;
+            healthCap = Global.playerHealth;
+            shieldCap = Global.playerShield;
             collectedValuables = 0;
             name = Global.playerName;
-            weaponInHand = new Item();
-            BecomeUnarmed();
+            if (Global.playerStartingWeapon == Item.ItemType.Fist.ToString())
+            {
+                equippedWeapon.SwitchWeapon(Item.ItemType.Fist, this);
+            }
+            if (Global.playerStartingWeapon == Item.ItemType.BrassKnuckles.ToString())
+            {
+                equippedWeapon.SwitchWeapon(Item.ItemType.BrassKnuckles, this);
+            }
+            if (Global.playerStartingWeapon == Item.ItemType.BaseballBat.ToString())
+            {
+                equippedWeapon.SwitchWeapon(Item.ItemType.BaseballBat, this);
+            }
+            if (Global.playerStartingWeapon == Item.ItemType.Knife.ToString())
+            {
+                equippedWeapon.SwitchWeapon(Item.ItemType.Knife, this);
+            }
+            if (Global.playerStartingWeapon == Item.ItemType.Machete.ToString())
+            {
+                equippedWeapon.SwitchWeapon(Item.ItemType.Machete, this);
+            }
+            if (Global.playerStartingWeapon == Item.ItemType.Chainsaw.ToString())
+            {
+                equippedWeapon.SwitchWeapon(Item.ItemType.Chainsaw, this);
+            }
+            else if (Global.playerStartingWeapon == null || Global.playerStartingWeapon == "")
+            {
+                equippedWeapon.SwitchWeapon(Item.ItemType.Fist, this);
+            }
+
             previousXLoc = xLoc;
             previousYLoc = yLoc;
         }
         //specific to the player...
 
-        public void BecomeUnarmed()
-        {
-            weaponInHand.itemType = Item.ItemType.Fist;
-            attackDamage = 5;
-        }
+        
         public void CollectValuable(int money)
         {
             collectedValuables = collectedValuables + money;

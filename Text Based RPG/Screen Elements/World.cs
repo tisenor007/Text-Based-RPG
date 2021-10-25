@@ -8,7 +8,7 @@ namespace Text_Based_RPG
 {
     class World
     {
-        public char[,] world = new char[269, 63]; // size of map....
+        public char[,] world = new char[Global.mapWidth, Global.mapHeight]; // size of map....
         public string[] worldData;
         public string currWorldLine;
         private char worldTile;
@@ -18,7 +18,7 @@ namespace Text_Based_RPG
         public World()
         {
             //mapData reads file through lines - Gets Y
-            worldData = System.IO.File.ReadAllLines("World.txt");
+            worldData = System.IO.File.ReadAllLines("Map-World/World.txt");
             for (y = 0; y <= worldData.Length - 1; y = y + 1)
             {
                 //string created to be = to 1 / current line of map

@@ -16,10 +16,10 @@ namespace Text_Based_RPG
         public void InitEnemyFromWorldLoc(char[,] world, int X, int Y)
         {
             if (enemyCount > enemyCap - 1) { return; }
-            else if (world[X, Y] == 'E') { enemies[enemyCount] = new Heavy(X, Y); enemyCount = enemyCount + 1; }
-            else if (world[X, Y] == 'e') { enemies[enemyCount] = new Light(X, Y); enemyCount = enemyCount + 1; }
-            else if (world[X, Y] == '3') { enemies[enemyCount] = new SpecializedCombat(X, Y); enemyCount = enemyCount + 1; }
-            else if (world[X, Y] == 'B') { enemies[enemyCount] = new Boss(X, Y); enemyCount = enemyCount + 1; }
+            else if (world[X, Y] == Global.heavyAppearance) { enemies[enemyCount] = new Heavy(X, Y); enemyCount = enemyCount + 1; }
+            else if (world[X, Y] == Global.lightAppearance) { enemies[enemyCount] = new Light(X, Y); enemyCount = enemyCount + 1; }
+            else if (world[X, Y] == Global.SCAppearance) { enemies[enemyCount] = new SpecializedCombat(X, Y); enemyCount = enemyCount + 1; }
+            else if (world[X, Y] == Global.bossAppearance) { enemies[enemyCount] = new Boss(X, Y); enemyCount = enemyCount + 1; }
         }
         //updates each enemys
         public void UpdateEnemies(Map map, Player player, Camera camera, ItemManager itemManager, EnemyManager enemyManager)

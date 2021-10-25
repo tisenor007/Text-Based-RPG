@@ -15,12 +15,14 @@ namespace Text_Based_RPG
             yLoc = Y;
             //light properties
             SwitchVitalStatus(VitalStatus.Alive);
-            characterTile.tileCharacter = 'e';
+            characterTile.tileCharacter = Global.lightAppearance;
             characterTile.tileColour = ConsoleColor.Red;
-            health = 25;
-            shield = 0;
-            name = "Light";
-            attackDamage = 2;
+            health = Global.lightHealth;
+            healthCap = Global.lightHealth;
+            shield = Global.lightShield;
+            shieldCap = Global.lightShield;
+            name = Global.lightName;
+            attackDamage = Global.lightAttackDamage;
         }
 
         public override void Update(Map map, Player player, Camera camera, ItemManager itemManager, EnemyManager enemyManager)

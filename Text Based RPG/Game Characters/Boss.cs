@@ -14,14 +14,16 @@ namespace Text_Based_RPG
             xLoc = X;
             yLoc = Y;
             SwitchVitalStatus(VitalStatus.Alive);
-            characterTile.tileCharacter = 'B';
+            characterTile.tileCharacter = Global.bossAppearance;
             characterTile.tileColour = ConsoleColor.Red;
             //hard to kill
-            health = 300;
-            shield = 0;
-            name = "Boss";
+            health = Global.bossHealth;
+            healthCap = Global.bossHealth;
+            shield = Global.bossShield;
+            shieldCap = Global.bossShield;
+            name = Global.bossName;
             //can kill you easily
-            attackDamage = 20;
+            attackDamage = Global.bossAttackDamage;
         }
         //specific AI
         public override void Update(Map map, Player player, Camera camera, ItemManager itemManager, EnemyManager enemyManager)

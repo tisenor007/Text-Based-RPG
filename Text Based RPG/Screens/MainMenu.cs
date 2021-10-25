@@ -11,7 +11,7 @@ namespace Text_Based_RPG
         //what you see when game starts
         public void StartMainMenu()
         {
-           string titleScreen = System.IO.File.ReadAllText("MainMenuArt.txt");
+           string titleScreen = System.IO.File.ReadAllText("Art/MainMenuArt.txt");
             Console.WriteLine(titleScreen);
             Console.WriteLine("Original Made by Trenton");
             Console.WriteLine("Expanded by Jared");
@@ -32,7 +32,7 @@ namespace Text_Based_RPG
         public void ShowInfoScreen()
         {
             Console.SetCursorPosition(0, 0);
-            string beginningInfo = System.IO.File.ReadAllText("MainMenuInfoScreenArt.txt");
+            string beginningInfo = System.IO.File.ReadAllText("Art/MainMenuInfoScreenArt.txt");
             Console.WriteLine(beginningInfo);
             Console.WriteLine();
             Console.WriteLine("Press any button to continue...");

@@ -13,7 +13,7 @@ namespace Text_Based_RPG
         //what you see if you lose
         public void GameOverLossScreen()
         {
-            string lossScreen = System.IO.File.ReadAllText("GameOverLossArt.txt");
+            string lossScreen = System.IO.File.ReadAllText("Art/GameOverLossArt.txt");
             Console.SetCursorPosition(0, 0);
             Console.WriteLine(lossScreen);
             Console.WriteLine();
@@ -23,7 +23,7 @@ namespace Text_Based_RPG
         //what you see if you win...
         public void GameOverWinScreen()
         {
-            string winScreen = System.IO.File.ReadAllText("GameOverWinScreen.txt");
+            string winScreen = System.IO.File.ReadAllText("Art/GameOverWinScreen.txt");
             Console.SetCursorPosition(0, 0);
             Console.WriteLine(winScreen);
             Console.WriteLine();

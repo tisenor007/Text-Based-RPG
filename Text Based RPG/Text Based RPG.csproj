@@ -45,7 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game Characters\Boss.cs" />
-    <Compile Include="Global.cs" />
+    <Compile Include="Managers\Global.cs" />
     <Compile Include="Managers\DataManager.cs" />
     <Compile Include="Shops\Currency.cs" />
     <Compile Include="Shops\Shop.cs" />
@@ -53,7 +53,7 @@
     <Compile Include="Managers\ShopManager.cs" />
     <Compile Include="Screen Elements\Inventory.cs" />
     <Compile Include="Screen Elements\Tile.cs" />
-    <Compile Include="Screens\World.cs" />
+    <Compile Include="Screen Elements\World.cs" />
     <Compile Include="Screen Elements\Camera.cs" />
     <Compile Include="Pick Ups\FirstAidKit.cs" />
     <Compile Include="Pick Ups\Key.cs" />
@@ -70,7 +70,7 @@
     <Compile Include="Screen Elements\HUD.cs" />
     <Compile Include="Pick Ups\Item.cs" />
     <Compile Include="Managers\ItemManager.cs" />
-    <Compile Include="Screen Elements\Map.cs" />
+    <Compile Include="Screens\Map.cs" />
     <Compile Include="Game Characters\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -81,27 +81,34 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="GameOverLossArt.txt">
+    <Content Include="Art\GameOverLossArt.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="GameOverWinScreen.txt">
+    <Content Include="Art\GameOverWinScreen.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="MainMenuArt.txt">
+    <Content Include="Art\MainMenuArt.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="MainMenuInfoScreenArt.txt">
+    <Content Include="Art\MainMenuInfoScreenArt.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Map.txt">
+    <Content Include="DataStats\EnemyStats.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="PlayerStats.txt">
+    <Content Include="DataStats\MapStats.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="World.txt">
+    <Content Include="Map-World\Map.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataStats\PlayerStats.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Map-World\World.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

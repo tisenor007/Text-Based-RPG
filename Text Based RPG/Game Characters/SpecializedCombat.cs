@@ -16,12 +16,14 @@ namespace Text_Based_RPG
             yLoc = Y;
             //special properties
             SwitchVitalStatus(VitalStatus.Alive);
-            characterTile.tileCharacter = '3';
+            characterTile.tileCharacter = Global.SCAppearance;
             characterTile.tileColour = ConsoleColor.Red;
-            health = 50;
-            shield = 0;
-            name = "Special";
-            attackDamage = 10;
+            health = Global.SCHealth;
+            healthCap = Global.SCHealth;
+            shield = Global.SCShield;
+            shieldCap = Global.SCShield;
+            name = Global.SCName;
+            attackDamage = Global.SCAttackDamage;
         }
 
         public override void Update(Map map, Player player, Camera camera, ItemManager itemManager, EnemyManager enemyManager)

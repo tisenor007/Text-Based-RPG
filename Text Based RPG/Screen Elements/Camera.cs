@@ -8,7 +8,7 @@ namespace Text_Based_RPG
 {
     class Camera
     {
-        public char[,] renderer = new char[269, 63]; // same size as map 
+        public char[,] renderer = new char[Global.mapWidth, Global.mapHeight]; // same size as map 
         public int endViewY;
         public int endViewX;
         public int offsetX;
