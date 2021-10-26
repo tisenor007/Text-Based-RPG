@@ -18,7 +18,7 @@ namespace Text_Based_RPG
             //loads player position, character, health
             SwitchVitalStatus(VitalStatus.Alive);
             characterTile.tileCharacter = Global.playerAppearance;
-            characterTile.tileColour = ConsoleColor.Cyan;
+            characterTile.tileColour = Global.playerColour;
             health = Global.playerHealth;
             shield = Global.playerShield;
             healthCap = Global.playerHealth;

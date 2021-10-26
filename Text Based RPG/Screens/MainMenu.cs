@@ -13,8 +13,6 @@ namespace Text_Based_RPG
         {
            string titleScreen = System.IO.File.ReadAllText("Art/MainMenuArt.txt");
             Console.WriteLine(titleScreen);
-            Console.WriteLine("Original Made by Trenton");
-            Console.WriteLine("Expanded by Jared");
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Press any button - New Game");

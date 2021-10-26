@@ -4,6 +4,7 @@ PShield=50
 PMoney=30
 Pappearance=@
 StartWeapon=Chainsaw
+Colour=Cyan
 InvenSlotAmount=10
 Slot1=Shield
 Slot3=BaseballBat

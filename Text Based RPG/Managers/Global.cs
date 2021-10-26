@@ -21,6 +21,7 @@ namespace Text_Based_RPG
         public static string[] playerInventoryData;
         public static string playerStartingWeapon;
         public static int playerStartMoney;
+        public static ConsoleColor playerColour;
 
         //map
         public static int mapWidth;
@@ -299,6 +300,10 @@ namespace Text_Based_RPG
                     if (dataLineSections[l].ToLower() == "pname".ToLower())
                     {
                         playerName = dataLineSections[l+1];
+                    }
+                    if (dataLineSections[l].ToLower() == "Colour".ToLower())
+                    {
+                        playerColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor),dataLineSections[l + 1], true);
                     }
                     if (dataLineSections[l].ToLower() == "invenslotamount".ToLower())
                     {
