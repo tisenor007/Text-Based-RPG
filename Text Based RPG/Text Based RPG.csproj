@@ -98,7 +98,7 @@
     <Content Include="DataStats\MapStats.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DataStats\ShopKeeperData.txt">
+    <Content Include="DataStats\ShopKeeperStats.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Map-World\Map.txt">

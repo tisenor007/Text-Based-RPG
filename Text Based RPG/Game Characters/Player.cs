@@ -25,6 +25,7 @@ namespace Text_Based_RPG
             shieldCap = Global.playerShield;
             collectedValuables = 0;
             name = Global.playerName;
+            SetMoney(Global.playerStartMoney);
             if (Global.playerStartingWeapon == Item.ItemType.Fist.ToString())
             {
                 equippedWeapon.SwitchWeapon(Item.ItemType.Fist, this);

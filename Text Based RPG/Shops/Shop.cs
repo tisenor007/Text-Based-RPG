@@ -26,14 +26,14 @@ namespace Text_Based_RPG
             yLoc = shopCenterY;
 
             shopKeeper = new Shopkeeper(shopCenterX, shopCenterY, player, this);
-            shopKeeper.SetMoney(30);
+            shopKeeper.SetMoney(Global.shopStartingMoney);
             if (isShopVertical)
             {
                for(int x = 0; x < amountOfItems; x++)
                 {
                     CreateItem((shopCenterX - shopWidth) + x, (shopCenterY - shopHeight));
                     newItem.SetShopItem(true);
-                    newItem.SetPrice(rand.Next(1, 10));
+                    newItem.SetPrice(rand.Next(Global.shopPriceMin, Global.shopPriceMax));
                     newItem.SetPosition((shopCenterX - shopWidth) + x, (shopCenterY - shopHeight));
                     newItem.SetShop(this);
                     itemManager.AddShopItem(newItem);
@@ -44,7 +44,7 @@ namespace Text_Based_RPG
                 {
                     CreateItem((shopCenterX - shopWidth), (shopCenterY - shopHeight) + x);
                     newItem.SetShopItem(true);
-                    newItem.SetPrice(rand.Next(1, 10));
+                    newItem.SetPrice(rand.Next(Global.shopPriceMin, Global.shopPriceMax));
                     newItem.SetPosition((shopCenterX - shopWidth), (shopCenterY - shopHeight) + x);
                     newItem.SetShop(this);
                     itemManager.AddShopItem(newItem);
@@ -80,11 +80,11 @@ namespace Text_Based_RPG
             for (bool sellMenuOpen = true; sellMenuOpen == true;)
             {
                 Console.Clear();
-                Console.WriteLine("Clerk: What do you want to sell to me?");
+                Console.WriteLine(Global.shopName+": "+Global.shopEnterMessage);
                 Console.WriteLine();
                 inventory.SellInventoryDisplay(player, shopKeeper);
                 Console.WriteLine();
-                Console.WriteLine("Clerk's Gold: " + shopKeeper.CheckMoney() + "      " + "Your Gold: " + player.CheckMoney());
+                Console.WriteLine(Global.shopName+"'s Gold: " + shopKeeper.CheckMoney() + "      " + player.name+"'s Gold: " + player.CheckMoney());
                 Console.WriteLine();
                 Console.WriteLine("To sell an item, press the related number of said item + enter.");
                 Console.WriteLine();
@@ -119,7 +119,7 @@ namespace Text_Based_RPG
                                     {
                                         Console.Clear();
                                         Console.WriteLine("Do you want to sell " + inventory.InventorySlots(x).CheckName() + " for " + inventory.InventorySlots(x).CheckPrice() + "?");
-                                        Console.WriteLine("Clerk's Gold: " + shopKeeper.CheckMoney() + "      " + "Your Gold: " + player.CheckMoney());
+                                        Console.WriteLine(Global.shopName+"'s Gold: " + shopKeeper.CheckMoney() + "      " + player.name+"'s Gold: " + player.CheckMoney());
                                         Console.WriteLine("Y) Yes     N) No");
                                         ConsoleKeyInfo secondaryInput = Console.ReadKey(true);
 
@@ -138,9 +138,9 @@ namespace Text_Based_RPG
                                     else
                                     {
                                         Console.Clear();
-                                        Console.WriteLine("The Clerk cannot afford the original price of " + inventory.InventorySlots(x).CheckPrice() + ".");
+                                        Console.WriteLine("The "+Global.shopName+" cannot afford the original price of " + inventory.InventorySlots(x).CheckPrice() + ".");
                                         Console.WriteLine("Do you still want to sell " + inventory.InventorySlots(x).CheckName() + " for " + shopKeeper.CheckMoney() + "?");
-                                        Console.WriteLine("Clerk's Gold: " + shopKeeper.CheckMoney() + "      " + "Your Gold: " + player.CheckMoney());
+                                        Console.WriteLine(Global.shopName+"'s Gold: " + shopKeeper.CheckMoney() + "      " + player.name+"'s Gold: " + player.CheckMoney());
                                         Console.WriteLine("Y) Yes     N) No");
                                         ConsoleKeyInfo secondaryInput = Console.ReadKey(true);
 
@@ -191,7 +191,7 @@ namespace Text_Based_RPG
                         isShopOpen = false;
                         StolenItem();
                         Console.Clear();
-                        Console.WriteLine("Clerk: You thief! I'll make you regret robbing me!");
+                        Console.WriteLine(Global.shopName+": "+Global.shopBetrayalMessage);
                         Console.ReadKey(true);
                         shopLoop = false;
                     }
@@ -212,7 +212,7 @@ namespace Text_Based_RPG
                         isShopOpen = false;
                         StolenItem();
                         Console.Clear();
-                        Console.WriteLine("Clerk: You thief! I'll make you regret robbing me!");
+                        Console.WriteLine(Global.shopName+": "+Global.shopBetrayalMessage);
                         Console.ReadKey(true);
                         shopLoop = false;
                     }

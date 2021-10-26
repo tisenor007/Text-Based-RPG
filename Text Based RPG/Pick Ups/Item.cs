@@ -41,7 +41,7 @@ namespace Text_Based_RPG
         protected string name;
         public Item()
         {
-            SetPrice(rand.Next(1, 10));
+            SetPrice(rand.Next(Global.shopPriceMin, Global.shopPriceMax));
         }
         public virtual void Update(Map map, Player player, Inventory inventory, Camera camera, ItemManager itemManager)
         {

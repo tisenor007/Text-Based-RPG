@@ -1,0 +1,10 @@
+﻿ShopAppearance=C
+StartMoney=50
+ShopName=Vendor
+EnterMessage=What do you want to sell to me?
+BetrayalMessage=You thief! I'll make you regret robbing me!
+PriceRangeMin=1
+PriceRangeMax=10
+ItemAmount=3  
+ShopYLoc=1  
+ShopXLoc=1

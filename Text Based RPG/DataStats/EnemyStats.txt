@@ -17,7 +17,7 @@ HeavyName=Heavy
 HeavyAttackDamage=5
 
 BossAppearance=B
-HeavyHealth=300
-HeavyShield=0
-HeavyName=Boss
-HeavyAttackDamage=20
+BossHealth=300
+BossShield=0
+BossName=Boss
+BossAttackDamage=20

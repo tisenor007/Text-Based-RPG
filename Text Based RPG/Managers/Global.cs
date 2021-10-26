@@ -20,6 +20,7 @@ namespace Text_Based_RPG
         public static int playerInventorySlotAmount;
         public static string[] playerInventoryData;
         public static string playerStartingWeapon;
+        public static int playerStartMoney;
 
         //map
         public static int mapWidth;
@@ -53,7 +54,17 @@ namespace Text_Based_RPG
         public static string bossName;
         public static int bossAttackDamage;
 
+        //Shops
         public static char shopAppearance;
+        public static string shopName;
+        public static int shopPriceMin;
+        public static int shopPriceMax;
+        public static int shopStartingMoney;
+        public static string shopEnterMessage;
+        public static string shopBetrayalMessage;
+        public static int shopItemAmount;
+        public static int shopXLoc;
+        public static int shopYLoc;
        //public static 
         public Global()
         {
@@ -63,6 +74,58 @@ namespace Text_Based_RPG
             SetSCStats();
             SetHeavyStats();
             SetBossStats();
+            SetShopStats();
+        }
+        public void SetShopStats()
+        {
+            data = System.IO.File.ReadAllLines("DataStats/ShopKeeperStats.txt");
+            for (int i = 0; i <= data.Length - 1; i = i + 1)
+            {
+                dataLineSections = data[i].Split('=');
+                for (int l = 0; l <= dataLineSections.Length - 1; l = l + 1)
+                {
+                    if (dataLineSections[l].ToLower() == "shopappearance".ToLower())
+                    {
+                        shopAppearance = char.Parse(dataLineSections[l + 1]);
+                    }
+                    if (dataLineSections[l].ToLower() == "startMoney".ToLower())
+                    {
+                        shopStartingMoney = int.Parse(dataLineSections[l + 1]);
+                    }
+                    if (dataLineSections[l].ToLower() == "shopName".ToLower())
+                    {
+                        shopName = dataLineSections[l + 1];
+                    }
+                    if (dataLineSections[l].ToLower() == "EnterMessage".ToLower())
+                    {
+                        shopEnterMessage = dataLineSections[l + 1];
+                    }
+                    if (dataLineSections[l].ToLower() == "BetrayalMessage".ToLower())
+                    {
+                        shopBetrayalMessage = dataLineSections[l + 1];
+                    }
+                    if (dataLineSections[l].ToLower() == "PriceRangeMin".ToLower())
+                    {
+                        shopPriceMin = int.Parse(dataLineSections[l + 1]);
+                    }
+                    if (dataLineSections[l].ToLower() == "PriceRangeMax".ToLower())
+                    {
+                        shopPriceMax = int.Parse(dataLineSections[l + 1]);
+                    }
+                    if (dataLineSections[l].ToLower() == "ItemAmount".ToLower())
+                    {
+                        shopItemAmount = int.Parse(dataLineSections[l + 1]);
+                    }
+                    if (dataLineSections[l].ToLower() == "shOpYLoc".ToLower())
+                    {
+                        shopYLoc = int.Parse(dataLineSections[l + 1]);
+                    }
+                    if (dataLineSections[l].ToLower() == "shOpXLoc".ToLower())
+                    {
+                        shopXLoc = int.Parse(dataLineSections[l + 1]);
+                    }
+                }
+            }
         }
         public void SetBossStats()
         {
@@ -72,23 +135,23 @@ namespace Text_Based_RPG
                 dataLineSections = data[i].Split('=');
                 for (int l = 0; l <= dataLineSections.Length - 1; l = l + 1)
                 {
-                    if (dataLineSections[l].ToLower() == "bossappearance")
+                    if (dataLineSections[l].ToLower() == "bossappearance".ToLower())
                     {
                         bossAppearance = char.Parse(dataLineSections[l + 1]);
                     }
-                    if (dataLineSections[l].ToLower() == "bossshield")
+                    if (dataLineSections[l].ToLower() == "bossshield".ToLower())
                     {
                         bossShield = int.Parse(dataLineSections[l + 1]);
                     }
-                    if (dataLineSections[l].ToLower() == "bosshealth")
+                    if (dataLineSections[l].ToLower() == "bosshealth".ToLower())
                     {
                         bossHealth = int.Parse(dataLineSections[l + 1]);
                     }
-                    if (dataLineSections[l].ToLower() == "bossname")
+                    if (dataLineSections[l].ToLower() == "bossname".ToLower())
                     {
                         bossName = dataLineSections[l + 1];
                     }
-                    if (dataLineSections[l].ToLower() == "bossattackdamage")
+                    if (dataLineSections[l].ToLower() == "bossattackdamage".ToLower())
                     {
                         bossAttackDamage = int.Parse(dataLineSections[l + 1]);
                     }
@@ -103,23 +166,23 @@ namespace Text_Based_RPG
                 dataLineSections = data[i].Split('=');
                 for (int l = 0; l <= dataLineSections.Length - 1; l = l + 1)
                 {
-                    if (dataLineSections[l].ToLower() == "heavyappearance")
+                    if (dataLineSections[l].ToLower() == "heavyappearance".ToLower())
                     {
                         heavyAppearance = char.Parse(dataLineSections[l + 1]);
                     }
-                    if (dataLineSections[l].ToLower() == "heavyshield")
+                    if (dataLineSections[l].ToLower() == "heavyshield".ToLower())
                     {
                         heavyShield = int.Parse(dataLineSections[l + 1]);
                     }
-                    if (dataLineSections[l].ToLower() == "heavyhealth")
+                    if (dataLineSections[l].ToLower() == "heavyhealth".ToLower())
                     {
                         heavyHealth = int.Parse(dataLineSections[l + 1]);
                     }
-                    if (dataLineSections[l].ToLower() == "heavyname")
+                    if (dataLineSections[l].ToLower() == "heavyname".ToLower())
                     {
                         heavyName = dataLineSections[l + 1];
                     }
-                    if (dataLineSections[l].ToLower() == "heavyattackdamage")
+                    if (dataLineSections[l].ToLower() == "heavyattackdamage".ToLower())
                     {
                         heavyAttackDamage = int.Parse(dataLineSections[l + 1]);
                     }
@@ -134,23 +197,23 @@ namespace Text_Based_RPG
                 dataLineSections = data[i].Split('=');
                 for (int l = 0; l <= dataLineSections.Length - 1; l = l + 1)
                 {
-                    if (dataLineSections[l].ToLower() == "scappearance")
+                    if (dataLineSections[l].ToLower() == "scappearance".ToLower())
                     {
                         SCAppearance = char.Parse(dataLineSections[l + 1]);
                     }
-                    if (dataLineSections[l].ToLower() == "scshield")
+                    if (dataLineSections[l].ToLower() == "scshield".ToLower())
                     {
                         SCShield = int.Parse(dataLineSections[l + 1]);
                     }
-                    if (dataLineSections[l].ToLower() == "schealth")
+                    if (dataLineSections[l].ToLower() == "schealth".ToLower())
                     {
                         SCHealth = int.Parse(dataLineSections[l + 1]);
                     }
-                    if (dataLineSections[l].ToLower() == "scname")
+                    if (dataLineSections[l].ToLower() == "scname".ToLower())
                     {
                         SCName = dataLineSections[l + 1];
                     }
-                    if (dataLineSections[l].ToLower() == "scattackdamage")
+                    if (dataLineSections[l].ToLower() == "scattackdamage".ToLower())
                     {
                         SCAttackDamage = int.Parse(dataLineSections[l + 1]);
                     }
@@ -166,23 +229,23 @@ namespace Text_Based_RPG
                 dataLineSections = data[i].Split('=');
                 for (int l = 0; l <= dataLineSections.Length - 1; l = l + 1)
                 {
-                    if (dataLineSections[l].ToLower() == "lightappearance")
+                    if (dataLineSections[l].ToLower() == "lightappearance".ToLower())
                     {
                         lightAppearance = char.Parse(dataLineSections[l + 1]);
                     }
-                    if (dataLineSections[l].ToLower() == "lightshield")
+                    if (dataLineSections[l].ToLower() == "lightshield".ToLower())
                     {
                         lightShield = int.Parse(dataLineSections[l + 1]);
                     }
-                    if (dataLineSections[l].ToLower() == "lighthealth")
+                    if (dataLineSections[l].ToLower() == "lighthealth".ToLower())
                     {
                         lightHealth = int.Parse(dataLineSections[l + 1]);
                     }
-                    if (dataLineSections[l].ToLower() == "lightname")
+                    if (dataLineSections[l].ToLower() == "lightname".ToLower())
                     {
                         lightName = dataLineSections[l + 1];
                     }
-                    if (dataLineSections[l].ToLower() == "lightattackdamage")
+                    if (dataLineSections[l].ToLower() == "lightattackdamage".ToLower())
                     {
                         lightAttackDamage = int.Parse(dataLineSections[l + 1]);
                     }
@@ -197,11 +260,11 @@ namespace Text_Based_RPG
                 dataLineSections = data[i].Split('=');
                 for (int l = 0; l <= dataLineSections.Length - 1; l = l + 1)
                 {
-                    if (dataLineSections[l].ToLower() == "width")
+                    if (dataLineSections[l].ToLower() == "width".ToLower())
                     {
                         mapWidth = int.Parse(dataLineSections[l + 1]);
                     }
-                    if (dataLineSections[l].ToLower() == "height")
+                    if (dataLineSections[l].ToLower() == "height".ToLower())
                     {
                         mapHeight = int.Parse(dataLineSections[l + 1]);
                     }
@@ -217,28 +280,32 @@ namespace Text_Based_RPG
                 dataLineSections = data[i].Split('=');
                 for (int l = 0; l <= dataLineSections.Length - 1; l = l + 1)
                 {
-                    if (dataLineSections[l].ToLower() == "pappearance")
+                    if (dataLineSections[l].ToLower() == "pmoney".ToLower())
+                    {
+                        playerStartMoney = int.Parse(dataLineSections[l + 1]);
+                    }
+                    if (dataLineSections[l].ToLower() == "pappearance".ToLower())
                     {
                         playerAppearance = char.Parse(dataLineSections[l+1]);
                     }
-                    if (dataLineSections[l].ToLower() == "pshield")
+                    if (dataLineSections[l].ToLower() == "pshield".ToLower())
                     {
                         playerShield = int.Parse(dataLineSections[l + 1]);
                     }
-                    if (dataLineSections[l].ToLower() == "phealth")
+                    if (dataLineSections[l].ToLower() == "phealth".ToLower())
                     {
                         playerHealth = int.Parse(dataLineSections[l+1]);
                     }
-                    if (dataLineSections[l].ToLower() == "pname")
+                    if (dataLineSections[l].ToLower() == "pname".ToLower())
                     {
                         playerName = dataLineSections[l+1];
                     }
-                    if (dataLineSections[l].ToLower() == "invenslotamount")
+                    if (dataLineSections[l].ToLower() == "invenslotamount".ToLower())
                     {
                         playerInventorySlotAmount = int.Parse(dataLineSections[l+1]);
                         playerInventoryData = new string[playerInventorySlotAmount];
                     }
-                    if (dataLineSections[l].ToLower() == "startweapon")
+                    if (dataLineSections[l].ToLower() == "startweapon".ToLower())
                     {
                         if (dataLineSections[l + 1] == Item.ItemType.Fist.ToString())
                         {

@@ -1,9 +1,10 @@
-﻿Pname=Player
-Phealth=100
-Pshield=50
+﻿PName=Player
+PHealth=100
+PShield=50
+PMoney=30
 Pappearance=@
 StartWeapon=Fist
 InvenSlotAmount=10
 Slot1=Shield
-Slot4=FirstAidKit
+Slot9=Knife
 Slot10=Chainsaw

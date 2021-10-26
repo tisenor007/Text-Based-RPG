@@ -12,7 +12,7 @@ namespace Text_Based_RPG
         public void InitShopFromWorldLoc(char[,] world, int X, int Y, ItemManager itemManager, Player player, Camera cam, Inventory inventory, EnemyManager enemyManager)
         {
             if (shopCount >  shopCap - 1) { return; }
-            if (world[X, Y] == 'C') { shops[shopCount] = new Shop(X, Y, 3, 1, true, 3, itemManager, player, cam, inventory, enemyManager); shopCount = shopCount + 1; }
+            if (world[X, Y] == Global.shopAppearance) { shops[shopCount] = new Shop(X, Y, Global.shopXLoc, Global.shopYLoc, true, Global.shopItemAmount, itemManager, player, cam, inventory, enemyManager); shopCount = shopCount + 1; }
         }
 
         public void Update()
