@@ -67,7 +67,7 @@ namespace Text_Based_RPG
         }
         public void InitPlayerFromWorldLoc(char[,] world, int X, int Y)
         {
-            if (world[X, Y] == '@') { xLoc = X; yLoc = Y; }
+            if (world[X, Y] == Global.playerAppearance) { xLoc = X; yLoc = Y; }
         }
         public void Update(Map map, EnemyManager enemyManager, ItemManager itemManager, GameOver gameOver, Inventory inventory, ShopManager shopManager)
         {
