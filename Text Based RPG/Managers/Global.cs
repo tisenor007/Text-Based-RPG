@@ -8,6 +8,8 @@ namespace Text_Based_RPG
 {
     class Global
     {
+        //VARIBLES
+
         //general data
         static string[] data;
         static string[] dataLineSections;
@@ -128,6 +130,7 @@ namespace Text_Based_RPG
             ColourNames[14] = "Yellow";
             ColourNames[15] = "White";
         }
+        //Reads and sets all data for items
         private void SetItemStats()
         {
             data = System.IO.File.ReadAllLines("DataStats/ItemStats.txt");
@@ -160,6 +163,7 @@ namespace Text_Based_RPG
                 }
             }
         }
+        //Reads and sets all data for shops
         private void SetShopStats()
         {
             data = System.IO.File.ReadAllLines("DataStats/ShopKeeperStats.txt");
@@ -185,6 +189,7 @@ namespace Text_Based_RPG
                 }
             }
         }
+        //Reads and sets all data for boss enemy
         private void SetBossStats()
         {
             data = System.IO.File.ReadAllLines("DataStats/EnemyStats.txt");
@@ -205,6 +210,7 @@ namespace Text_Based_RPG
                 }
             }
         }
+        //Reads and sets all data for heavy enemy
         private void SetHeavyStats()
         {
             data = System.IO.File.ReadAllLines("DataStats/EnemyStats.txt");
@@ -225,6 +231,7 @@ namespace Text_Based_RPG
                 }
             }
         }
+        //Reads and sets all data for specialized combat enemy
         private void SetSCStats()
         {
             data = System.IO.File.ReadAllLines("DataStats/EnemyStats.txt");
@@ -245,7 +252,7 @@ namespace Text_Based_RPG
                 }
             }
         }
-
+        //Reads and sets all data for light enemy
         private void SetLightStats()
         {
             data = System.IO.File.ReadAllLines("DataStats/EnemyStats.txt");
@@ -266,6 +273,7 @@ namespace Text_Based_RPG
                 }
             }
         }
+        //Reads and sets all data for map
         private void SetMapStats()
         {
             data = System.IO.File.ReadAllLines("DataStats/MapStats.txt");
@@ -308,7 +316,7 @@ namespace Text_Based_RPG
                 }
             }
         }
-       
+        //Reads and sets all data for player
         private void SetPlayerStats()
         {
             data = System.IO.File.ReadAllLines("DataStats/PlayerStats.txt");
@@ -353,6 +361,7 @@ namespace Text_Based_RPG
             }
 
         }
+        //bool method to check if a string is numeral
         public static bool isNumeric(String stringToCheck)
         {
             int intValue;
@@ -373,6 +382,7 @@ namespace Text_Based_RPG
             }
             return false;
         }
+        //bool method to check if a string is no more than 1 character long
         public static bool isOneCharacter(string stringToCheck)
         {
             if (stringToCheck.Length <= 1)
