@@ -10,3 +10,38 @@ Slot1=Shield
 Slot3=BaseballBat
 Slot9=Knife
 Slot10=Chainsaw
+
+//Weapons Available for start weapon
+Fist
+BrassKnuckles
+BaseballBat
+Knife
+Machete
+Chainsaw
+
+//Items available to put in inventory
+FirstAidKit
+Shield
+BrassKnuckles
+BaseballBat
+Knife
+Machete
+Chainsaw
+
+//ConsoleColours Available to set:
+Black
+Blue
+Cyan
+DarkBlue
+DarkCyan
+DarkGray
+DarkGreen
+Magenta
+DarkRed
+DarkYellow
+Gray
+Green
+DarkMagenta
+Red
+White
+Yellow

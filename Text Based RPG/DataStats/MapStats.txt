@@ -1,3 +1,50 @@
-﻿Width=269
-Height=63
-The map in World.txt is a visual for placing entities, make sure that the map in World.txt is an exact copy of the map in Map.txt
+﻿//split this way cause some chars are tiles, just think ; as a =
+
+Width;269
+Height;63
+
+WaterID;~
+WaterColour;DarkBlue
+GrassID;`
+GrassColour;Green
+HillID;^
+HillColour;Gray
+MountainID;7
+MountainColour;White
+VertWallID;-
+VertWallColour;Gray
+HorizWallID;|
+HorizWallColour;Gray
+RightCornerWallID;>
+RightCornerWallColour;Gray
+LeftCornerWallID;<
+LeftCornerWallColour;Gray
+FloorID;=
+FloorColour;DarkMagenta
+PathID;#
+PathColour;DarkGray
+CaveWallID;▓
+CaveWallColour;Black
+CaveFloorID;░
+CaveFloorColour;Gray
+CaveDoorID;▒
+CaveDoorColour;White
+
+//The map in World.txt is a visual for placing entities, make sure that the map in World.txt is an exact copy of the map in Map.txt
+//ConsoleColours Available to set:
+Black
+Blue
+Cyan
+DarkBlue
+DarkCyan
+DarkGray
+DarkGreen
+Magenta
+DarkRed
+DarkYellow
+Gray
+Green
+DarkMagenta
+Red
+White
+Yellow

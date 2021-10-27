@@ -25,7 +25,7 @@ namespace Text_Based_RPG
         public ItemType itemType;
         public Tile itemTile = new Tile(' ', ConsoleColor.White);
         //determines if they are picked up or not...
-        public bool pickedUp;
+        public bool pickingUp;
         public bool dropped;
         public bool used;
         public string infoMessage;
@@ -33,12 +33,12 @@ namespace Text_Based_RPG
         public int xLoc;
         public int yLoc;
         //what they are seen as
-
+        public bool isShopItem = false;
+        protected string name;
         private int price;
         private Shop shop;
         private Random rand = new Random(); 
-        protected bool isShopItem = false;
-        protected string name;
+        
         public Item()
         {
             SetPrice(rand.Next(Global.shopPriceMin, Global.shopPriceMax));

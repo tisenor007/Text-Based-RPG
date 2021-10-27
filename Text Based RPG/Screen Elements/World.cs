@@ -18,7 +18,7 @@ namespace Text_Based_RPG
         public World()
         {
             //mapData reads file through lines - Gets Y
-            worldData = System.IO.File.ReadAllLines("Map-World/World.txt");
+            worldData = System.IO.File.ReadAllLines("DataStats/World.txt");
             for (y = 0; y <= worldData.Length - 1; y = y + 1)
             {
                 //string created to be = to 1 / current line of map

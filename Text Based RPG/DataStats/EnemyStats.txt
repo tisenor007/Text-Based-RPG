@@ -3,21 +3,43 @@ LightHealth=25
 LightShield=0
 LightName=Light
 LightAttackDamage=2
+LightColour=Red
 
-SCAppearance=3
+SCAppearance=%
 SCHealth=50
 SCShield=0
 SCName=Special
 SCAttackDamage=10
+SCColour=Red
 
 HeavyAppearance=E
 HeavyHealth=100
 HeavyShield=0
 HeavyName=Heavy
 HeavyAttackDamage=5
+HeavyColour=Red
 
 BossAppearance=B
 BossHealth=300
 BossShield=0
 BossName=Boss
 BossAttackDamage=20
+BossColour=DarkRed
+
+//ConsoleColours Available to set:
+Black
+Blue
+Cyan
+DarkBlue
+DarkCyan
+DarkGray
+DarkGreen
+Magenta
+DarkRed
+DarkYellow
+Gray
+Green
+DarkMagenta
+Red
+White
+Yellow

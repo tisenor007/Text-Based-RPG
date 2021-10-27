@@ -15,7 +15,7 @@ namespace Text_Based_RPG
             yLoc = Y;
             SwitchVitalStatus(VitalStatus.Alive);
             characterTile.tileCharacter = Global.bossAppearance;
-            characterTile.tileColour = ConsoleColor.Red;
+            characterTile.tileColour = Global.bossColour;
             //hard to kill
             health = Global.bossHealth;
             healthCap = Global.bossHealth;

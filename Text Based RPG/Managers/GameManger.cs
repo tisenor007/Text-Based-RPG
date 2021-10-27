@@ -30,7 +30,7 @@ namespace Text_Based_RPG
             itemManager.SetShopManager(shopManager);
 
             //gameloop
-            Hud.DisplayHUD(player, enemyManager, camera, inventory);
+            Hud.DisplayHUD(player, enemyManager, camera, inventory, itemManager);
             camera.Draw(player, enemyManager, map, itemManager, shopManager);
             while (true)
             {
@@ -45,7 +45,7 @@ namespace Text_Based_RPG
 
                 //draws + other game elements(for polish)
                 itemManager.DrawItems(camera);
-                Hud.DisplayHUD(player, enemyManager, camera, inventory);
+                Hud.DisplayHUD(player, enemyManager, camera, inventory, itemManager);
                 enemyManager.DrawEnemies(camera);
                 shopManager.Draw();
                 player.Draw(camera);

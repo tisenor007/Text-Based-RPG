@@ -15,24 +15,25 @@ namespace Text_Based_RPG
         public Weapon(int X, int Y, ItemType weaponPickUp)
         {
             itemType = weaponPickUp;
-            pickedUp = false;
+            pickingUp = false;
             xLoc = X;
             yLoc = Y;
-            itemTile.tileCharacter = 'W';
-            if (itemType == ItemType.BrassKnuckles) { name = "Brass Knuckles"; }
-            else if (itemType == ItemType.BaseballBat) { name = "Baseball Bat"; }
-            else if (itemType == ItemType.Knife) { name = "Knife"; }
-            else if (itemType == ItemType.Machete) { name = "Machete"; }
-            else if (itemType == ItemType.Chainsaw) { name = "Chainsaw"; }
-            Random rand = new Random();
-            SetPrice(rand.Next(1, 10));
+            itemTile.tileCharacter = Global.weaponAppearance;
+            itemTile.tileColour = Global.weaponColour;
+            if (itemType == ItemType.BrassKnuckles) { name = ItemType.BrassKnuckles.ToString(); }
+            else if (itemType == ItemType.BaseballBat) { name = ItemType.BaseballBat.ToString(); }
+            else if (itemType == ItemType.Knife) { name = ItemType.Knife.ToString(); }
+            else if (itemType == ItemType.Machete) { name = ItemType.Machete.ToString(); }
+            else if (itemType == ItemType.Chainsaw) { name = ItemType.Chainsaw.ToString(); }
+            //Random rand = new Random();
+            //SetPrice(rand.Next(1, 10));
         }
         public override void Update(Map map, Player player, Inventory inventory, Camera camera, ItemManager itemManager)
         {
-            if (isShopItem == true)
-                itemTile.tileColour = ConsoleColor.Yellow;
+            //if (isShopItem == true)
+            //    itemTile.tileColour = ConsoleColor.Yellow;
 
-            if (pickedUp == true)
+            if (pickingUp == true)
             {
                 xLoc = 0;
                 yLoc = 0;
@@ -41,7 +42,7 @@ namespace Text_Based_RPG
                 else if (itemType == ItemType.Knife) {inventory.addItemToInventory(this); infoMessage = "You have found a " + name + "!"; base.Update(map, player, inventory, camera, itemManager);}
                 else if (itemType == ItemType.Machete) {inventory.addItemToInventory(this); infoMessage = "You have found a " + name + "!"; base.Update(map, player, inventory, camera, itemManager);}
                 else if (itemType == ItemType.Chainsaw) {inventory.addItemToInventory(this); infoMessage = "You have found a " + name + "!"; base.Update(map, player, inventory, camera, itemManager);}
-                pickedUp = false;
+                pickingUp = false;
             }
             
             if (dropped == true)
@@ -69,7 +70,7 @@ namespace Text_Based_RPG
                 if (itemType == ItemType.Knife) { SwitchWeapon(ItemType.Knife, player); }
                 if (itemType == ItemType.Machete) { SwitchWeapon(ItemType.Machete, player); }
                 if (itemType == ItemType.Chainsaw) { SwitchWeapon(ItemType.Chainsaw, player); }
-                pickedUp = false;
+                pickingUp = false;
                 used = false;
                 //itemTile.tileCharacter = ' ';
             }
@@ -84,27 +85,27 @@ namespace Text_Based_RPG
             {
                 case ItemType.Fist:
                     player.equippedWeapon.itemType = ItemType.Fist;
-                    player.attackDamage = 5;
+                    player.attackDamage = Global.fistDamage;
                     break;
                 case ItemType.BrassKnuckles:
                     player.equippedWeapon.itemType = ItemType.BrassKnuckles;
-                    player.attackDamage = 10;
+                    player.attackDamage = Global.BKDamage;
                     break;
                 case ItemType.BaseballBat:
                     player.equippedWeapon.itemType = ItemType.BaseballBat;
-                    player.attackDamage = 25;
+                    player.attackDamage = Global.BBBDamage;
                     break;
                 case ItemType.Knife:
                     player.equippedWeapon.itemType = ItemType.Knife;
-                    player.attackDamage = 50;
+                    player.attackDamage = Global.knifeDamage;
                     break;
                 case ItemType.Machete:
                     player.equippedWeapon.itemType = ItemType.Machete;
-                    player.attackDamage = 75;
+                    player.attackDamage = Global.macheteDamage;
                     break;
                 case ItemType.Chainsaw:
                     player.equippedWeapon.itemType = ItemType.Chainsaw;
-                    player.attackDamage = 100;
+                    player.attackDamage = Global.chainsawDamage;
                     break;
 
             }

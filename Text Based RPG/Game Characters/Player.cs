@@ -26,34 +26,13 @@ namespace Text_Based_RPG
             collectedValuables = 0;
             name = Global.playerName;
             SetMoney(Global.playerStartMoney);
-            if (Global.playerStartingWeapon == Item.ItemType.Fist.ToString())
-            {
-                equippedWeapon.SwitchWeapon(Item.ItemType.Fist, this);
-            }
-            if (Global.playerStartingWeapon == Item.ItemType.BrassKnuckles.ToString())
-            {
-                equippedWeapon.SwitchWeapon(Item.ItemType.BrassKnuckles, this);
-            }
-            if (Global.playerStartingWeapon == Item.ItemType.BaseballBat.ToString())
-            {
-                equippedWeapon.SwitchWeapon(Item.ItemType.BaseballBat, this);
-            }
-            if (Global.playerStartingWeapon == Item.ItemType.Knife.ToString())
-            {
-                equippedWeapon.SwitchWeapon(Item.ItemType.Knife, this);
-            }
-            if (Global.playerStartingWeapon == Item.ItemType.Machete.ToString())
-            {
-                equippedWeapon.SwitchWeapon(Item.ItemType.Machete, this);
-            }
-            if (Global.playerStartingWeapon == Item.ItemType.Chainsaw.ToString())
-            {
-                equippedWeapon.SwitchWeapon(Item.ItemType.Chainsaw, this);
-            }
-            else if (Global.playerStartingWeapon == null || Global.playerStartingWeapon == "")
-            {
-                equippedWeapon.SwitchWeapon(Item.ItemType.Fist, this);
-            }
+            if (Global.playerStartingWeapon == Item.ItemType.Fist.ToString()){ equippedWeapon.SwitchWeapon(Item.ItemType.Fist, this); }
+            if (Global.playerStartingWeapon == Item.ItemType.BrassKnuckles.ToString()){ equippedWeapon.SwitchWeapon(Item.ItemType.BrassKnuckles, this);}
+            if (Global.playerStartingWeapon == Item.ItemType.BaseballBat.ToString()){equippedWeapon.SwitchWeapon(Item.ItemType.BaseballBat, this);}
+            if (Global.playerStartingWeapon == Item.ItemType.Knife.ToString()){equippedWeapon.SwitchWeapon(Item.ItemType.Knife, this);}
+            if (Global.playerStartingWeapon == Item.ItemType.Machete.ToString()){ equippedWeapon.SwitchWeapon(Item.ItemType.Machete, this);}
+            if (Global.playerStartingWeapon == Item.ItemType.Chainsaw.ToString()){ equippedWeapon.SwitchWeapon(Item.ItemType.Chainsaw, this);}
+            else if (Global.playerStartingWeapon == null || Global.playerStartingWeapon == ""){equippedWeapon.SwitchWeapon(Item.ItemType.Fist, this);}
 
             previousXLoc = xLoc;
             previousYLoc = yLoc;
@@ -61,9 +40,9 @@ namespace Text_Based_RPG
         //specific to the player...
 
         
-        public void CollectValuable(int money)
+        public void CollectValuable()
         {
-            collectedValuables = collectedValuables + money;
+            collectedValuables++;
         }
         public void InitPlayerFromWorldLoc(char[,] world, int X, int Y)
         {
@@ -195,7 +174,7 @@ namespace Text_Based_RPG
                     inventory.inventoryIsOpen = true;
                 }
                 //determines win
-                if (collectedValuables >= 600)
+                if (collectedValuables >= itemManager.valuableCount)
                 {
                     gameOver.gameOverWin = true;
                 }

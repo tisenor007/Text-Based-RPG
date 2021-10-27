@@ -17,7 +17,7 @@ namespace Text_Based_RPG
             //Heavy properties, vary based off enemy types
             SwitchVitalStatus(VitalStatus.Alive);
             characterTile.tileCharacter = Global.heavyAppearance;
-            characterTile.tileColour = ConsoleColor.Red;
+            characterTile.tileColour = Global.heavyColour;
             health = Global.heavyHealth;
             healthCap = Global.heavyHealth;
             shield = Global.heavyShield;

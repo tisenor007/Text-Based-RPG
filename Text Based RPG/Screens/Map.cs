@@ -16,25 +16,25 @@ namespace Text_Based_RPG
         private int x;
         private int y;
 
-        public Tile water = new Tile('~', ConsoleColor.Blue);
-        public Tile grass = new Tile('`', ConsoleColor.Green);
-        public Tile hill = new Tile('^', ConsoleColor.DarkGray);
-        public Tile mountain = new Tile('7', ConsoleColor.DarkGray);
-        public Tile verticalWall = new Tile('-', ConsoleColor.Gray);
-        public Tile horizontalWall = new Tile('|', ConsoleColor.Gray);
-        public Tile cornerWallLeft = new Tile('<', ConsoleColor.Gray);
-        public Tile cornerWallRight = new Tile('>', ConsoleColor.Gray);
-        public Tile floor = new Tile('=', ConsoleColor.DarkGray);
-        public Tile path = new Tile('#', ConsoleColor.DarkMagenta);
-        public Tile caveWall = new Tile('▓', ConsoleColor.Black);
-        public Tile caveFloor = new Tile('░', ConsoleColor.Gray);
-        public Tile caveDoor = new Tile('▒', ConsoleColor.White);
+        public Tile water = new Tile(Global.mapTileIDs[0], Global.mapTileColours[0]);
+        public Tile grass = new Tile(Global.mapTileIDs[1], Global.mapTileColours[1]);
+        public Tile hill = new Tile(Global.mapTileIDs[2], Global.mapTileColours[2]);
+        public Tile mountain = new Tile(Global.mapTileIDs[3], Global.mapTileColours[3]);
+        public Tile verticalWall = new Tile(Global.mapTileIDs[4], Global.mapTileColours[4]);
+        public Tile horizontalWall = new Tile(Global.mapTileIDs[5], Global.mapTileColours[5]);
+        public Tile cornerWallLeft = new Tile(Global.mapTileIDs[7], Global.mapTileColours[7]);
+        public Tile cornerWallRight = new Tile(Global.mapTileIDs[6], Global.mapTileColours[6]);
+        public Tile floor = new Tile(Global.mapTileIDs[8], Global.mapTileColours[8]);
+        public Tile path = new Tile(Global.mapTileIDs[9], Global.mapTileColours[9]);
+        public Tile caveWall = new Tile(Global.mapTileIDs[10], Global.mapTileColours[10]);
+        public Tile caveFloor = new Tile(Global.mapTileIDs[11], Global.mapTileColours[11]);
+        public Tile caveDoor = new Tile(Global.mapTileIDs[12], Global.mapTileColours[12]);
 
        //loads map
         public Map()
         {
             //mapData reads file through lines - Gets Y
-            mapData = System.IO.File.ReadAllLines("Map-World/Map.txt");
+            mapData = System.IO.File.ReadAllLines("DataStats/Map.txt");
             for (y = 0; y <= mapData.Length - 1; y = y + 1)
             { 
                 //string created to be = to 1 / current line of map
@@ -83,26 +83,26 @@ namespace Text_Based_RPG
         public bool IsWallAt(int x, int y)
         {
             //lets you walk on certain tiles but anything else, no
-            if (map[x, y] == '=')
+            if (map[x, y] == Global.mapTileIDs[8])
             {
                 return false;
             }
-            else if (map[x, y] == '#')
+            else if (map[x, y] == Global.mapTileIDs[9])
             {
                 return false;
             }
-            else if (map[x, y] == '░')
+            else if (map[x, y] == Global.mapTileIDs[11])
             {
                 return false;
             }
-            else if (map[x, y] == '`')
+            else if (map[x, y] == Global.mapTileIDs[1])
             {
                 return false;
             }
             //without key pickup this char is a wall/door until key is collected.....
             if (openDoors == true)
             {
-                if (map[x, y] == '▒')
+                if (map[x, y] == Global.mapTileIDs[12])
                 {
                     return false;
                 }

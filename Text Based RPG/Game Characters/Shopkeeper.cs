@@ -10,8 +10,8 @@
         {
             shop = shopReference;
             player = playerReference;
-            characterTile.tileCharacter = avatar;
-            characterTile.tileColour = System.ConsoleColor.Yellow;
+            characterTile.tileCharacter = Global.shopAppearance;
+            characterTile.tileColour = Global.shopColour;
             xLoc = x;
             yLoc = y;
         }

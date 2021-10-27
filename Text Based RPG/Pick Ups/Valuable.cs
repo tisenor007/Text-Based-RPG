@@ -11,21 +11,22 @@ namespace Text_Based_RPG
         public Valuable(int X, int Y)
         {
             //valuable properties...
-            pickedUp = false;
+            pickingUp = false;
             xLoc = X;
             yLoc = Y;
-            itemTile.tileCharacter = '$';
+            itemTile.tileCharacter = Global.valuableAppearance;
+            itemTile.tileColour = Global.valuableColour;
             itemType = ItemType.Valuable;
         }
         public override void Update(Map map, Player player, Inventory inventory, Camera camera, ItemManager itemManager)
         {
-            if (pickedUp == true)
+            if (pickingUp == true)
             {
-                player.CollectValuable(100);
+                player.CollectValuable();
                 itemTile.tileCharacter = ' ';
                 xLoc = 0;
                 yLoc = 0;
-                pickedUp = false;
+                pickingUp = false;
             }
 
         }

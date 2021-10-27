@@ -46,9 +46,9 @@
   <ItemGroup>
     <Compile Include="Game Characters\Boss.cs" />
     <Compile Include="Managers\Global.cs" />
-    <Compile Include="Shops\Currency.cs" />
-    <Compile Include="Shops\Shop.cs" />
-    <Compile Include="Shops\Shopkeeper.cs" />
+    <Compile Include="Managers\Currency.cs" />
+    <Compile Include="Screen Elements\Shop.cs" />
+    <Compile Include="Game Characters\Shopkeeper.cs" />
     <Compile Include="Managers\ShopManager.cs" />
     <Compile Include="Screen Elements\Inventory.cs" />
     <Compile Include="Screen Elements\Tile.cs" />
@@ -95,19 +95,22 @@
     <Content Include="DataStats\EnemyStats.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="DataStats\ItemStats.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="DataStats\MapStats.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DataStats\ShopKeeperStats.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Map-World\Map.txt">
+    <Content Include="DataStats\Map.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DataStats\PlayerStats.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Map-World\World.txt">
+    <Content Include="DataStats\World.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

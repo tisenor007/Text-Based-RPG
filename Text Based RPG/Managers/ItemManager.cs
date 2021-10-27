@@ -11,6 +11,7 @@ namespace Text_Based_RPG
         //makes array that size
         public Item[] items = new Item[itemCap];
         public int itemCount;
+        public int valuableCount;
         //total number of enemies
         private static int itemCap = 100;
 
@@ -28,6 +29,7 @@ namespace Text_Based_RPG
                 if(items[x] == null)
                 {
                     items[x] = itemToAdd;
+                    items[x].isShopItem = true;
                     itemCount = itemCount + 1;
                     return;
                 }
@@ -36,13 +38,14 @@ namespace Text_Based_RPG
         public void InitItemFromWorldLoc(char[,] world, int X, int Y)
         {
                 if (itemCount > itemCap - 1) { return; }
-                if (world[X, Y] == '+') { items[itemCount] = new FirstAidKit(X, Y); itemCount = itemCount + 1; }
-                if (world[X, Y] == '&') { items[itemCount] = new Key(X, Y); itemCount = itemCount + 1; }
-                if (world[X, Y] == 'S') { items[itemCount] = new Shield(X, Y); itemCount = itemCount + 1; }
-                if (world[X, Y] == '$') { items[itemCount] = new Valuable(X, Y); itemCount = itemCount + 1; }
+                if (world[X, Y] == Global.firstAidAppearance) { items[itemCount] = new FirstAidKit(X, Y); itemCount = itemCount + 1; }
+                if (world[X, Y] == Global.keyAppearance) { items[itemCount] = new Key(X, Y); itemCount = itemCount + 1; }
+                if (world[X, Y] == Global.shieldAppearance) { items[itemCount] = new Shield(X, Y); itemCount = itemCount + 1; }
+                if (world[X, Y] == Global.valuableAppearance) { items[itemCount] = new Valuable(X, Y); itemCount = itemCount + 1; valuableCount++; }
+                //for Different weapon types
                 if (world[X, Y] == '1') { items[itemCount] = new Weapon(X, Y, Item.ItemType.BrassKnuckles); itemCount = itemCount + 1; }
                 if (world[X, Y] == '2') { items[itemCount] = new Weapon(X, Y, Item.ItemType.BaseballBat); itemCount = itemCount + 1; }
-                if (world[X, Y] == 'W') { items[itemCount] = new Weapon(X, Y, Item.ItemType.Knife); itemCount = itemCount + 1; }
+                if (world[X, Y] == '3') { items[itemCount] = new Weapon(X, Y, Item.ItemType.Knife); itemCount = itemCount + 1; }
                 if (world[X, Y] == '4') { items[itemCount] = new Weapon(X, Y, Item.ItemType.Machete); itemCount = itemCount + 1; }
                 if (world[X, Y] == '5') { items[itemCount] = new Weapon(X, Y, Item.ItemType.Chainsaw); itemCount = itemCount + 1; }
         }
@@ -86,17 +89,17 @@ namespace Text_Based_RPG
         {
             for (int i = 0; i < itemCount; i++)
             {
-                if (x == items[i].xLoc && items[i].pickedUp == false)
+                if (x == items[i].xLoc && items[i].pickingUp == false)
                 {
-                    if (y == items[i].yLoc && items[i].pickedUp == false)
+                    if (y == items[i].yLoc && items[i].pickingUp == false)
                     {
-                        if (CheckForShopItem(items[i]) && items[i].pickedUp == false)
+                        if (CheckForShopItem(items[i]) && items[i].pickingUp == false)
                         {
                             shopManager.PurchaseFromShop(items[i].GetShop(), items[i]);
                         }
-                        else if (items[i].pickedUp == false)
+                        else if (items[i].pickingUp == false)
                         {
-                            items[i].pickedUp = true;
+                            items[i].pickingUp = true;
                             return;
                         }
                     }

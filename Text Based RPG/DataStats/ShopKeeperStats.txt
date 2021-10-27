@@ -8,3 +8,22 @@ PriceRangeMax=10
 ItemAmount=3  
 ShopYLoc=1  
 ShopXLoc=1
+Colour=Yellow
+
+//ConsoleColours Available to set:
+Black
+Blue
+Cyan
+DarkBlue
+DarkCyan
+DarkGray
+DarkGreen
+Magenta
+DarkRed
+DarkYellow
+Gray
+Green
+DarkMagenta
+Red
+White
+Yellow

@@ -16,7 +16,7 @@ namespace Text_Based_RPG
             //light properties
             SwitchVitalStatus(VitalStatus.Alive);
             characterTile.tileCharacter = Global.lightAppearance;
-            characterTile.tileColour = ConsoleColor.Red;
+            characterTile.tileColour = Global.lightColour;
             health = Global.lightHealth;
             healthCap = Global.lightHealth;
             shield = Global.lightShield;

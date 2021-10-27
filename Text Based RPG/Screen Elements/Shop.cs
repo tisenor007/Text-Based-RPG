@@ -94,71 +94,74 @@ namespace Text_Based_RPG
                 string input = Console.ReadLine();
                 for (int x = 0; x < inventory.InventorySize(); x++)
                 {
+
                     if (input == "e")
                     {
                         sellMenuOpen = false;
                         return;
                     }
-                    else if (Convert.ToInt16(input) == x + 1)// - 48 == x + 1)
-                    {
-                        if (inventory.InventorySlots(x) != null)
+                    else if (isNumeric(input) && int.Parse(input) <= inventory.InventorySize()) {
+                        if (Convert.ToInt16(input) == x + 1)// - 48 == x + 1)
                         {
-                            if (inventory.InventorySlots(x).itemType == Item.ItemType.Key || inventory.InventorySlots(x).itemType == Item.ItemType.Valuable)
+                            if (inventory.InventorySlots(x) != null)
                             {
-                                Console.Clear();
-                                Console.WriteLine("You cannot sell this item.");
-                                Console.WriteLine("Press any key to continue.");
-                                Console.ReadKey(true);
-                                return;
-                            }
-                            else
-                            {
-                                for (bool inputCheck = false; inputCheck == false;)
+                                if (inventory.InventorySlots(x).itemType == Item.ItemType.Key || inventory.InventorySlots(x).itemType == Item.ItemType.Valuable)
                                 {
-                                    if (shopKeeper.CheckMoney() >= inventory.InventorySlots(x).CheckPrice())
+                                    Console.Clear();
+                                    Console.WriteLine("You cannot sell this item.");
+                                    Console.WriteLine("Press any key to continue.");
+                                    Console.ReadKey(true);
+                                    return;
+                                }
+                                else
+                                {
+                                    for (bool inputCheck = false; inputCheck == false;)
                                     {
-                                        Console.Clear();
-                                        Console.WriteLine("Do you want to sell " + inventory.InventorySlots(x).CheckName() + " for " + inventory.InventorySlots(x).CheckPrice() + "?");
-                                        Console.WriteLine(Global.shopName+"'s Gold: " + shopKeeper.CheckMoney() + "      " + player.name+"'s Gold: " + player.CheckMoney());
-                                        Console.WriteLine("Y) Yes     N) No");
-                                        ConsoleKeyInfo secondaryInput = Console.ReadKey(true);
+                                        if (shopKeeper.CheckMoney() >= inventory.InventorySlots(x).CheckPrice())
+                                        {
+                                            Console.Clear();
+                                            Console.WriteLine("Do you want to sell " + inventory.InventorySlots(x).CheckName() + " for " + inventory.InventorySlots(x).CheckPrice() + "?");
+                                            Console.WriteLine(Global.shopName + "'s Gold: " + shopKeeper.CheckMoney() + "      " + player.name + "'s Gold: " + player.CheckMoney());
+                                            Console.WriteLine("Y) Yes     N) No");
+                                            ConsoleKeyInfo secondaryInput = Console.ReadKey(true);
 
-                                        if (secondaryInput.Key == ConsoleKey.Y)
-                                        {
-                                            player.GainMoney(inventory.InventorySlots(x).CheckPrice());
-                                            shopKeeper.LoseMoney(inventory.InventorySlots(x).CheckPrice());
-                                            inventory.removeItemFromInventory(x);
-                                            inputCheck = true;
+                                            if (secondaryInput.Key == ConsoleKey.Y)
+                                            {
+                                                player.GainMoney(inventory.InventorySlots(x).CheckPrice());
+                                                shopKeeper.LoseMoney(inventory.InventorySlots(x).CheckPrice());
+                                                inventory.removeItemFromInventory(x);
+                                                inputCheck = true;
+                                            }
+                                            else if (secondaryInput.Key == ConsoleKey.N)
+                                            {
+                                                inputCheck = true;
+                                            }
                                         }
-                                        else if (secondaryInput.Key == ConsoleKey.N)
+                                        else
                                         {
-                                            inputCheck = true;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        Console.Clear();
-                                        Console.WriteLine("The "+Global.shopName+" cannot afford the original price of " + inventory.InventorySlots(x).CheckPrice() + ".");
-                                        Console.WriteLine("Do you still want to sell " + inventory.InventorySlots(x).CheckName() + " for " + shopKeeper.CheckMoney() + "?");
-                                        Console.WriteLine(Global.shopName+"'s Gold: " + shopKeeper.CheckMoney() + "      " + player.name+"'s Gold: " + player.CheckMoney());
-                                        Console.WriteLine("Y) Yes     N) No");
-                                        ConsoleKeyInfo secondaryInput = Console.ReadKey(true);
+                                            Console.Clear();
+                                            Console.WriteLine("The " + Global.shopName + " cannot afford the original price of " + inventory.InventorySlots(x).CheckPrice() + ".");
+                                            Console.WriteLine("Do you still want to sell " + inventory.InventorySlots(x).CheckName() + " for " + shopKeeper.CheckMoney() + "?");
+                                            Console.WriteLine(Global.shopName + "'s Gold: " + shopKeeper.CheckMoney() + "      " + player.name + "'s Gold: " + player.CheckMoney());
+                                            Console.WriteLine("Y) Yes     N) No");
+                                            ConsoleKeyInfo secondaryInput = Console.ReadKey(true);
 
-                                        if (secondaryInput.Key == ConsoleKey.Y)
-                                        {
-                                            player.GainMoney(shopKeeper.CheckMoney());
-                                            shopKeeper.LoseMoney(shopKeeper.CheckMoney());
-                                            inventory.removeItemFromInventory(x);
-                                            inputCheck = true;
-                                        }
-                                        else if (secondaryInput.Key == ConsoleKey.N)
-                                        {
-                                            inputCheck = true;
+                                            if (secondaryInput.Key == ConsoleKey.Y)
+                                            {
+                                                player.GainMoney(shopKeeper.CheckMoney());
+                                                shopKeeper.LoseMoney(shopKeeper.CheckMoney());
+                                                inventory.removeItemFromInventory(x);
+                                                inputCheck = true;
+                                            }
+                                            else if (secondaryInput.Key == ConsoleKey.N)
+                                            {
+                                                inputCheck = true;
+                                            }
                                         }
                                     }
                                 }
+                                sellMenuOpen = false;
                             }
-                            sellMenuOpen = false;
                         }
                     }
                 }
@@ -222,7 +225,7 @@ namespace Text_Based_RPG
 
         private void PickUpItem(Item itemToPickUp)
         {
-            itemToPickUp.pickedUp = true;
+            itemToPickUp.pickingUp = true;
             itemToPickUp.SetShopItem(false);
         }
 
@@ -270,6 +273,26 @@ namespace Text_Based_RPG
         {
             enemyManager.AddHeavyEnemy(xLoc, yLoc);
             shopKeeper.Disappear();
+        }
+        private static bool isNumeric(String stringg)
+        {
+            int intValue;
+
+            if (stringg == null || stringg.Equals(""))
+            {
+                return false;
+            }
+
+            try
+            {
+                intValue = int.Parse(stringg);
+                return true;
+            }
+            catch (FormatException)
+            {
+
+            }
+            return false;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Text_Based_RPG
             //special properties
             SwitchVitalStatus(VitalStatus.Alive);
             characterTile.tileCharacter = Global.SCAppearance;
-            characterTile.tileColour = ConsoleColor.Red;
+            characterTile.tileColour = Global.SCColour;
             health = Global.SCHealth;
             healthCap = Global.SCHealth;
             shield = Global.SCShield;

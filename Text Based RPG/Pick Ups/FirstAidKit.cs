@@ -11,21 +11,22 @@ namespace Text_Based_RPG
         //adds health on pickup
         public FirstAidKit(int X, int Y)
         {
-            pickedUp = false;
+            pickingUp = false;
             xLoc = X;
             yLoc = Y;
-            itemTile.tileCharacter = '+';
+            itemTile.tileCharacter = Global.firstAidAppearance;
+            itemTile.tileColour = Global.firstAidColour;
             itemType = ItemType.FirstAidKit;
-            name = "First Aid Kit";
-            Random rand = new Random();
-            SetPrice(rand.Next(1, 10));
+            name = ItemType.FirstAidKit.ToString();
+            //Random rand = new Random();
+            //SetPrice(rand.Next(1, 10));
         }
         public override void Update(Map map, Player player, Inventory inventory, Camera camera, ItemManager itemManager)
         {
-            if (isShopItem == true)
-                itemTile.tileColour = ConsoleColor.Yellow;
+            //if (isShopItem == true)
+            //    itemTile.tileColour = ConsoleColor.Yellow;
 
-            if (pickedUp == true)
+            if (pickingUp == true)
             {
                 //player.Heal(10);
                 inventory.addItemToInventory(this);
@@ -34,20 +35,20 @@ namespace Text_Based_RPG
                 itemTile.tileCharacter = '+';
                 xLoc = 0;
                 yLoc = 0;
-                pickedUp = false;
+                pickingUp = false;
             }
 
             if (dropped == true)
             {
                 xLoc = player.xLoc;
                 yLoc = player.yLoc;
-                pickedUp = false;
+                pickingUp = false;
                 dropped = false;
             }
             if (used == true)
             {
-                player.Heal(10);
-                pickedUp = false;
+                player.Heal(Global.firstAidHP);
+                pickingUp = false;
                 used = false;
                 itemTile.tileCharacter = ' ';
             }

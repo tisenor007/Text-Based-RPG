@@ -11,21 +11,22 @@ namespace Text_Based_RPG
         //adds sheild on pickup
         public Shield(int X, int Y)
         {
-            pickedUp = false;
+            pickingUp = false;
             xLoc = X;
             yLoc = Y;
-            itemTile.tileCharacter = 'S';
+            itemTile.tileCharacter = Global.shieldAppearance;
+            itemTile.tileColour = Global.shieldColour;
             itemType = ItemType.Shield;
-            name = "Shield";
-            Random rand = new Random();
-            SetPrice(rand.Next(1, 10));
+            name = ItemType.Shield.ToString();
+            //Random rand = new Random();
+            //SetPrice(rand.Next(1, 10));
         }
         public override void Update(Map map, Player player, Inventory inventory, Camera camera, ItemManager itemManager)
         {
-            if (isShopItem == true)
-                itemTile.tileColour = ConsoleColor.Yellow;
+            //if (isShopItem == true)
+            //    itemTile.tileColour = ConsoleColor.Yellow;
 
-            if (pickedUp == true)
+            if (pickingUp == true)
             {
                 //player.RegenShield(100);
                 inventory.addItemToInventory(this);
@@ -35,20 +36,20 @@ namespace Text_Based_RPG
                 xLoc = 0;
                 yLoc = 0;
                 dropped = false;
-                pickedUp = false;
+                pickingUp = false;
             }
             if (dropped == true)
             {
                 
                 xLoc = player.xLoc;
                 yLoc = player.yLoc;
-                pickedUp = false;
+                pickingUp = false;
                 dropped = false;
             }
             if (used == true)
             {
-                player.RegenShield(100);
-                pickedUp = false;
+                player.RegenShield(Global.ShieldSP);
+                pickingUp = false;
                 used = false;
                 itemTile.tileCharacter = ' ';
             }
