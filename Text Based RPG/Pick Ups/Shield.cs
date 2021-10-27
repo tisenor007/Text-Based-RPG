@@ -18,8 +18,8 @@ namespace Text_Based_RPG
             itemTile.tileColour = Global.shieldColour;
             itemType = ItemType.Shield;
             name = ItemType.Shield.ToString();
-            //Random rand = new Random();
-            //SetPrice(rand.Next(1, 10));
+            Random rand = new Random();
+            SetPrice(rand.Next(1, 10));
         }
         public override void Update(Map map, Player player, Inventory inventory, Camera camera, ItemManager itemManager)
         {

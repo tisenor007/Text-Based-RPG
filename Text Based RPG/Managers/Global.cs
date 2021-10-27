@@ -11,6 +11,7 @@ namespace Text_Based_RPG
         //general data
         static string[] data;
         static string[] dataLineSections;
+        static string[] ColourNames = new string[16];
 
         //All varibles are in this class because they need to be set before instanciated before anything else, but will be used later....
         //player
@@ -98,6 +99,7 @@ namespace Text_Based_RPG
         //public static 
         public Global()
         {
+            SetAvailableColours();
             SetMapStats();
             SetPlayerStats();
             SetLightStats();
@@ -107,7 +109,26 @@ namespace Text_Based_RPG
             SetShopStats();
             SetItemStats();
         }
-        public void SetItemStats()
+        private void SetAvailableColours()
+        {
+            ColourNames[0] = "Black";
+            ColourNames[1] = "DarkBlue";
+            ColourNames[2] = "DarkGreen";
+            ColourNames[3] = "DarkCyan";
+            ColourNames[4] = "DarkRed";
+            ColourNames[5] = "DarkMagenta";
+            ColourNames[6] = "DarkYellow";
+            ColourNames[7] = "Gray";
+            ColourNames[8] = "DarkGray";
+            ColourNames[9] = "Blue";
+            ColourNames[10] = "Green";
+            ColourNames[11] = "Cyan";
+            ColourNames[12] = "Red";
+            ColourNames[13] = "Magenta";
+            ColourNames[14] = "Yellow";
+            ColourNames[15] = "White";
+        }
+        private void SetItemStats()
         {
             data = System.IO.File.ReadAllLines("DataStats/ItemStats.txt");
             for (int i = 0; i <= data.Length - 1; i = i + 1)
@@ -115,28 +136,31 @@ namespace Text_Based_RPG
                 dataLineSections = data[i].Split('=');
                 for (int l = 0; l <= dataLineSections.Length - 1; l = l + 1)
                 {
-                    if (dataLineSections[l].ToLower() == "FirstAidappearance".ToLower()) { firstAidAppearance = char.Parse(dataLineSections[l + 1]); }
-                    if (dataLineSections[l].ToLower() == "FirstAidHP".ToLower()) { firstAidHP = int.Parse(dataLineSections[l + 1]); }
-                    if (dataLineSections[l].ToLower() == "FirstAidColour".ToLower()) { firstAidColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); }
-                    if (dataLineSections[l].ToLower() == "Shieldappearance".ToLower()) { shieldAppearance = char.Parse(dataLineSections[l + 1]); }
-                    if (dataLineSections[l].ToLower() == "ShieldSP".ToLower()) { ShieldSP = int.Parse(dataLineSections[l + 1]); }
-                    if (dataLineSections[l].ToLower() == "ShieldColour".ToLower()) { shieldColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); }
-                    if (dataLineSections[l].ToLower() == "Keyappearance".ToLower()) { keyAppearance = char.Parse(dataLineSections[l + 1]); }
-                    if (dataLineSections[l].ToLower() == "KeyColour".ToLower()) { keyColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); }
-                    if (dataLineSections[l].ToLower() == "Valuableappearance".ToLower()) { valuableAppearance = char.Parse(dataLineSections[l + 1]); }
-                    if (dataLineSections[l].ToLower() == "ValuableColour".ToLower()) { valuableColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); }
-                    if (dataLineSections[l].ToLower() == "Weaponappearance".ToLower()) { weaponAppearance = char.Parse(dataLineSections[l + 1]); }
-                    if (dataLineSections[l].ToLower() == "WeaponColour".ToLower()) { weaponColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); }
-                    if (dataLineSections[l].ToLower() == "FistDamage".ToLower()) { fistDamage = int.Parse(dataLineSections[l + 1]); }
-                    if (dataLineSections[l].ToLower() == "BrassKnucklesDamage".ToLower()) { BKDamage = int.Parse(dataLineSections[l + 1]); }
-                    if (dataLineSections[l].ToLower() == "BaseBallBatDamage".ToLower()) { BBBDamage = int.Parse(dataLineSections[l + 1]); }
-                    if (dataLineSections[l].ToLower() == "KnifeDamage".ToLower()) { knifeDamage = int.Parse(dataLineSections[l + 1]); }
-                    if (dataLineSections[l].ToLower() == "MacheteDamage".ToLower()) { macheteDamage = int.Parse(dataLineSections[l + 1]); }
-                    if (dataLineSections[l].ToLower() == "ChainsawDamage".ToLower()) { chainsawDamage = int.Parse(dataLineSections[l + 1]); }
+                    for (int c = 0; c <= ColourNames.Length - 1; c++)
+                    {
+                        if (dataLineSections[l].ToLower() == "FirstAidappearance".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { firstAidAppearance = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "FirstAidHP".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { firstAidHP = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "FirstAidColour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { firstAidColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                        if (dataLineSections[l].ToLower() == "Shieldappearance".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { shieldAppearance = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "ShieldSP".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { ShieldSP = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "ShieldColour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { shieldColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); }}
+                        if (dataLineSections[l].ToLower() == "Keyappearance".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { keyAppearance = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "KeyColour".ToLower()) {if (dataLineSections[l + 1] == ColourNames[c]) { keyColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); }}
+                        if (dataLineSections[l].ToLower() == "Valuableappearance".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { valuableAppearance = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "ValuableColour".ToLower()) {if (dataLineSections[l + 1] == ColourNames[c]) { valuableColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                        if (dataLineSections[l].ToLower() == "Weaponappearance".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { weaponAppearance = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "WeaponColour".ToLower()) {if (dataLineSections[l + 1] == ColourNames[c]) { weaponColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); }}
+                        if (dataLineSections[l].ToLower() == "FistDamage".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { fistDamage = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "BrassKnucklesDamage".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { BKDamage = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "BaseBallBatDamage".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { BBBDamage = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "KnifeDamage".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { knifeDamage = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "MacheteDamage".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { macheteDamage = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "ChainsawDamage".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { chainsawDamage = int.Parse(dataLineSections[l + 1]); } }
+                    }
                 }
             }
         }
-        public void SetShopStats()
+        private void SetShopStats()
         {
             data = System.IO.File.ReadAllLines("DataStats/ShopKeeperStats.txt");
             for (int i = 0; i <= data.Length - 1; i = i + 1)
@@ -144,21 +168,24 @@ namespace Text_Based_RPG
                 dataLineSections = data[i].Split('=');
                 for (int l = 0; l <= dataLineSections.Length - 1; l = l + 1)
                 {
-                    if (dataLineSections[l].ToLower() == "shopappearance".ToLower()){ shopAppearance = char.Parse(dataLineSections[l + 1]); }
-                    if (dataLineSections[l].ToLower() == "startMoney".ToLower()){shopStartingMoney = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "shopName".ToLower()){shopName = dataLineSections[l + 1];}
-                    if (dataLineSections[l].ToLower() == "EnterMessage".ToLower()){shopEnterMessage = dataLineSections[l + 1];}
-                    if (dataLineSections[l].ToLower() == "BetrayalMessage".ToLower()){shopBetrayalMessage = dataLineSections[l + 1];}
-                    if (dataLineSections[l].ToLower() == "PriceRangeMin".ToLower()){shopPriceMin = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "PriceRangeMax".ToLower()){shopPriceMax = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "ItemAmount".ToLower()){shopItemAmount = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "shOpYLoc".ToLower()){shopYLoc = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "shOpXLoc".ToLower()){shopXLoc = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "Colour".ToLower()){shopColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true);}
+                    for (int c = 0; c <= ColourNames.Length - 1; c++)
+                    {
+                        if (dataLineSections[l].ToLower() == "shopappearance".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { shopAppearance = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "startMoney".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { shopStartingMoney = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "shopName".ToLower()) { shopName = dataLineSections[l + 1]; }
+                        if (dataLineSections[l].ToLower() == "EnterMessage".ToLower()) { shopEnterMessage = dataLineSections[l + 1]; }
+                        if (dataLineSections[l].ToLower() == "BetrayalMessage".ToLower()) { shopBetrayalMessage = dataLineSections[l + 1]; }
+                        if (dataLineSections[l].ToLower() == "PriceRangeMin".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { shopPriceMin = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "PriceRangeMax".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { shopPriceMax = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "ItemAmount".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { shopItemAmount = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "shOpYLoc".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { shopYLoc = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "shOpXLoc".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { shopXLoc = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "Colour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { shopColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                    }
                 }
             }
         }
-        public void SetBossStats()
+        private void SetBossStats()
         {
             data = System.IO.File.ReadAllLines("DataStats/EnemyStats.txt");
             for (int i = 0; i <= data.Length - 1; i = i + 1)
@@ -166,16 +193,19 @@ namespace Text_Based_RPG
                 dataLineSections = data[i].Split('=');
                 for (int l = 0; l <= dataLineSections.Length - 1; l = l + 1)
                 {
-                    if (dataLineSections[l].ToLower() == "bossappearance".ToLower()){ bossAppearance = char.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "bossshield".ToLower()) {bossShield = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "bosshealth".ToLower()){ bossHealth = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "bossname".ToLower()){ bossName = dataLineSections[l + 1];}
-                    if (dataLineSections[l].ToLower() == "bossattackdamage".ToLower()){ bossAttackDamage = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "BossColour".ToLower()){bossColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true);}
+                    for (int c = 0; c <= ColourNames.Length - 1; c++)
+                    {
+                        if (dataLineSections[l].ToLower() == "bossappearance".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { bossAppearance = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "bossshield".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { bossShield = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "bosshealth".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { bossHealth = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "bossname".ToLower()) { bossName = dataLineSections[l + 1]; }
+                        if (dataLineSections[l].ToLower() == "bossattackdamage".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { bossAttackDamage = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "BossColour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { bossColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                    }
                 }
             }
         }
-        public void SetHeavyStats()
+        private void SetHeavyStats()
         {
             data = System.IO.File.ReadAllLines("DataStats/EnemyStats.txt");
             for (int i = 0; i <= data.Length - 1; i = i + 1)
@@ -183,16 +213,19 @@ namespace Text_Based_RPG
                 dataLineSections = data[i].Split('=');
                 for (int l = 0; l <= dataLineSections.Length - 1; l = l + 1)
                 {
-                    if (dataLineSections[l].ToLower() == "heavyappearance".ToLower()){heavyAppearance = char.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "heavyshield".ToLower()){ heavyShield = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "heavyhealth".ToLower()){ heavyHealth = int.Parse(dataLineSections[l + 1]); }
-                    if (dataLineSections[l].ToLower() == "heavyname".ToLower()) {heavyName = dataLineSections[l + 1];}
-                    if (dataLineSections[l].ToLower() == "heavyattackdamage".ToLower()){ heavyAttackDamage = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "HeavyColour".ToLower()){heavyColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true);}
+                    for (int c = 0; c <= ColourNames.Length - 1; c++)
+                    {
+                        if (dataLineSections[l].ToLower() == "heavyappearance".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { heavyAppearance = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "heavyshield".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { heavyShield = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "heavyhealth".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { heavyHealth = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "heavyname".ToLower()) { heavyName = dataLineSections[l + 1]; }
+                        if (dataLineSections[l].ToLower() == "heavyattackdamage".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { heavyAttackDamage = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "HeavyColour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { heavyColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                    }
                 }
             }
         }
-        public void SetSCStats()
+        private void SetSCStats()
         {
             data = System.IO.File.ReadAllLines("DataStats/EnemyStats.txt");
             for (int i = 0; i <= data.Length - 1; i = i + 1)
@@ -200,17 +233,20 @@ namespace Text_Based_RPG
                 dataLineSections = data[i].Split('=');
                 for (int l = 0; l <= dataLineSections.Length - 1; l = l + 1)
                 {
-                    if (dataLineSections[l].ToLower() == "scappearance".ToLower()){SCAppearance = char.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "scshield".ToLower()){SCShield = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "schealth".ToLower()){SCHealth = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "scname".ToLower()){SCName = dataLineSections[l + 1]; }
-                    if (dataLineSections[l].ToLower() == "scattackdamage".ToLower()){ SCAttackDamage = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "SCColour".ToLower()){SCColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true);}
+                    for (int c = 0; c <= ColourNames.Length - 1; c++)
+                    {
+                        if (dataLineSections[l].ToLower() == "scappearance".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { SCAppearance = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "scshield".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { SCShield = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "schealth".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { SCHealth = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "scname".ToLower()) { SCName = dataLineSections[l + 1]; }
+                        if (dataLineSections[l].ToLower() == "scattackdamage".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { SCAttackDamage = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "SCColour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { SCColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                    }
                 }
             }
         }
 
-        public void SetLightStats()
+        private void SetLightStats()
         {
             data = System.IO.File.ReadAllLines("DataStats/EnemyStats.txt");
             for (int i = 0; i <= data.Length - 1; i = i + 1)
@@ -218,16 +254,19 @@ namespace Text_Based_RPG
                 dataLineSections = data[i].Split('=');
                 for (int l = 0; l <= dataLineSections.Length - 1; l = l + 1)
                 {
-                    if (dataLineSections[l].ToLower() == "lightappearance".ToLower()){lightAppearance = char.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "lightshield".ToLower()){ lightShield = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "lighthealth".ToLower()){lightHealth = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "lightname".ToLower()){lightName = dataLineSections[l + 1];}
-                    if (dataLineSections[l].ToLower() == "lightattackdamage".ToLower()){lightAttackDamage = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "LightColour".ToLower()){lightColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true);}
+                    for (int c = 0; c <= ColourNames.Length - 1; c++)
+                    {
+                        if (dataLineSections[l].ToLower() == "lightappearance".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { lightAppearance = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "lightshield".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { lightShield = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "lighthealth".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { lightHealth = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "lightname".ToLower()) { lightName = dataLineSections[l + 1]; }
+                        if (dataLineSections[l].ToLower() == "lightattackdamage".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { lightAttackDamage = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "LightColour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { lightColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                    }
                 }
             }
         }
-        public void SetMapStats()
+        private void SetMapStats()
         {
             data = System.IO.File.ReadAllLines("DataStats/MapStats.txt");
             for (int i = 0; i <= data.Length - 1; i = i + 1)
@@ -235,39 +274,42 @@ namespace Text_Based_RPG
                 dataLineSections = data[i].Split(';');
                 for (int l = 0; l <= dataLineSections.Length - 1; l = l + 1)
                 {
-                    if (dataLineSections[l].ToLower() == "width".ToLower()){ mapWidth = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "height".ToLower()){mapHeight = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "WaterID".ToLower()){ mapTileIDs[0] = char.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "WaterColour".ToLower()){mapTileColours[0] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true);}
-                    if (dataLineSections[l].ToLower() == "GrassID".ToLower()){mapTileIDs[1] = char.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "GrassColour".ToLower()){ mapTileColours[1] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true);}
-                    if (dataLineSections[l].ToLower() == "HillID".ToLower()){mapTileIDs[2] = char.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "HillColour".ToLower()){ mapTileColours[2] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true);}
-                    if (dataLineSections[l].ToLower() == "mountainID".ToLower()){mapTileIDs[3] = char.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "mountainColour".ToLower()){mapTileColours[3] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true);}
-                    if (dataLineSections[l].ToLower() == "VertWallID".ToLower()){mapTileIDs[4] = char.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "VertWallColour".ToLower()){ mapTileColours[4] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true);}
-                    if (dataLineSections[l].ToLower() == "HorizWallID".ToLower()){mapTileIDs[5] = char.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "HorizWallColour".ToLower()){mapTileColours[5] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true);}
-                    if (dataLineSections[l].ToLower() == "RightCornerWallID".ToLower()){mapTileIDs[6] = char.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "RightCornerWallColour".ToLower()){mapTileColours[6] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true);}
-                    if (dataLineSections[l].ToLower() == "LeftCornerWallID".ToLower()){mapTileIDs[7] = char.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "LeftCornerWallColour".ToLower()){mapTileColours[7] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true);}
-                    if (dataLineSections[l].ToLower() == "floorID".ToLower()){ mapTileIDs[8] = char.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "floorColour".ToLower()){ mapTileColours[8] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true);}
-                    if (dataLineSections[l].ToLower() == "PathID".ToLower()){mapTileIDs[9] = char.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "PathColour".ToLower()){mapTileColours[9] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true);}
-                    if (dataLineSections[l].ToLower() == "CaveWallID".ToLower()){mapTileIDs[10] = char.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "CaveWallColour".ToLower()){mapTileColours[10] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true);}
-                    if (dataLineSections[l].ToLower() == "CaveFloorID".ToLower()){mapTileIDs[11] = char.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "CaveFloorColour".ToLower()){mapTileColours[11] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true);}
-                    if (dataLineSections[l].ToLower() == "CaveDoorID".ToLower()){mapTileIDs[12] = char.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "CaveDoorColour".ToLower()){ mapTileColours[12] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true);}
+                    for (int c = 0; c <= ColourNames.Length - 1; c++)
+                    {
+                        if (dataLineSections[l].ToLower() == "width".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { mapWidth = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "height".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { mapHeight = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "WaterID".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { mapTileIDs[0] = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "WaterColour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { mapTileColours[0] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                        if (dataLineSections[l].ToLower() == "GrassID".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { mapTileIDs[1] = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "GrassColour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { mapTileColours[1] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                        if (dataLineSections[l].ToLower() == "HillID".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { mapTileIDs[2] = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "HillColour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { mapTileColours[2] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                        if (dataLineSections[l].ToLower() == "mountainID".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { mapTileIDs[3] = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "mountainColour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { mapTileColours[3] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                        if (dataLineSections[l].ToLower() == "VertWallID".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { mapTileIDs[4] = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "VertWallColour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { mapTileColours[4] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                        if (dataLineSections[l].ToLower() == "HorizWallID".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { mapTileIDs[5] = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "HorizWallColour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { mapTileColours[5] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                        if (dataLineSections[l].ToLower() == "RightCornerWallID".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { mapTileIDs[6] = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "RightCornerWallColour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { mapTileColours[6] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                        if (dataLineSections[l].ToLower() == "LeftCornerWallID".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { mapTileIDs[7] = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "LeftCornerWallColour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { mapTileColours[7] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                        if (dataLineSections[l].ToLower() == "floorID".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { mapTileIDs[8] = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "floorColour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { mapTileColours[8] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                        if (dataLineSections[l].ToLower() == "PathID".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { mapTileIDs[9] = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "PathColour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { mapTileColours[9] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                        if (dataLineSections[l].ToLower() == "CaveWallID".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { mapTileIDs[10] = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "CaveWallColour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { mapTileColours[10] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                        if (dataLineSections[l].ToLower() == "CaveFloorID".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { mapTileIDs[11] = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "CaveFloorColour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { mapTileColours[11] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                        if (dataLineSections[l].ToLower() == "CaveDoorID".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { mapTileIDs[12] = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "CaveDoorColour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { mapTileColours[12] = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                    }
                 }
             }
         }
        
-        public void SetPlayerStats()
+        private void SetPlayerStats()
         {
             data = System.IO.File.ReadAllLines("DataStats/PlayerStats.txt");
             for (int i = 0; i <= data.Length - 1; i = i + 1)
@@ -275,38 +317,87 @@ namespace Text_Based_RPG
                 dataLineSections = data[i].Split('=');
                 for (int l = 0; l <= dataLineSections.Length - 1; l = l + 1)
                 {
-                    if (dataLineSections[l].ToLower() == "pmoney".ToLower()){ playerStartMoney = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "pappearance".ToLower()){playerAppearance = char.Parse(dataLineSections[l+1]);}
-                    if (dataLineSections[l].ToLower() == "pshield".ToLower()){ playerShield = int.Parse(dataLineSections[l + 1]);}
-                    if (dataLineSections[l].ToLower() == "phealth".ToLower()){playerHealth = int.Parse(dataLineSections[l+1]);}
-                    if (dataLineSections[l].ToLower() == "pname".ToLower()){ playerName = dataLineSections[l+1];}
-                    if (dataLineSections[l].ToLower() == "Colour".ToLower()){playerColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor),dataLineSections[l + 1], true);}
-                    if (dataLineSections[l].ToLower() == "invenslotamount".ToLower()){playerInventorySlotAmount = int.Parse(dataLineSections[l+1]);playerInventoryData = new string[playerInventorySlotAmount];}
-                    if (dataLineSections[l].ToLower() == "startweapon".ToLower())
+                    for (int c = 0; c <= ColourNames.Length - 1; c++)
                     {
-                        if (dataLineSections[l + 1] == Item.ItemType.Fist.ToString()){playerStartingWeapon = Item.ItemType.Fist.ToString();}
-                        if (dataLineSections[l + 1] == Item.ItemType.BrassKnuckles.ToString()){playerStartingWeapon = Item.ItemType.BrassKnuckles.ToString();}
-                        if (dataLineSections[l + 1] == Item.ItemType.BaseballBat.ToString()){playerStartingWeapon = Item.ItemType.BaseballBat.ToString();}
-                        if (dataLineSections[l + 1] == Item.ItemType.Knife.ToString()){playerStartingWeapon = Item.ItemType.Knife.ToString();}
-                        if (dataLineSections[l + 1] == Item.ItemType.Machete.ToString()){playerStartingWeapon = Item.ItemType.Machete.ToString();}
-                        if (dataLineSections[l + 1] == Item.ItemType.Chainsaw.ToString()){playerStartingWeapon = Item.ItemType.Chainsaw.ToString();}
-                    }
-                    for (int s = 0; s <= playerInventorySlotAmount; s = s + 1)
-                    {
-                        if (dataLineSections[l].ToLower() == "slot" + s)
+                        if (dataLineSections[l].ToLower() == "pmoney".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { playerStartMoney = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "pappearance".ToLower()) { if (isOneCharacter(dataLineSections[l + 1])) { playerAppearance = char.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "pshield".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { playerShield = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "phealth".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { playerHealth = int.Parse(dataLineSections[l + 1]); } }
+                        if (dataLineSections[l].ToLower() == "pname".ToLower()) { playerName = dataLineSections[l + 1]; }
+                        if (dataLineSections[l].ToLower() == "Colour".ToLower()) { if (dataLineSections[l + 1] == ColourNames[c]) { playerColour = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), dataLineSections[l + 1], true); } }
+                        if (dataLineSections[l].ToLower() == "invenslotamount".ToLower()) { if (isNumeric(dataLineSections[l + 1])) { playerInventorySlotAmount = int.Parse(dataLineSections[l + 1]); playerInventoryData = new string[playerInventorySlotAmount]; } }
+                        if (dataLineSections[l].ToLower() == "startweapon".ToLower())
                         {
-                            if (dataLineSections[l + 1] == Item.ItemType.FirstAidKit.ToString()){playerInventoryData[s - 1] = Item.ItemType.FirstAidKit.ToString();}
-                            if (dataLineSections[l + 1] == Item.ItemType.Shield.ToString()){playerInventoryData[s - 1] = Item.ItemType.Shield.ToString();}
-                            if (dataLineSections[l + 1] == Item.ItemType.BrassKnuckles.ToString()){playerInventoryData[s - 1] = Item.ItemType.BrassKnuckles.ToString();}
-                            if (dataLineSections[l + 1] == Item.ItemType.BaseballBat.ToString()){playerInventoryData[s - 1] = Item.ItemType.BaseballBat.ToString();}
-                            if (dataLineSections[l + 1] == Item.ItemType.Knife.ToString()){playerInventoryData[s - 1] = Item.ItemType.Knife.ToString();}
-                            if (dataLineSections[l + 1] == Item.ItemType.Machete.ToString()){playerInventoryData[s - 1] = Item.ItemType.Machete.ToString();}
-                            if (dataLineSections[l + 1] == Item.ItemType.Chainsaw.ToString()){playerInventoryData[s - 1] = Item.ItemType.Chainsaw.ToString();}
+                            if (dataLineSections[l + 1] == Item.ItemType.Fist.ToString()) { playerStartingWeapon = Item.ItemType.Fist.ToString(); }
+                            if (dataLineSections[l + 1] == Item.ItemType.BrassKnuckles.ToString()) { playerStartingWeapon = Item.ItemType.BrassKnuckles.ToString(); }
+                            if (dataLineSections[l + 1] == Item.ItemType.BaseballBat.ToString()) { playerStartingWeapon = Item.ItemType.BaseballBat.ToString(); }
+                            if (dataLineSections[l + 1] == Item.ItemType.Knife.ToString()) { playerStartingWeapon = Item.ItemType.Knife.ToString(); }
+                            if (dataLineSections[l + 1] == Item.ItemType.Machete.ToString()) { playerStartingWeapon = Item.ItemType.Machete.ToString(); }
+                            if (dataLineSections[l + 1] == Item.ItemType.Chainsaw.ToString()) { playerStartingWeapon = Item.ItemType.Chainsaw.ToString(); }
+                        }
+                        for (int s = 0; s <= playerInventorySlotAmount; s = s + 1)
+                        {
+                            if (dataLineSections[l].ToLower() == "slot" + s)
+                            {
+                                if (dataLineSections[l + 1] == Item.ItemType.FirstAidKit.ToString()) { playerInventoryData[s - 1] = Item.ItemType.FirstAidKit.ToString(); }
+                                if (dataLineSections[l + 1] == Item.ItemType.Shield.ToString()) { playerInventoryData[s - 1] = Item.ItemType.Shield.ToString(); }
+                                if (dataLineSections[l + 1] == Item.ItemType.BrassKnuckles.ToString()) { playerInventoryData[s - 1] = Item.ItemType.BrassKnuckles.ToString(); }
+                                if (dataLineSections[l + 1] == Item.ItemType.BaseballBat.ToString()) { playerInventoryData[s - 1] = Item.ItemType.BaseballBat.ToString(); }
+                                if (dataLineSections[l + 1] == Item.ItemType.Knife.ToString()) { playerInventoryData[s - 1] = Item.ItemType.Knife.ToString(); }
+                                if (dataLineSections[l + 1] == Item.ItemType.Machete.ToString()) { playerInventoryData[s - 1] = Item.ItemType.Machete.ToString(); }
+                                if (dataLineSections[l + 1] == Item.ItemType.Chainsaw.ToString()) { playerInventoryData[s - 1] = Item.ItemType.Chainsaw.ToString(); }
+                            }
                         }
                     }
                 }
             }
 
         }
+        public static bool isNumeric(String stringToCheck)
+        {
+            int intValue;
+
+            if (stringToCheck == null || stringToCheck.Equals(""))
+            {
+                return false;
+            }
+
+            try
+            {
+                intValue = int.Parse(stringToCheck);
+                return true;
+            }
+            catch (FormatException)
+            {
+
+            }
+            return false;
+        }
+        public static bool isOneCharacter(string stringToCheck)
+        {
+            if (stringToCheck.Length <= 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        //public static bool isColourName(string stringToCheck)
+        //{
+        //    for (int c = 0; c< ColourNames.Length - 1; c++)
+        //    {
+        //        if (stringToCheck == ColourNames[c])
+        //        {
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    return false;
+        //}
     }
 }

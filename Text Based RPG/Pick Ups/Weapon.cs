@@ -25,8 +25,8 @@ namespace Text_Based_RPG
             else if (itemType == ItemType.Knife) { name = ItemType.Knife.ToString(); }
             else if (itemType == ItemType.Machete) { name = ItemType.Machete.ToString(); }
             else if (itemType == ItemType.Chainsaw) { name = ItemType.Chainsaw.ToString(); }
-            //Random rand = new Random();
-            //SetPrice(rand.Next(1, 10));
+            Random rand = new Random();
+            SetPrice(rand.Next(1, 10));
         }
         public override void Update(Map map, Player player, Inventory inventory, Camera camera, ItemManager itemManager)
         {

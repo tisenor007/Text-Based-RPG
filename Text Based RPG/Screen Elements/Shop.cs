@@ -100,7 +100,7 @@ namespace Text_Based_RPG
                         sellMenuOpen = false;
                         return;
                     }
-                    else if (isNumeric(input) && int.Parse(input) <= inventory.InventorySize()) {
+                    else if (Global.isNumeric(input) && int.Parse(input) <= inventory.InventorySize()) {
                         if (Convert.ToInt16(input) == x + 1)// - 48 == x + 1)
                         {
                             if (inventory.InventorySlots(x) != null)
@@ -274,25 +274,6 @@ namespace Text_Based_RPG
             enemyManager.AddHeavyEnemy(xLoc, yLoc);
             shopKeeper.Disappear();
         }
-        private static bool isNumeric(String stringg)
-        {
-            int intValue;
-
-            if (stringg == null || stringg.Equals(""))
-            {
-                return false;
-            }
-
-            try
-            {
-                intValue = int.Parse(stringg);
-                return true;
-            }
-            catch (FormatException)
-            {
-
-            }
-            return false;
-        }
+        
     }
 }

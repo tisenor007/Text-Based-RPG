@@ -1,9 +1,9 @@
 ﻿PName=Player
 PHealth=100
 PShield=50
-PMoney=30
+PMoney=0
 Pappearance=@
-StartWeapon=Chainsaw
+StartWeapon=Fist
 Colour=Cyan
 InvenSlotAmount=10
 Slot1=Shield
